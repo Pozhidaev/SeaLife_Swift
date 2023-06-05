@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */; };
+		A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A51EFD9D2A1C10F90016182D /* Localizable.strings */; };
+		A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EFDA02A1CE7B70016182D /* CreatureState.swift */; };
+		A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */; };
+		A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186D2A19468B006E1AE9 /* TurnHelper.swift */; };
+		A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */; };
+		A57B18722A195040006E1AE9 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18712A195040006E1AE9 /* Turn.swift */; };
+		A57B18762A1956EA006E1AE9 /* UIImage+Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18752A1956EA006E1AE9 /* UIImage+Creature.swift */; };
+		A57B18782A1957B0006E1AE9 /* CreatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18772A1957B0006E1AE9 /* CreatureProtocol.swift */; };
+		A57B187A2A1959F7006E1AE9 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18792A1959F7006E1AE9 /* Creature.swift */; };
+		A57B187C2A195C1C006E1AE9 /* OrcaCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B187B2A195C1C006E1AE9 /* OrcaCreature.swift */; };
+		A57B187E2A195C26006E1AE9 /* FishCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B187D2A195C26006E1AE9 /* FishCreature.swift */; };
+		A57B18802A1962D6006E1AE9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B187F2A1962D6006E1AE9 /* Utils.swift */; };
+		A5ACA5E32A18B6AB00FEE2FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA5E22A18B6AB00FEE2FD /* AppDelegate.swift */; };
+		A5ACA5E52A18B6AB00FEE2FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA5E42A18B6AB00FEE2FD /* SceneDelegate.swift */; };
+		A5ACA63F2A18B7B900FEE2FD /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA6132A18B7B900FEE2FD /* SliderView.xib */; };
+		A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */; };
+		A5ACA6512A18BE3700FEE2FD /* AnimationsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */; };
+		A5ACA6532A18C36100FEE2FD /* AnimationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */; };
+		A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */; };
+		A5ACA65D2A18CB8F00FEE2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */; };
+		A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */; };
+		A5ACA6602A18CBD200FEE2FD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA65F2A18CBD200FEE2FD /* Constants.swift */; };
+		A5ACA6622A18D70600FEE2FD /* WorldScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */; };
+		A5ACA6642A18DE2E00FEE2FD /* CreatureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6632A18DE2E00FEE2FD /* CreatureFactory.swift */; };
+		A5ACA6672A18DF0E00FEE2FD /* WorldBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6662A18DF0E00FEE2FD /* WorldBackgroundView.swift */; };
+		A5ACA66A2A18E7AD00FEE2FD /* WorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6692A18E7AD00FEE2FD /* WorldViewController.swift */; };
+		A5ACA66C2A18EED300FEE2FD /* WorldViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA66B2A18EED300FEE2FD /* WorldViewControllerDelegate.swift */; };
+		A5ACA66E2A18EF3C00FEE2FD /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA66D2A18EF3C00FEE2FD /* SliderView.swift */; };
+		A5ACA6702A18F13600FEE2FD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA66F2A18F13600FEE2FD /* UIView+Extensions.swift */; };
+		A5ACA6732A18F4A300FEE2FD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6722A18F4A300FEE2FD /* MenuViewController.swift */; };
+		A5ACA6772A192B2900FEE2FD /* CreatureTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6762A192B2900FEE2FD /* CreatureTimerProtocol.swift */; };
+		A5ACA6792A192B6E00FEE2FD /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6782A192B6E00FEE2FD /* World.swift */; };
+		A5ACA67B2A1937FE00FEE2FD /* WorldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA67A2A1937FE00FEE2FD /* WorldDelegate.swift */; };
+		A5ACA67D2A19387E00FEE2FD /* WorldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA67C2A19387E00FEE2FD /* WorldProtocol.swift */; };
+		A5ACA67F2A19395A00FEE2FD /* WorldVisualDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */; };
+		A5ACA6812A19397F00FEE2FD /* WorldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6802A19397F00FEE2FD /* WorldCell.swift */; };
+		A5ACA6832A193B3000FEE2FD /* WorldPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */; };
+		A5ACA6852A193B6200FEE2FD /* WorldInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */; };
+		A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6862A193BFE00FEE2FD /* Direction.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureTimer.swift; sourceTree = "<group>"; };
+		A51EFD9C2A1C10F90016182D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A51EFD9E2A1C110D0016182D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A51EFDA02A1CE7B70016182D /* CreatureState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureState.swift; sourceTree = "<group>"; };
+		A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
+		A57B186D2A19468B006E1AE9 /* TurnHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelper.swift; sourceTree = "<group>"; };
+		A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelperProtocol.swift; sourceTree = "<group>"; };
+		A57B18712A195040006E1AE9 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
+		A57B18752A1956EA006E1AE9 /* UIImage+Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Creature.swift"; sourceTree = "<group>"; };
+		A57B18772A1957B0006E1AE9 /* CreatureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureProtocol.swift; sourceTree = "<group>"; };
+		A57B18792A1959F7006E1AE9 /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
+		A57B187B2A195C1C006E1AE9 /* OrcaCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrcaCreature.swift; sourceTree = "<group>"; };
+		A57B187D2A195C26006E1AE9 /* FishCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCreature.swift; sourceTree = "<group>"; };
+		A57B187F2A1962D6006E1AE9 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A5ACA5DF2A18B6AB00FEE2FD /* SeaLife_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeaLife_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5ACA5E22A18B6AB00FEE2FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5ACA5E42A18B6AB00FEE2FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A5ACA5F02A18B6AC00FEE2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5ACA6132A18B7B900FEE2FD /* SliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
+		A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturesView.swift; sourceTree = "<group>"; };
+		A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsFactory.swift; sourceTree = "<group>"; };
+		A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsController.swift; sourceTree = "<group>"; };
+		A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A5ACA65F2A18CBD200FEE2FD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldScreenViewController.swift; sourceTree = "<group>"; };
+		A5ACA6632A18DE2E00FEE2FD /* CreatureFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureFactory.swift; sourceTree = "<group>"; };
+		A5ACA6662A18DF0E00FEE2FD /* WorldBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldBackgroundView.swift; sourceTree = "<group>"; };
+		A5ACA6692A18E7AD00FEE2FD /* WorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldViewController.swift; sourceTree = "<group>"; };
+		A5ACA66B2A18EED300FEE2FD /* WorldViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A5ACA66D2A18EF3C00FEE2FD /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		A5ACA66F2A18F13600FEE2FD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		A5ACA6722A18F4A300FEE2FD /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A5ACA6762A192B2900FEE2FD /* CreatureTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureTimerProtocol.swift; sourceTree = "<group>"; };
+		A5ACA6782A192B6E00FEE2FD /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		A5ACA67A2A1937FE00FEE2FD /* WorldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldDelegate.swift; sourceTree = "<group>"; };
+		A5ACA67C2A19387E00FEE2FD /* WorldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldProtocol.swift; sourceTree = "<group>"; };
+		A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldVisualDelegate.swift; sourceTree = "<group>"; };
+		A5ACA6802A19397F00FEE2FD /* WorldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCell.swift; sourceTree = "<group>"; };
+		A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldPosition.swift; sourceTree = "<group>"; };
+		A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldInfo.swift; sourceTree = "<group>"; };
+		A5ACA6862A193BFE00FEE2FD /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5ACA5DC2A18B6AB00FEE2FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A51F86232A2F5DE7002B3D8F /* AppRelated */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5E22A18B6AB00FEE2FD /* AppDelegate.swift */,
+				A5ACA5E42A18B6AB00FEE2FD /* SceneDelegate.swift */,
+				A5ACA65F2A18CBD200FEE2FD /* Constants.swift */,
+			);
+			path = AppRelated;
+			sourceTree = "<group>";
+		};
+		A56043B52A2C02EE00764B0F /* Direction */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6862A193BFE00FEE2FD /* Direction.swift */,
+			);
+			path = Direction;
+			sourceTree = "<group>";
+		};
+		A5ACA5D62A18B6AB00FEE2FD = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5E12A18B6AB00FEE2FD /* SeaLife_Swift */,
+				A5ACA5E02A18B6AB00FEE2FD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5ACA5E02A18B6AB00FEE2FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5DF2A18B6AB00FEE2FD /* SeaLife_Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5ACA5E12A18B6AB00FEE2FD /* SeaLife_Swift */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5F82A18B7B900FEE2FD /* Sources */,
+				A5ACA5F62A18B70E00FEE2FD /* SupportingFiles */,
+			);
+			path = SeaLife_Swift;
+			sourceTree = "<group>";
+		};
+		A5ACA5F62A18B70E00FEE2FD /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */,
+				A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */,
+				A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */,
+				A5ACA5F02A18B6AC00FEE2FD /* Info.plist */,
+				A51EFD9D2A1C10F90016182D /* Localizable.strings */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A5ACA5F82A18B7B900FEE2FD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A51F86232A2F5DE7002B3D8F /* AppRelated */,
+				A5ACA6652A18DED600FEE2FD /* Utils */,
+				A5ACA5F92A18B7B900FEE2FD /* View */,
+				A5ACA6142A18B7B900FEE2FD /* Logic */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A5ACA5F92A18B7B900FEE2FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5FA2A18B7B900FEE2FD /* MainScreen */,
+				A5ACA60E2A18B7B900FEE2FD /* MenuViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A5ACA5FA2A18B7B900FEE2FD /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6582A18CB2500FEE2FD /* WorldScreenViewController */,
+				A5ACA60A2A18B7B900FEE2FD /* WorldViewController */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		A5ACA5FB2A18B7B900FEE2FD /* CreaturesView */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */,
+			);
+			path = CreaturesView;
+			sourceTree = "<group>";
+		};
+		A5ACA6002A18B7B900FEE2FD /* AnimationsController */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */,
+				A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */,
+			);
+			path = AnimationsController;
+			sourceTree = "<group>";
+		};
+		A5ACA6072A18B7B900FEE2FD /* WorldBackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6662A18DF0E00FEE2FD /* WorldBackgroundView.swift */,
+			);
+			path = WorldBackgroundView;
+			sourceTree = "<group>";
+		};
+		A5ACA60A2A18B7B900FEE2FD /* WorldViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA5FB2A18B7B900FEE2FD /* CreaturesView */,
+				A5ACA6002A18B7B900FEE2FD /* AnimationsController */,
+				A5ACA6072A18B7B900FEE2FD /* WorldBackgroundView */,
+				A5ACA6692A18E7AD00FEE2FD /* WorldViewController.swift */,
+				A5ACA66B2A18EED300FEE2FD /* WorldViewControllerDelegate.swift */,
+			);
+			path = WorldViewController;
+			sourceTree = "<group>";
+		};
+		A5ACA60E2A18B7B900FEE2FD /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6722A18F4A300FEE2FD /* MenuViewController.swift */,
+				A5ACA6712A18F48900FEE2FD /* SliderView */,
+			);
+			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		A5ACA6142A18B7B900FEE2FD /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				A56043B52A2C02EE00764B0F /* Direction */,
+				A5ACA6152A18B7B900FEE2FD /* CreatureTimer */,
+				A5ACA6192A18B7B900FEE2FD /* World */,
+				A5ACA6232A18B7B900FEE2FD /* Turn */,
+				A5ACA6292A18B7B900FEE2FD /* Creatures */,
+				A5ACA6342A18B7B900FEE2FD /* CreatureFactory */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		A5ACA6152A18B7B900FEE2FD /* CreatureTimer */ = {
+			isa = PBXGroup;
+			children = (
+				A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */,
+				A5ACA6762A192B2900FEE2FD /* CreatureTimerProtocol.swift */,
+			);
+			path = CreatureTimer;
+			sourceTree = "<group>";
+		};
+		A5ACA6192A18B7B900FEE2FD /* World */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA67C2A19387E00FEE2FD /* WorldProtocol.swift */,
+				A5ACA6782A192B6E00FEE2FD /* World.swift */,
+				A5ACA67A2A1937FE00FEE2FD /* WorldDelegate.swift */,
+				A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */,
+				A5ACA6802A19397F00FEE2FD /* WorldCell.swift */,
+				A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */,
+				A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		A5ACA6232A18B7B900FEE2FD /* Turn */ = {
+			isa = PBXGroup;
+			children = (
+				A57B18712A195040006E1AE9 /* Turn.swift */,
+				A57B186D2A19468B006E1AE9 /* TurnHelper.swift */,
+				A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */,
+			);
+			path = Turn;
+			sourceTree = "<group>";
+		};
+		A5ACA6292A18B7B900FEE2FD /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
+				A57B18752A1956EA006E1AE9 /* UIImage+Creature.swift */,
+				A57B18772A1957B0006E1AE9 /* CreatureProtocol.swift */,
+				A57B18792A1959F7006E1AE9 /* Creature.swift */,
+				A57B187B2A195C1C006E1AE9 /* OrcaCreature.swift */,
+				A57B187D2A195C26006E1AE9 /* FishCreature.swift */,
+				A51EFDA02A1CE7B70016182D /* CreatureState.swift */,
+			);
+			path = Creatures;
+			sourceTree = "<group>";
+		};
+		A5ACA6342A18B7B900FEE2FD /* CreatureFactory */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6632A18DE2E00FEE2FD /* CreatureFactory.swift */,
+			);
+			path = CreatureFactory;
+			sourceTree = "<group>";
+		};
+		A5ACA6582A18CB2500FEE2FD /* WorldScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */,
+			);
+			path = WorldScreenViewController;
+			sourceTree = "<group>";
+		};
+		A5ACA6652A18DED600FEE2FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA66F2A18F13600FEE2FD /* UIView+Extensions.swift */,
+				A57B187F2A1962D6006E1AE9 /* Utils.swift */,
+				A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A5ACA6712A18F48900FEE2FD /* SliderView */ = {
+			isa = PBXGroup;
+			children = (
+				A5ACA6132A18B7B900FEE2FD /* SliderView.xib */,
+				A5ACA66D2A18EF3C00FEE2FD /* SliderView.swift */,
+			);
+			path = SliderView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5ACA5DE2A18B6AB00FEE2FD /* SeaLife_Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5ACA5F32A18B6AC00FEE2FD /* Build configuration list for PBXNativeTarget "SeaLife_Swift" */;
+			buildPhases = (
+				A5ACA5DB2A18B6AB00FEE2FD /* Sources */,
+				A5ACA5DC2A18B6AB00FEE2FD /* Frameworks */,
+				A5ACA5DD2A18B6AB00FEE2FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SeaLife_Swift;
+			productName = SeaLife_Swift;
+			productReference = A5ACA5DF2A18B6AB00FEE2FD /* SeaLife_Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5ACA5D72A18B6AB00FEE2FD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A5ACA5DE2A18B6AB00FEE2FD = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = A5ACA5DA2A18B6AB00FEE2FD /* Build configuration list for PBXProject "SeaLife_Swift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ru,
+			);
+			mainGroup = A5ACA5D62A18B6AB00FEE2FD;
+			productRefGroup = A5ACA5E02A18B6AB00FEE2FD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5ACA5DE2A18B6AB00FEE2FD /* SeaLife_Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5ACA5DD2A18B6AB00FEE2FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */,
+				A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */,
+				A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */,
+				A5ACA63F2A18B7B900FEE2FD /* SliderView.xib in Resources */,
+				A5ACA65D2A18CB8F00FEE2FD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5ACA5DB2A18B6AB00FEE2FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5ACA6602A18CBD200FEE2FD /* Constants.swift in Sources */,
+				A5ACA6772A192B2900FEE2FD /* CreatureTimerProtocol.swift in Sources */,
+				A57B187A2A1959F7006E1AE9 /* Creature.swift in Sources */,
+				A5ACA6622A18D70600FEE2FD /* WorldScreenViewController.swift in Sources */,
+				A5ACA6792A192B6E00FEE2FD /* World.swift in Sources */,
+				A5ACA5E32A18B6AB00FEE2FD /* AppDelegate.swift in Sources */,
+				A5ACA6732A18F4A300FEE2FD /* MenuViewController.swift in Sources */,
+				A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */,
+				A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */,
+				A5ACA6532A18C36100FEE2FD /* AnimationsController.swift in Sources */,
+				A5ACA67F2A19395A00FEE2FD /* WorldVisualDelegate.swift in Sources */,
+				A5ACA5E52A18B6AB00FEE2FD /* SceneDelegate.swift in Sources */,
+				A5ACA6832A193B3000FEE2FD /* WorldPosition.swift in Sources */,
+				A5ACA67B2A1937FE00FEE2FD /* WorldDelegate.swift in Sources */,
+				A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */,
+				A57B18802A1962D6006E1AE9 /* Utils.swift in Sources */,
+				A57B18762A1956EA006E1AE9 /* UIImage+Creature.swift in Sources */,
+				A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */,
+				A5ACA66A2A18E7AD00FEE2FD /* WorldViewController.swift in Sources */,
+				A5ACA6812A19397F00FEE2FD /* WorldCell.swift in Sources */,
+				A57B18722A195040006E1AE9 /* Turn.swift in Sources */,
+				A5ACA6702A18F13600FEE2FD /* UIView+Extensions.swift in Sources */,
+				A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */,
+				A5ACA66C2A18EED300FEE2FD /* WorldViewControllerDelegate.swift in Sources */,
+				A57B187E2A195C26006E1AE9 /* FishCreature.swift in Sources */,
+				A57B187C2A195C1C006E1AE9 /* OrcaCreature.swift in Sources */,
+				A5ACA6672A18DF0E00FEE2FD /* WorldBackgroundView.swift in Sources */,
+				A5ACA67D2A19387E00FEE2FD /* WorldProtocol.swift in Sources */,
+				A57B18782A1957B0006E1AE9 /* CreatureProtocol.swift in Sources */,
+				A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */,
+				A5ACA6642A18DE2E00FEE2FD /* CreatureFactory.swift in Sources */,
+				A5ACA66E2A18EF3C00FEE2FD /* SliderView.swift in Sources */,
+				A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */,
+				A5ACA6852A193B6200FEE2FD /* WorldInfo.swift in Sources */,
+				A5ACA6512A18BE3700FEE2FD /* AnimationsFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A51EFD9D2A1C10F90016182D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A51EFD9C2A1C10F90016182D /* en */,
+				A51EFD9E2A1C110D0016182D /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5ACA5F12A18B6AC00FEE2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A5ACA5F22A18B6AC00FEE2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5ACA5F42A18B6AC00FEE2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SeaLife_Swift/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Home.SeaLife-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5ACA5F52A18B6AC00FEE2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SeaLife_Swift/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Home.SeaLife-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5ACA5DA2A18B6AB00FEE2FD /* Build configuration list for PBXProject "SeaLife_Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5ACA5F12A18B6AC00FEE2FD /* Debug */,
+				A5ACA5F22A18B6AC00FEE2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5ACA5F32A18B6AC00FEE2FD /* Build configuration list for PBXNativeTarget "SeaLife_Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5ACA5F42A18B6AC00FEE2FD /* Debug */,
+				A5ACA5F52A18B6AC00FEE2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5ACA5D72A18B6AB00FEE2FD /* Project object */;
+}

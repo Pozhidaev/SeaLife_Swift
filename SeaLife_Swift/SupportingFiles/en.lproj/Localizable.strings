@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  SeaLife_Swift
+
+  Created by Sergey Pozhidaev on 23.05.2023.
+  
+*/
+"World.Finish.Empty" = "World become empty";
+"World.Finish.Full" = "World become full with no move";
+
+"Button.Ok" = "Ok";
+"Button.Play" = "Play";
+"Button.Pause" = "Pause";
+"Button.Reset" = "Reset";
+"Button.Menu" = "Menu";
+
+"MainScreen.AnimationSpeed" = "Animation Speed";
+"MainScreen.CreaturesSpeed" = "Creatures Speed";
+
+"Menu.Button.Start" = "Start";
+"Menu.Button.Cancel" = "Cancel";
+"Menu.FishCount.Title" = "Fish count";
+"Menu.OrcaCount.Title" = "Orca count";
+"Menu.XSize.Title" = "Horizontal size";
+"Menu.YSize.Title" = "Vertical Size";
+
+"SliderView.Value.Unknown" = "?";
+"SliderView.Minimum.Unknown" = "?";
+"SliderView.Maximum.Unknown" = "?";

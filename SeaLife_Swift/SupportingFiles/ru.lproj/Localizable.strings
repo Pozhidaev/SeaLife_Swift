@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  SeaLife_Swift
+
+  Created by Sergey Pozhidaev on 23.05.2023.
+  
+*/
+"World.Finish.Empty" = "Мир опустел";
+"World.Finish.Full" = "Мир переполнен";
+
+"Button.Ok" = "Ок";
+"Button.Play" = "Пуск";
+"Button.Pause" = "Пауза";
+"Button.Reset" = "Заново";
+"Button.Menu" = "Меню";
+
+"MainScreen.AnimationSpeed" = "Скорость анимаций";
+"MainScreen.CreaturesSpeed" = "Скорость животных";
+
+"Menu.Button.Start" = "Начать";
+"Menu.Button.Cancel" = "Закрыть";
+"Menu.FishCount.Title" = "Количество рыб";
+"Menu.OrcaCount.Title" = "Количество касаток";
+"Menu.XSize.Title" = "Горизонтальный размер";
+"Menu.YSize.Title" = "Вертикальный размер";
+
+"SliderView.Value.Unknown" = "?";
+"SliderView.Minimum.Unknown" = "?";
+"SliderView.Maximum.Unknown" = "?";
