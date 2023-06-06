@@ -135,15 +135,14 @@ extension WorldViewController //UIContentContainer
     {
         super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animate(alongsideTransition: nil, completion: {
-            [weak self] UIViewControllerTransitionCoordinatorContext in
-                guard let self, let world = self.world else {
-                    return
-                }
-                let wasPlaying = world.isPlaying
-                if wasPlaying { self.stop() }
-                redrawCreatureView()
-                if wasPlaying { self.play() }
-        })
+        coordinator.animate { [weak self] UIViewControllerTransitionCoordinatorContext in
+            guard let self, let world = self.world else {
+                return
+            }
+            let wasPlaying = world.isPlaying
+            if wasPlaying { self.stop() }
+            redrawCreatureView()
+            if wasPlaying { self.play() }
+        }
     }
 }
