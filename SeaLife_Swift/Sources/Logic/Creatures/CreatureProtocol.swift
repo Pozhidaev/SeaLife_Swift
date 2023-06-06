@@ -18,9 +18,7 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     
     var state: CreatureState { get set }
     
-    init(turnHelperClass: TurnHelperProtocol.Type,
-         visualDelegate: any WorldVisualDelegate,
-         world: any WorldProtocol)
+    init(deps: CreatureDeps)
 
     func setTimerTargetQueue(_ queue: DispatchQueue)
     func setSpeed(_ speed: Double)

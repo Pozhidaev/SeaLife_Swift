@@ -10,6 +10,7 @@
 		A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */; };
 		A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A51EFD9D2A1C10F90016182D /* Localizable.strings */; };
 		A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EFDA02A1CE7B70016182D /* CreatureState.swift */; };
+		A51F86252A2F7025002B3D8F /* CreatureDeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F86242A2F7025002B3D8F /* CreatureDeps.swift */; };
 		A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */; };
 		A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186D2A19468B006E1AE9 /* TurnHelper.swift */; };
 		A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */; };
@@ -54,6 +55,7 @@
 		A51EFD9C2A1C10F90016182D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A51EFD9E2A1C110D0016182D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A51EFDA02A1CE7B70016182D /* CreatureState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureState.swift; sourceTree = "<group>"; };
+		A51F86242A2F7025002B3D8F /* CreatureDeps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureDeps.swift; sourceTree = "<group>"; };
 		A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		A57B186D2A19468B006E1AE9 /* TurnHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelper.swift; sourceTree = "<group>"; };
 		A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelperProtocol.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				A57B187B2A195C1C006E1AE9 /* OrcaCreature.swift */,
 				A57B187D2A195C26006E1AE9 /* FishCreature.swift */,
 				A51EFDA02A1CE7B70016182D /* CreatureState.swift */,
+				A51F86242A2F7025002B3D8F /* CreatureDeps.swift */,
 			);
 			path = Creatures;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */,
 				A5ACA66A2A18E7AD00FEE2FD /* WorldViewController.swift in Sources */,
 				A5ACA6812A19397F00FEE2FD /* WorldCell.swift in Sources */,
+				A51F86252A2F7025002B3D8F /* CreatureDeps.swift in Sources */,
 				A57B18722A195040006E1AE9 /* Turn.swift in Sources */,
 				A5ACA6702A18F13600FEE2FD /* UIView+Extensions.swift in Sources */,
 				A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */,

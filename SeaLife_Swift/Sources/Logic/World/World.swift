@@ -120,16 +120,20 @@ class World: WorldProtocol
 //        return;
 
         let fishCreatures = Set( (0..<worldInfo.fishCount).map{_ in
-            CreatureFactory.creature(
-                type: FishCreature.self,
-                visualDelegate: self.visualDelegate!,
-                world: self)
+            let turnHelperClass = CreatureFactory.turnHelperType(for: FishCreature.self)
+            let deps = CreatureDeps(world: self,
+                                    visualDelegate: self.visualDelegate!,
+                                    turnHelperClass: turnHelperClass)
+            return CreatureFactory.creature(type: FishCreature.self,
+                                            deps: deps)
         } )
         let orcaCreatures = Set( (0..<worldInfo.orcaCount).map{_ in
-            CreatureFactory.creature(
-                type: OrcaCreature.self,
-                visualDelegate: self.visualDelegate!,
-                world: self)
+            let turnHelperClass = CreatureFactory.turnHelperType(for: OrcaCreature.self)
+            let deps = CreatureDeps(world: self,
+                                    visualDelegate: self.visualDelegate!,
+                                    turnHelperClass: turnHelperClass)
+            return CreatureFactory.creature(type: OrcaCreature.self,
+                                            deps: deps)
         } )
         
         var creatures = Set<Creature>()

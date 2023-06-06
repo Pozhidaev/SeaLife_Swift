@@ -9,31 +9,31 @@ import Foundation
 
 class CreatureFactory
 {
-    static func creature(from creature: Creature) -> Creature
+    static func turnHelperType(for creatureType: any CreatureProtocol.Type) -> TurnHelperProtocol.Type
     {
-        let newCreature = type(of: creature).init(
-            turnHelperClass: TurnHelper.self,
-            visualDelegate: creature.visualDelegate,
-            world: creature.world
-        )
-        return newCreature
+        switch creatureType {
+        case is OrcaCreature.Type: return TurnHelper.self
+        case is FishCreature.Type: return TurnHelper.self
+        default:
+            fatalError("Unpredictable creature type \(creatureType.self)")
+        }
     }
     
-    static func creature<T: CreatureProtocol>(type: T.Type, visualDelegate: any WorldVisualDelegate, world: any WorldProtocol) -> T
+    static func creature<T: CreatureProtocol>(type: T.Type, deps: CreatureDeps) -> T
     {
-        let newCreature = type.init(turnHelperClass: TurnHelper.self, visualDelegate: visualDelegate, world: world)
-        return newCreature
+        let creature = type.init(deps: deps)
+        return creature
+    }
+
+    static func orcaCreature(deps: CreatureDeps) -> OrcaCreature
+    {
+        let creature = OrcaCreature.init(deps: deps)
+        return creature
     }
     
-//    static func orcaCreature(visualDelegate: any WorldVisualDelegate, world: any WorldProtocol) -> OrcaCreature
-//    {
-//        return OrcaCreature(turnHelperClass: TurnHelper.self,
-//                            visualDelegate: visualDelegate,
-//                            world: world)
-//    }
-//    
-//    static func fishCreature(visualDelegate: any WorldVisualDelegate, world: any WorldProtocol) -> FishCreature
-//    {
-//        return FishCreature(turnHelperClass: TurnHelper.self)
-//    }
+    static func fishCreature(deps: CreatureDeps) -> FishCreature
+    {
+        let creature = FishCreature.init(deps: deps)
+        return creature
+    }
 }

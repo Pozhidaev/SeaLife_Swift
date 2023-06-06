@@ -14,13 +14,9 @@ class OrcaCreature: Creature
 
     //MARK: Memory
 
-    public required init(turnHelperClass: TurnHelperProtocol.Type,
-                         visualDelegate: any WorldVisualDelegate,
-                         world: any WorldProtocol)
+    public required init(deps: CreatureDeps)
     {
-        super.init(turnHelperClass: turnHelperClass,
-                   visualDelegate: visualDelegate,
-                   world: world)
+        super.init(deps: deps)
         direction = .right
     }
     

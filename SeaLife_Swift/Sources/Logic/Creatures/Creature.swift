@@ -32,13 +32,11 @@ public class Creature: CreatureProtocol
         fatalError("must call initWithTurnHelperClass")
     }
     
-    public required init(turnHelperClass: TurnHelperProtocol.Type,
-                         visualDelegate: any WorldVisualDelegate,
-                         world: any WorldProtocol)
+    public required init(deps: CreatureDeps)
     {
-        self.turnHelperClass = turnHelperClass
-        self.visualDelegate = visualDelegate
-        self.world = world
+        self.turnHelperClass = deps.turnHelperClass
+        self.visualDelegate = deps.visualDelegate
+        self.world = deps.world
         
         timer = CreatureTimer()
         
@@ -150,13 +148,13 @@ public class Creature: CreatureProtocol
         
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
-        
         weak var world = self.world
         visualDelegate.performAnimations(for: turn) { [weak self, world] in
+            world?.unlock(cell: targetCell)
             let nextTurn = Turn.die(creature: targetCreature, cell: targetCell)
             completion()
             self?.visualDelegate.performAnimations(for: nextTurn) {
-                world?.unlock(cell: targetCell)
+                
             }
         }
     }
@@ -199,7 +197,12 @@ public class Creature: CreatureProtocol
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
 
-        let newCreature = CreatureFactory.creature(from: self)
+        let deps = CreatureDeps(world: world,
+                                visualDelegate: visualDelegate,
+                                turnHelperClass: turnHelperClass)
+        let newCreature = CreatureFactory.creature(type: type(of: self),
+                                                   deps: deps)
+
         world.add(creature: newCreature, at: targetCell)
         
         weak var world = self.world
