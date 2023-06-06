@@ -2,12 +2,12 @@ import UIKit
 
 public class CreaturesView: UIView
 {
-    public var cellSize: CGSize = .zero {
+    //MARK: Private vers
+
+    private var cellSize: CGSize = .zero {
         didSet { animationController.cellSize = cellSize }
     }
-    
-    //MARK: Private vers
-    
+
     private var imageViewsDictionary = [UUID: UIImageView]()
     private lazy var animationController = {
         let animationController = AnimationsController()
@@ -76,8 +76,10 @@ extension CreaturesView: WorldVisualDelegate
         animationController.removeAllAnimations(for: creature)
     }
 
-    public func redraw(fromCellSize: CGSize, toCellSize: CGSize)
+    public func redraw(toCellSize: CGSize)
     {
+        let fromCellSize = cellSize != CGSizeZero ? cellSize : toCellSize
+
         let xCoeficient = toCellSize.width / fromCellSize.width
         let yCoeficient = toCellSize.height / fromCellSize.height
         
@@ -89,6 +91,8 @@ extension CreaturesView: WorldVisualDelegate
             center = CGPoint(x: center.x * xCoeficient, y: center.y * yCoeficient)
             imageView.center = center
         }
+        
+        cellSize = toCellSize
     }
     
     public func performAnimations(for turn: Turn, completion: @escaping ()->())

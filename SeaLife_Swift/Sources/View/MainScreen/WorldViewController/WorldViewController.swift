@@ -116,9 +116,7 @@ class WorldViewController: UIViewController
         let cellWidth = view.bounds.size.width / CGFloat(world.worldInfo.horizontalSize)
         let cellHeight = view.bounds.size.height / CGFloat(world.worldInfo.verticalSize)
         let newSize = CGSize(width: cellWidth, height: cellHeight)
-        let oldSize = creaturesView.cellSize != .zero ? creaturesView.cellSize : newSize
-        creaturesView.cellSize = newSize
-        creaturesView.redraw(fromCellSize: oldSize, toCellSize: newSize)
+        creaturesView.redraw(toCellSize: newSize)
     }
 }
 

@@ -21,5 +21,5 @@ public protocol WorldVisualDelegate: AnyObject
     
     func performAnimations(for turn: Turn, completion: @escaping ()->())
     
-    func redraw(fromCellSize: CGSize, toCellSize: CGSize)
+    func redraw(toCellSize: CGSize)
 }
