@@ -39,12 +39,11 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     
     //MARK: - Life Cycle
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(named:"MainScreenBackgroundColor")
-        
-        setupControlPanel()
+        setupView()
     }
 
     override func viewDidAppear(_ animated: Bool)
@@ -137,6 +136,13 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     }
     
     //MARK: - Private methods - Config View
+    
+    private func setupView()
+    {
+        self.view.backgroundColor = UIColor(named:"MainScreenBackgroundColor")
+       
+        setupControlPanel()
+    }
     
     private func setupControlPanel()
     {
