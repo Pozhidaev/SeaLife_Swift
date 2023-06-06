@@ -5,7 +5,7 @@
 //  Created by Sergey Pozhidaev on 21.05.2023.
 //
 
-import Foundation
+import UIKit
 
 public class Creature: CreatureProtocol
 {
@@ -15,6 +15,7 @@ public class Creature: CreatureProtocol
     
     public unowned var world: WorldProtocol
     public unowned var visualDelegate: WorldVisualDelegate
+    public var visualComponent: UIImageView
 
     public var state: CreatureState = CreatureState()
 
@@ -36,6 +37,7 @@ public class Creature: CreatureProtocol
     {
         self.turnHelperClass = deps.turnHelperClass
         self.visualDelegate = deps.visualDelegate
+        self.visualComponent = deps.visualComponent
         self.world = deps.world
         
         timer = CreatureTimer()
@@ -197,8 +199,10 @@ public class Creature: CreatureProtocol
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
 
+        let visualComponent = visualDelegate.visualComponent(for: type(of: self))
         let deps = CreatureDeps(world: world,
                                 visualDelegate: visualDelegate,
+                                visualComponent: visualComponent,
                                 turnHelperClass: turnHelperClass)
         let newCreature = CreatureFactory.creature(type: type(of: self),
                                                    deps: deps)

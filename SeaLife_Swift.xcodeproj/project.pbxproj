@@ -195,6 +195,7 @@
 		A5ACA5FB2A18B7B900FEE2FD /* CreaturesView */ = {
 			isa = PBXGroup;
 			children = (
+				A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */,
 				A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */,
 			);
 			path = CreaturesView;
@@ -266,7 +267,6 @@
 				A5ACA67C2A19387E00FEE2FD /* WorldProtocol.swift */,
 				A5ACA6782A192B6E00FEE2FD /* World.swift */,
 				A5ACA67A2A1937FE00FEE2FD /* WorldDelegate.swift */,
-				A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */,
 				A5ACA6802A19397F00FEE2FD /* WorldCell.swift */,
 				A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */,
 				A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */,

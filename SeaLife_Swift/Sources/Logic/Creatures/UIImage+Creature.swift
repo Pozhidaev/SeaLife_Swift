@@ -9,14 +9,15 @@ import UIKit
 
 extension UIImage
 {
-    static func image(for creature: any CreatureProtocol) -> UIImage?
+    static func image(for creatureType: any CreatureProtocol.Type) -> UIImage?
     {
-        if type(of: creature) == OrcaCreature.self {
-            let image = UIImage(named:"Orca")
-            return image
-        } else if type(of: creature) == FishCreature.self {
-            let image = UIImage(named:"Fish")
-            return image
+        switch creatureType {
+        case is OrcaCreature.Type:
+            return UIImage(named:"Orca")
+        case is FishCreature.Type:
+            return UIImage(named:"Fish")
+        default:
+            assertionFailure("Image not exist for creature type \(creatureType)")
         }
         return nil
     }

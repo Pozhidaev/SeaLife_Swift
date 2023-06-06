@@ -5,7 +5,7 @@
 //  Created by Sergey Pozhidaev on 21.05.2023.
 //
 
-import Foundation
+import UIKit
 
 public protocol WorldVisualDelegate: AnyObject
 {
@@ -15,10 +15,14 @@ public protocol WorldVisualDelegate: AnyObject
     
     func setAnimationsSpeed(_ speed: Double)
     
-    func createImageViews(for creatures: Set<Creature>)
-    func createImageView(for creature: any CreatureProtocol)
-    func removeImageView(for creature: any CreatureProtocol)
-    
+    func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
+
+    func place(visualComponent: UIImageView,
+               for creature: any CreatureProtocol,
+               at position: WorldPosition)
+
+    func removeVisualComponent(for creature: any CreatureProtocol)
+
     func performAnimations(for turn: Turn, completion: @escaping ()->())
     
     func redraw(toCellSize: CGSize)

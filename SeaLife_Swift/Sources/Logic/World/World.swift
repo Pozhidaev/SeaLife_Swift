@@ -109,31 +109,47 @@ class World: WorldProtocol
     }
     
     //MARK: Creature methods
+    
+    public func creature(for creatureType:any CreatureProtocol.Type) -> Creature
+    {
+        guard let visualDelegate else {
+            fatalError("VisualDelegate is nil for \(self)")
+        }
+        
+        let deps = CreatureDeps(
+            world: self,
+            visualDelegate: visualDelegate,
+            visualComponent: visualDelegate.visualComponent(for: creatureType.self),
+            turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self)
+        )
+        
+        guard let creature = CreatureFactory.creature(type: creatureType, deps: deps) as? Creature else {
+            fatalError("World can't create creature for type \(creatureType)")
+        }
+        return creature
+    }
+    
     public func createInitialCreatures()
     {
-//        let cell = cells.filter{ $0.position == WorldPosition(x: 0, y: 10)}.first! //For testing
-//        let creature1 = CreatureFactory.fishCreature()
-//        add(creature: creature1, at: cell)
-//        let cell2 = cells.filter{ $0.position == WorldPosition(x: 5, y: 10)}.first! //For testing
-//        let creature2 = CreatureFactory.orcaCreature()
-//        add(creature: creature2, at: cell2)
+        //For testing
+//        let creature1 = creature(for: FishCreature.self)
+//        let cell1 = cells.filter{ $0.position == WorldPosition(x: 0, y: 10)}.first!
+//        add(creature: creature1, at: cell1)
+//        visualDelegate!.place(visualComponent: creature1.visualComponent,
+//                             for: creature1,
+//                             at: cell1.position)
 //        return;
 
+        guard let visualDelegate else {
+            fatalError("VisualDelegate is nil for \(self)")
+        }
+
         let fishCreatures = Set( (0..<worldInfo.fishCount).map{_ in
-            let turnHelperClass = CreatureFactory.turnHelperType(for: FishCreature.self)
-            let deps = CreatureDeps(world: self,
-                                    visualDelegate: self.visualDelegate!,
-                                    turnHelperClass: turnHelperClass)
-            return CreatureFactory.creature(type: FishCreature.self,
-                                            deps: deps)
+            return creature(for: FishCreature.self)
         } )
+        
         let orcaCreatures = Set( (0..<worldInfo.orcaCount).map{_ in
-            let turnHelperClass = CreatureFactory.turnHelperType(for: OrcaCreature.self)
-            let deps = CreatureDeps(world: self,
-                                    visualDelegate: self.visualDelegate!,
-                                    turnHelperClass: turnHelperClass)
-            return CreatureFactory.creature(type: OrcaCreature.self,
-                                            deps: deps)
+            return creature(for: OrcaCreature.self)
         } )
         
         var creatures = Set<Creature>()
@@ -142,10 +158,13 @@ class World: WorldProtocol
 
         var freeCells = cells.shuffled()
         for creature in creatures {
-            add(creature: creature, at: freeCells.removeLast())
+            let cell = freeCells.removeLast()
+            add(creature: creature, at: cell)
+            
+            visualDelegate.place(visualComponent: creature.visualComponent,
+                                 for: creature,
+                                 at: cell.position)
         }
-        
-        visualDelegate?.createImageViews(for: creatures)
     }
     
     public func add(creature: any CreatureProtocol, at cell:WorldCell)
