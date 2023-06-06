@@ -12,6 +12,8 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     let segueIdPresentMenuScreenFullScreen = "kSegueIdPresentMenuScreenFullScreen"
     let segueIdPresentMenuScreenFormSheet = "kSegueIdPresentMenuScreenFormSheet"
     
+    //MARK: - Outlets
+    
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var resetButton: UIButton!
     @IBOutlet private weak var menuButton: UIButton!
@@ -27,7 +29,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     @IBOutlet private weak var animationSpeedTitleLabel: UILabel!
     @IBOutlet private weak var animationSpeedLabel: UILabel!
 
-    //MARK: Private vars
+    //MARK: - Private vars
     
     private var worldViewController: WorldViewController?
     
@@ -35,7 +37,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     private var configured: Bool = false
     private var worldInfo: WorldInfo?
     
-    //MARK: Methods
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,47 +55,6 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         creaturesSpeedSlider.value = Float(Constants.Speed.creatureFastestSpeed + (Constants.Speed.creatureSlowestSpeed - creaturesSpeed))
     }
 
-    func setupControlPanel()
-    {
-        controlPanel.backgroundColor = UIColor(named:"MainScreenControlPanelBackgroundColor")
-        controlPanel.layer.borderColor = UIColor(named:"MainScreenControlPanelFrameColor")?.cgColor
-        controlPanel.layer.borderWidth = Constants.UI.MainScreen.controlPanelViewBorderWidth
-        controlPanel.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        
-        setupButtons()
-
-        setupSliders()
-    }
-
-    func setupSliders()
-    {
-        creaturesSpeedSlider.minimumValue = Float(Constants.Speed.creatureFastestSpeed)
-        creaturesSpeedSlider.maximumValue = Float(Constants.Speed.creatureSlowestSpeed)
-        creaturesSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
-        creaturesSpeedLabel.text = "\(Constants.Speed.creatureDefaultSpeed)"
-        creaturesSpeedTitleLabel.text = NSLocalizedString("MainScreen.CreaturesSpeed", comment: "");
-
-        animationSpeedSlider.minimumValue = Float(Constants.Speed.animationFastestSpeed)
-        animationSpeedSlider.maximumValue = Float(Constants.Speed.animationSlowestSpeed)
-        animationSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
-        animationSpeedLabel.text = "\(Constants.Speed.animationDefaultSpeed)"
-        animationSpeedTitleLabel.text = NSLocalizedString("MainScreen.AnimationSpeed", comment: "");
-    }
-    
-    func setupButtons()
-    {
-        playButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        resetButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        menuButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        
-        resetButton.backgroundColor = UIColor(named:"MainScreenResetButtonColor")
-        menuButton.backgroundColor = UIColor(named:"MainScreenMenuButtonColor")
-        playButton.backgroundColor = UIColor(named:"MainScreenPlayButtonColor")
-
-        playButton.setTitle(NSLocalizedString("Button.Play", comment: ""), for: .normal)
-        resetButton.setTitle(NSLocalizedString("Button.Reset", comment: ""), for: .normal)
-        menuButton.setTitle(NSLocalizedString("Button.Menu", comment: ""), for: .normal)
-    }
     
     override func viewDidAppear(_ animated: Bool)
     {
@@ -104,7 +65,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         }
     }
     
-    //MARK: Actions
+    //MARK: - Actions
     
     @IBAction func play(_ sender: UIButton)
     {
@@ -141,9 +102,9 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         worldViewController?.animationSpeed = speed
     }
     
-    //MARK: Private methods
+    //MARK: - Private methods
     
-    func showMenu(fullScreen: Bool)
+    private func showMenu(fullScreen: Bool)
     {
         if fullScreen {
             performSegue(withIdentifier:segueIdPresentMenuScreenFullScreen, sender:nil)
@@ -152,21 +113,21 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         }
     }
     
-    func play()
+    private func play()
     {
         worldViewController?.play()
         isPlaying = true
         updateControls()
     }
     
-    func stop()
+    private func stop()
     {
         worldViewController?.stop()
         isPlaying = false
         updateControls()
     }
     
-    func updateControls()
+    private func updateControls()
     {
         resetButton.isEnabled = !isPlaying
         
@@ -176,9 +137,51 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         playButton.setTitle(title, for: .normal)
     }
     
-    //MARK: Private methods - sliders values
+    //MARK: - Private methods - Config View
     
-    //MARK: Segues
+    private func setupControlPanel()
+    {
+        controlPanel.backgroundColor = UIColor(named:"MainScreenControlPanelBackgroundColor")
+        controlPanel.layer.borderColor = UIColor(named:"MainScreenControlPanelFrameColor")?.cgColor
+        controlPanel.layer.borderWidth = Constants.UI.MainScreen.controlPanelViewBorderWidth
+        controlPanel.layer.cornerRadius = Constants.UI.defaultCornerRadius
+        
+        setupButtons()
+
+        setupSliders()
+    }
+
+    private func setupSliders()
+    {
+        creaturesSpeedSlider.minimumValue = Float(Constants.Speed.creatureFastestSpeed)
+        creaturesSpeedSlider.maximumValue = Float(Constants.Speed.creatureSlowestSpeed)
+        creaturesSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
+        creaturesSpeedLabel.text = "\(Constants.Speed.creatureDefaultSpeed)"
+        creaturesSpeedTitleLabel.text = NSLocalizedString("MainScreen.CreaturesSpeed", comment: "");
+
+        animationSpeedSlider.minimumValue = Float(Constants.Speed.animationFastestSpeed)
+        animationSpeedSlider.maximumValue = Float(Constants.Speed.animationSlowestSpeed)
+        animationSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
+        animationSpeedLabel.text = "\(Constants.Speed.animationDefaultSpeed)"
+        animationSpeedTitleLabel.text = NSLocalizedString("MainScreen.AnimationSpeed", comment: "");
+    }
+    
+    private func setupButtons()
+    {
+        playButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
+        resetButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
+        menuButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
+        
+        resetButton.backgroundColor = UIColor(named:"MainScreenResetButtonColor")
+        menuButton.backgroundColor = UIColor(named:"MainScreenMenuButtonColor")
+        playButton.backgroundColor = UIColor(named:"MainScreenPlayButtonColor")
+
+        playButton.setTitle(NSLocalizedString("Button.Play", comment: ""), for: .normal)
+        resetButton.setTitle(NSLocalizedString("Button.Reset", comment: ""), for: .normal)
+        menuButton.setTitle(NSLocalizedString("Button.Menu", comment: ""), for: .normal)
+    }
+    
+    //MARK: - Segues
     
     @IBAction func unwindToMainScreenViewController(unwindSegue: UIStoryboardSegue)
     {
