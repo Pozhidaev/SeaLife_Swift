@@ -13,6 +13,8 @@ public protocol WorldVisualDelegate: AnyObject
     func stop()
     func reset()
     
+    func setAnimationsSpeed(_ speed: Double)
+    
     func createImageViews(for creatures: Set<Creature>)
     func createImageView(for creature: any CreatureProtocol)
     func removeImageView(for creature: any CreatureProtocol)

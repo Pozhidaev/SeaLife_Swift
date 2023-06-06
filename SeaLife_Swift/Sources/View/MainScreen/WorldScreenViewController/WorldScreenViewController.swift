@@ -45,21 +45,20 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         self.view.backgroundColor = UIColor(named:"MainScreenBackgroundColor")
         
         setupControlPanel()
+    }
+
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
         
         let animationSpeed: Double = Constants.Speed.animationDefaultSpeed
-        worldViewController?.animationSpeed = animationSpeed
+        worldViewController?.setAnimationsSpeed(animationSpeed)
         animationSpeedSlider.value = Float(Constants.Speed.animationFastestSpeed + (Constants.Speed.animationSlowestSpeed - animationSpeed))
 
         let creaturesSpeed: Double = Constants.Speed.creatureDefaultSpeed
         worldViewController?.creaturesSpeed = creaturesSpeed
         creaturesSpeedSlider.value = Float(Constants.Speed.creatureFastestSpeed + (Constants.Speed.creatureSlowestSpeed - creaturesSpeed))
-    }
 
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
         if (!configured) {
             showMenu(fullScreen: true)
         }
@@ -99,7 +98,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     {
         let speed = Constants.Speed.animationSlowestSpeed - (Double(sender.value) - Constants.Speed.animationFastestSpeed)
         animationSpeedLabel.text = "\(speed)"
-        worldViewController?.animationSpeed = speed
+        worldViewController?.setAnimationsSpeed(speed)
     }
     
     //MARK: - Private methods

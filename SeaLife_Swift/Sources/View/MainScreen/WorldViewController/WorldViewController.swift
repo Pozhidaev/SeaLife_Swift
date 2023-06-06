@@ -9,11 +9,8 @@ import UIKit
 
 class WorldViewController: UIViewController
 {
-    public var creaturesSpeed: Double = 0 { didSet {
+    public var creaturesSpeed: Double = .zero { didSet {
         world?.speed = creaturesSpeed
-    } }
-    public var animationSpeed: Double = 0 { didSet {
-        creaturesView.animationSpeed = Double(animationSpeed)
     } }
     
     public weak var delegate: (any WorldViewControllerDelegate)?
@@ -84,6 +81,11 @@ class WorldViewController: UIViewController
     public func reset()
     {
         world?.reset()
+    }
+    
+    public func setAnimationsSpeed(_ speed: Double)
+    {
+        creaturesView.setAnimationsSpeed(speed)
     }
     
     public func createWorld(with worldInfo:WorldInfo)

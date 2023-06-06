@@ -5,16 +5,12 @@ public class CreaturesView: UIView
     public var cellSize: CGSize = .zero {
         didSet { animationController.cellSize = cellSize }
     }
-    public var animationSpeed: Double = .zero {
-        didSet { animationController.animationSpeed = animationSpeed }
-    }
     
     //MARK: Private vers
     
     private var imageViewsDictionary = [UUID: UIImageView]()
     private lazy var animationController = {
         let animationController = AnimationsController()
-        animationController.animationSpeed = self.animationSpeed
         animationController.cellSize = self.cellSize
         return animationController
     }()
@@ -39,6 +35,11 @@ extension CreaturesView: WorldVisualDelegate
         subviews.forEach { $0.removeFromSuperview() }
     }
 
+    public func setAnimationsSpeed(_ speed: Double)
+    {
+        animationController.animationSpeed = speed
+    }
+    
     public func createImageViews(for creatures: Set<Creature>)
     {
         for creature in creatures {
