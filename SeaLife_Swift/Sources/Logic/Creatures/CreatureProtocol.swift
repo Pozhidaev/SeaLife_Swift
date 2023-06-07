@@ -15,7 +15,7 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     
     var world: WorldProtocol { get }
     var visualComponent: UIImageView { get }
-    var animator: AnimationsController { get }
+    var animator: CreatureAnimator { get }
     
     var state: CreatureState { get set }
     

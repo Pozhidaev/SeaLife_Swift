@@ -7,13 +7,13 @@ public class CreaturesView: UIView, WorldVisualDelegate
     private var cellSize: CGSize = .zero {
         didSet {
             let enumerator = animatorsDict.objectEnumerator()
-            while case let animator as AnimationsController = enumerator?.nextObject() {
+            while case let animator as CreatureAnimator = enumerator?.nextObject() {
                 animator.cellSize = cellSize
             }
         }
     }
 
-    private let animatorsDict = NSMapTable<NSUUID, AnimationsController>(valueOptions: .weakMemory)
+    private let animatorsDict = NSMapTable<NSUUID, CreatureAnimator>(valueOptions: .weakMemory)
     
     //MARK: - WorldVisualDelegate
     
@@ -23,7 +23,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
         }
 
         let enumerator = animatorsDict.objectEnumerator()
-        while case let animator as AnimationsController = enumerator?.nextObject() {
+        while case let animator as CreatureAnimator = enumerator?.nextObject() {
             animator.animationSpeed = animationSpeed
         }
     } }
@@ -34,9 +34,9 @@ public class CreaturesView: UIView, WorldVisualDelegate
         subviews.forEach { $0.removeFromSuperview() }
     }
     
-    public func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> AnimationsController
+    public func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> CreatureAnimator
     {
-        let animator = AnimationsController()
+        let animator = CreatureAnimator()
         add(animator: animator, for: creatureUUID)
         return animator
     }
@@ -93,7 +93,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
  
     //MARK: - Private methods
     
-    private func add(animator: AnimationsController, for creatureUUID: UUID)
+    private func add(animator: CreatureAnimator, for creatureUUID: UUID)
     {
         animator.cellSize = cellSize
         animator.animationSpeed = animationSpeed

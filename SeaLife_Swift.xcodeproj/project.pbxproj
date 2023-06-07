@@ -26,7 +26,7 @@
 		A5ACA63F2A18B7B900FEE2FD /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA6132A18B7B900FEE2FD /* SliderView.xib */; };
 		A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */; };
 		A5ACA6512A18BE3700FEE2FD /* AnimationsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */; };
-		A5ACA6532A18C36100FEE2FD /* AnimationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */; };
+		A5ACA6532A18C36100FEE2FD /* CreatureAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */; };
 		A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */; };
 		A5ACA65D2A18CB8F00FEE2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */; };
 		A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */; };
@@ -73,7 +73,7 @@
 		A5ACA6132A18B7B900FEE2FD /* SliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
 		A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturesView.swift; sourceTree = "<group>"; };
 		A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsFactory.swift; sourceTree = "<group>"; };
-		A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsController.swift; sourceTree = "<group>"; };
+		A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureAnimator.swift; sourceTree = "<group>"; };
 		A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */,
-				A5ACA6522A18C36100FEE2FD /* AnimationsController.swift */,
+				A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */,
 			);
 			path = AnimationsController;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 				A5ACA6732A18F4A300FEE2FD /* MenuViewController.swift in Sources */,
 				A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */,
 				A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */,
-				A5ACA6532A18C36100FEE2FD /* AnimationsController.swift in Sources */,
+				A5ACA6532A18C36100FEE2FD /* CreatureAnimator.swift in Sources */,
 				A5ACA67F2A19395A00FEE2FD /* WorldVisualDelegate.swift in Sources */,
 				A5ACA5E52A18B6AB00FEE2FD /* SceneDelegate.swift in Sources */,
 				A5ACA6832A193B3000FEE2FD /* WorldPosition.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  AnimationsController.swift
+//  CreatureAnimator.swift
 //  SeaLife_Swift
 //
 //  Created by Sergey Pozhidaev on 20.05.2023.
@@ -16,7 +16,7 @@ let kAnimationUUIDKey = "kAnimationUUIDKey"
 let kAnimationFinalTransform = "kAnimationFinalTransform"
 let kTransformKey = "transform"
 
-public class AnimationsController: NSObject
+public class CreatureAnimator: NSObject
 {
     public var cellSize: CGSize = .zero
     public var animationSpeed: Double = .zero
@@ -179,7 +179,7 @@ public class AnimationsController: NSObject
     
 }
 
-extension AnimationsController: CAAnimationDelegate
+extension CreatureAnimator: CAAnimationDelegate
 {
     public func animationDidStart(_ anim: CAAnimation)
     {

@@ -11,6 +11,6 @@ public struct CreatureDeps
 {
     unowned var world: any WorldProtocol
     var visualComponent: UIImageView
-    var animator: AnimationsController
+    var animator: CreatureAnimator
     var turnHelperClass: TurnHelperProtocol.Type
 }

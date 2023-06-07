@@ -15,7 +15,7 @@ public class Creature: CreatureProtocol
     
     public unowned let world: WorldProtocol
     public let visualComponent: UIImageView
-    public let animator: AnimationsController
+    public let animator: CreatureAnimator
     
     public var state: CreatureState = CreatureState()
 

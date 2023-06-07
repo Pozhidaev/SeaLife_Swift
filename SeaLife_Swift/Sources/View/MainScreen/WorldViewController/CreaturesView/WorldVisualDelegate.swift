@@ -13,7 +13,7 @@ public protocol WorldVisualDelegate: AnyObject
         
     func reset()
 
-    func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> AnimationsController
+    func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> CreatureAnimator
 
     func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
 
