@@ -9,7 +9,7 @@ import UIKit
 
 public class Creature: CreatureProtocol
 {
-    public let uuid = UUID()
+    public let uuid: UUID
     public var position: WorldPosition = .zero()
     public var direction: Direction = .none
     
@@ -33,12 +33,13 @@ public class Creature: CreatureProtocol
         fatalError("must call initWithTurnHelperClass")
     }
     
-    public required init(deps: CreatureDeps)
+    public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
         self.turnHelperClass = deps.turnHelperClass
         self.visualDelegate = deps.visualDelegate
         self.visualComponent = deps.visualComponent
         self.world = deps.world
+        self.uuid = uuid
         
         timer = CreatureTimer()
         

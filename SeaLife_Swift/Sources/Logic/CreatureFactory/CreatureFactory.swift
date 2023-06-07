@@ -19,9 +19,9 @@ class CreatureFactory
         }
     }
     
-    static func creature<T: CreatureProtocol>(type: T.Type, deps: CreatureDeps) -> T
+    static func creature<T: CreatureProtocol>(uuid: UUID = UUID(), type: T.Type, deps: CreatureDeps) -> T
     {
-        let creature = type.init(deps: deps)
+        let creature = type.init(uuid: uuid, deps: deps)
         return creature
     }
 

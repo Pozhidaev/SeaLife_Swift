@@ -13,7 +13,7 @@ class FishCreature: Creature
     
     //MARK: Memory
 
-    public required init(deps: CreatureDeps)
+    public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
         super.init(deps: deps)
         direction = .right

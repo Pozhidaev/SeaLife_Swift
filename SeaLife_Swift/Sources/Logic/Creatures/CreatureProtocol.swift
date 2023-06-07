@@ -19,7 +19,7 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
 
     var state: CreatureState { get set }
     
-    init(deps: CreatureDeps)
+    init(uuid: UUID, deps: CreatureDeps)
 
     func setTimerTargetQueue(_ queue: DispatchQueue)
     func setSpeed(_ speed: Double)
