@@ -7,30 +7,38 @@
 
 import UIKit
 
+let kTransformKey = "transform"
+
 class AnimationsFactory
 {
     static func emptyAnimations(layer: CALayer,
                                 duration: Double) -> Array<CAAnimation>
     {
-        let rotate1Transform = CATransform3DRotate(layer.transform, (Double.pi / 4) * 0.2, 0.0, 0.0, 1.0)
+        let rotate1Transform = CATransform3DRotate(layer.transform, Double.pi / 2, 0.0, 0.0, 1.0)
         let rotate1Animation = CABasicAnimation(keyPath:kTransformKey)
         rotate1Animation.fromValue = NSValue(caTransform3D:layer.transform)
         rotate1Animation.toValue = NSValue(caTransform3D:rotate1Transform)
-        rotate1Animation.duration = duration / 3.0
-
-        let rotate2Transform = CATransform3DRotate(layer.transform, -(Double.pi / 4) * 0.4, 0.0, 0.0, 1.0)
+        rotate1Animation.duration = duration / 4.0
+            
+        let rotate2Transform = CATransform3DRotate(rotate1Transform, Double.pi / 2, 0.0, 0.0, 1.0)
         let rotate2Animation = CABasicAnimation(keyPath:kTransformKey)
         rotate2Animation.fromValue = NSValue(caTransform3D:rotate1Transform)
         rotate2Animation.toValue = NSValue(caTransform3D:rotate2Transform)
-        rotate2Animation.duration = duration / 3.0
+        rotate2Animation.duration = duration / 4.0
 
+        let rotate3Transform = CATransform3DRotate(rotate2Transform, Double.pi / 2, 0.0, 0.0, 1.0)
         let rotate3Animation = CABasicAnimation(keyPath:kTransformKey)
         rotate3Animation.fromValue = NSValue(caTransform3D:rotate2Transform)
-        rotate3Animation.toValue = NSValue(caTransform3D:layer.transform)
-        rotate3Animation.duration = duration / 3.0
+        rotate3Animation.toValue = NSValue(caTransform3D:rotate3Transform)
+        rotate3Animation.duration = duration / 4.0
         
-        rotate3Animation.setValue(layer.transform, forKey: kAnimationFinalTransform)
-        return [rotate1Animation, rotate2Animation, rotate3Animation]
+        let rotate4Animation = CABasicAnimation(keyPath:kTransformKey)
+        rotate4Animation.fromValue = NSValue(caTransform3D:rotate3Transform)
+        rotate4Animation.toValue = NSValue(caTransform3D:layer.transform)
+        rotate4Animation.duration = duration / 4.0
+
+        rotate4Animation.setValue(layer.transform, forKey: kAnimationFinalTransform)
+        return [rotate1Animation, rotate2Animation, rotate3Animation, rotate4Animation]
     }
                                                  
     static func moveAnimations(fromDirection: Direction,

@@ -9,7 +9,6 @@ import UIKit
 
 let kAnimationKey = "kAnimationKey"
 let kAnimationFinalTransform = "kAnimationFinalTransform"
-let kTransformKey = "transform"
 
 public class CreatureAnimator: NSObject
 {

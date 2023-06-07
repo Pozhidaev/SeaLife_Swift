@@ -197,17 +197,18 @@
 			children = (
 				A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */,
 				A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */,
+				A5ACA6002A18B7B900FEE2FD /* CreatureAnimator */,
 			);
 			path = CreaturesView;
 			sourceTree = "<group>";
 		};
-		A5ACA6002A18B7B900FEE2FD /* AnimationsController */ = {
+		A5ACA6002A18B7B900FEE2FD /* CreatureAnimator */ = {
 			isa = PBXGroup;
 			children = (
 				A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */,
 				A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */,
 			);
-			path = AnimationsController;
+			path = CreatureAnimator;
 			sourceTree = "<group>";
 		};
 		A5ACA6072A18B7B900FEE2FD /* WorldBackgroundView */ = {
@@ -222,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				A5ACA5FB2A18B7B900FEE2FD /* CreaturesView */,
-				A5ACA6002A18B7B900FEE2FD /* AnimationsController */,
 				A5ACA6072A18B7B900FEE2FD /* WorldBackgroundView */,
 				A5ACA6692A18E7AD00FEE2FD /* WorldViewController.swift */,
 				A5ACA66B2A18EED300FEE2FD /* WorldViewControllerDelegate.swift */,
