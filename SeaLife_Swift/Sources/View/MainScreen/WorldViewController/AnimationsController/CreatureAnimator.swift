@@ -7,12 +7,7 @@
 
 import UIKit
 
-let kAnimationCompletionKey = "kAnimationCompletionKey"
-let kAnimationPreparationKey = "kAnimationPreparationKey"
-
 let kAnimationKey = "kAnimationKey"
-let kAnimationUUIDKey = "kAnimationUUIDKey"
-
 let kAnimationFinalTransform = "kAnimationFinalTransform"
 let kTransformKey = "transform"
 
@@ -21,55 +16,61 @@ public class CreatureAnimator: NSObject
     public var cellSize: CGSize = .zero
     public var animationSpeed: Double = .zero
     
-    //MARK: Private vars
+    //MARK: - Private vars
 
-    private var animationsDictionary = [UUID: Array<CAAnimation>]()
-    private var completionsDictionary = [UUID: () -> ()]();
-    private var layersDictionary = [UUID: CALayer]();
+    private var animations = Array<CAAnimation>()
+    private var completion: (() -> ())? = {}
 
-    //MARK: Public methods
+    public let visualComponent: UIImageView
+
+    //MARK: - Memory
+    
+    init(visualComponent: UIImageView)
+    {
+        self.visualComponent = visualComponent
+    }
+
+    //MARK: - Public methods
 
     public func play()
     {
-        layersDictionary.values.forEach{ $0.activate() }
+        Utils.SafeDispatchMain {
+            self.visualComponent.layer.activate()
+        }
     }
-    public func stop()
-    {
-        layersDictionary.values.forEach{ $0.pause() }
-    }
-    
-    public func reset()
-    {
-        animationsDictionary.removeAll()
-        completionsDictionary.removeAll()
-        layersDictionary.removeAll()
-    }
-    
-    public func removeAllAnimations(for creature: any CreatureProtocol)
-    {
-        animationsDictionary[creature.uuid] = nil
-        completionsDictionary[creature.uuid] = nil
-        layersDictionary[creature.uuid] = nil
-    }
-    
-    public func performAnimations(for turn: Turn, completion: @escaping ()->())
+    public func pause()
     {
         Utils.SafeDispatchMain {
-            let layer = turn.creature.visualComponent.layer
-            self.performAnimations(
-                for: turn,
-                layer: layer
-            ) {
+            self.visualComponent.layer.pause()
+        }
+    }
+    
+    public func performAnimations(for turn: Turn,
+                                  completionQueue: DispatchQueue,
+                                  completion: @escaping ()->())
+    {
+        Utils.SafeDispatchMain { [weak self] in
+            guard let self else {
+                completion()
+                return
+            }
+            self._performAnimations(for: turn) {
                 if (turn.directions.to != .none && turn.directions.to != .multy) {
                     turn.creature.direction = turn.directions.to
                 }
-                completion()
+                completionQueue.async {
+                    completion()
+                }
             }
         }
     }
     
-    public func performAnimations(for turn: Turn, layer: CALayer, completion: @escaping ()->())
+    //MARK: - Private methods
+    
+    private func _performAnimations(for turn: Turn, completion: @escaping ()->())
     {
+        let layer = visualComponent.layer
+        
         if layer.animation(forKey: kAnimationKey) != nil {
             layer.removeAllAnimations()
         }
@@ -80,7 +81,6 @@ public class CreatureAnimator: NSObject
         let animations = animations(for: turn, layer: layer)
         for animation: CAAnimation in animations {
             animation.delegate = self
-            animation.setValue(turn.creature.uuid, forKey: kAnimationUUIDKey)
         }
         guard let lastAnimation = animations.last as? CABasicAnimation else {
             assertionFailure("lastAnimation is empty for turn \(turn)")
@@ -106,40 +106,28 @@ public class CreatureAnimator: NSObject
             completion()
         }
 
-        layersDictionary[turn.creature.uuid] = layer
+        self.completion = animationCompletion
 
-        completionsDictionary[turn.creature.uuid] = animationCompletion
-        
-        animationsDictionary[turn.creature.uuid] = animations
+        self.animations = animations
 
-        startNextAnimations(for: turn.creature.uuid)
+        startNextAnimation()
     }
     
-    //MARK: Private methods
-    
-    private func startNextAnimations(for creatureUUID: UUID)
+    private func startNextAnimation()
     {
-        guard let animationsArray = animationsDictionary[creatureUUID],
-              let nextAnimation = animationsArray.first else
-        {
-            layersDictionary[creatureUUID] = nil
-            animationsDictionary[creatureUUID] = nil
-            if let completion = completionsDictionary[creatureUUID] {
-                completionsDictionary[creatureUUID] = nil
-                completion()
-            }
+        guard let nextAnimation = animations.first else {
+            defer { completion = nil }
+            completion?()
             return
         }
 
-        animationsDictionary[creatureUUID] = Array(animationsArray.dropFirst())
+        animations.removeFirst()
+        
         Utils.SafeDispatchMain {
-            guard let layer = self.layersDictionary[creatureUUID] else {
-                fatalError("Layer is nil for creature uuid \(creatureUUID)")
+            if self.visualComponent.layer.animation(forKey: kAnimationKey) != nil {
+                self.visualComponent.layer.removeAnimation(forKey: kAnimationKey)
             }
-            if layer.animation(forKey: kAnimationKey) != nil {
-                layer.removeAllAnimations()
-            }
-            layer.add(nextAnimation, forKey: kAnimationKey)
+            self.visualComponent.layer.add(nextAnimation, forKey: kAnimationKey)
         }
     }
     
@@ -177,6 +165,13 @@ public class CreatureAnimator: NSObject
         }
     }
     
+    func animationsInterrupted()
+    {
+        animations.removeAll()
+        defer { completion = nil }
+        completion?()
+        return
+    }
 }
 
 extension CreatureAnimator: CAAnimationDelegate
@@ -187,11 +182,10 @@ extension CreatureAnimator: CAAnimationDelegate
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool)
     {
-        guard let creatureUUID: UUID = anim.value(forKey: kAnimationUUIDKey) as? UUID else {
-            assertionFailure("creatureUUID value is nil in animation \(anim)")
-            return
+        if flag {
+            startNextAnimation()
+        } else {
+            animationsInterrupted()
         }
-
-        startNextAnimations(for: creatureUUID)
     }
 }

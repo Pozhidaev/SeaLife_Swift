@@ -5,12 +5,11 @@
 //  Created by Sergey Pozhidaev on 06.06.2023.
 //
 
-import UIKit
+import Foundation
 
 public struct CreatureDeps
 {
     unowned var world: any WorldProtocol
-    var visualComponent: UIImageView
     var animator: CreatureAnimator
     var turnHelperClass: TurnHelperProtocol.Type
 }

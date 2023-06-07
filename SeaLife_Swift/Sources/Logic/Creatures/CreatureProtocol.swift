@@ -5,7 +5,7 @@
 //  Created by Sergey Pozhidaev on 21.05.2023.
 //
 
-import UIKit
+import Foundation
 
 public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStringConvertible
 {
@@ -14,7 +14,6 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     var direction: Direction { get set }
     
     var world: WorldProtocol { get }
-    var visualComponent: UIImageView { get }
     var animator: CreatureAnimator { get }
     
     var state: CreatureState { get set }

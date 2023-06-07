@@ -36,7 +36,9 @@ public class CreaturesView: UIView, WorldVisualDelegate
     
     public func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> CreatureAnimator
     {
-        let animator = CreatureAnimator()
+        let visualComponent = visualComponent(for: creatureType)
+        
+        let animator = CreatureAnimator(visualComponent: visualComponent)
         add(animator: animator, for: creatureUUID)
         return animator
     }
@@ -57,9 +59,11 @@ public class CreaturesView: UIView, WorldVisualDelegate
         return imageView
     }
     
-    public func place(visualComponent: UIImageView,
-                      at position: WorldPosition)
+    public func placeVisualComponent(of creature: any CreatureProtocol,
+                                     at position: WorldPosition)
     {
+        let visualComponent = creature.animator.visualComponent
+        
         visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
                                              cellSize.height * (CGFloat(position.y) + 0.5))
         addSubview(visualComponent)
@@ -67,7 +71,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
     
     public func removeVisualComponent(for creature: any CreatureProtocol)
     {
-        creature.visualComponent.removeFromSuperview()
+        creature.animator.visualComponent.removeFromSuperview()
         
         animatorsDict.removeObject(forKey: NSUUID(uuidString: creature.uuid.uuidString))
     }

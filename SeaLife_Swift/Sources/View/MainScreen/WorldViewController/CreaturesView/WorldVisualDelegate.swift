@@ -17,8 +17,8 @@ public protocol WorldVisualDelegate: AnyObject
 
     func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
 
-    func place(visualComponent: UIImageView,
-               at position: WorldPosition)
+    func placeVisualComponent(of creature: any CreatureProtocol,
+                              at position: WorldPosition)
 
     func removeVisualComponent(for creature: any CreatureProtocol)
     

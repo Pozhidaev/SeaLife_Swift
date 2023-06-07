@@ -47,7 +47,7 @@ class World: WorldProtocol
     
     public func play()
     {
-        withCreaturesLocked() {
+        withCreaturesLocked {
             creatures.forEach{$0.start()}
         }
         isPlaying = true
@@ -55,7 +55,7 @@ class World: WorldProtocol
     
     public func stop()
     {
-        withCreaturesLocked() {
+        withCreaturesLocked {
             creatures.forEach{$0.pause()}
         }
         isPlaying = false
@@ -83,7 +83,7 @@ class World: WorldProtocol
     
     public func unlock(cells: Set<WorldCell>)
     {
-        withLockedCellsLocked(){ cells.forEach { self.lockedCells.remove($0) } }
+        withLockedCellsLocked { cells.forEach { self.lockedCells.remove($0) } }
     }
 
     public func cell(for position: WorldPosition) -> WorldCell?
@@ -121,7 +121,6 @@ class World: WorldProtocol
                                                creatureUUID: creatureUUID)
         let deps = CreatureDeps(
             world: self,
-            visualComponent: visualDelegate.visualComponent(for: creatureType.self),
             animator: animator,
             turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self)
         )
@@ -139,10 +138,6 @@ class World: WorldProtocol
 //        let cell1 = cells.filter{ $0.position == WorldPosition(x: 0, y: 10)}.first!
 //        add(creature: creature1, at: cell1)
 //        return;
-
-        guard let visualDelegate else {
-            fatalError("VisualDelegate is nil for \(self)")
-        }
 
         let fishCreatures = Set( (0..<worldInfo.fishCount).map{_ in
             return creature(for: FishCreature.self)
@@ -169,37 +164,37 @@ class World: WorldProtocol
         creature.position = cell.position
         creature.setSpeed(speed)
 
-        withCellsLocked(){
+        withCellsLocked {
             cell.creature = creature
         }
         
-        withCreaturesLocked(){
+        withCreaturesLocked {
             guard let tCreature = creature as? Creature else { fatalError("type mismatch") }
             creatures.insert(tCreature)
         }
         
         Utils.SafeDispatchMain {
-            self.visualDelegate?.place(visualComponent: creature.visualComponent,
-                                       at: cell.position)
+            self.visualDelegate?.placeVisualComponent(of: creature,
+                                                      at: cell.position)
         }
     }
     
     public func remove(creature: any CreatureProtocol, at cell: WorldCell?)
     {
         if let cell {
-            withCellsLocked(){
+            withCellsLocked {
                 cell.creature = nil
             }
         }
         
-        withCreaturesLocked(){
+        withCreaturesLocked {
             guard let tCreature = creature as? Creature else { fatalError("type mismatch") }
             creatures.remove(tCreature)
-        }
-        
-        if creatures.count == 0 {
-            stop()
-            delegate?.worldDidFinished(with: .empty)
+            
+            if creatures.count == 0 {
+                stop()
+                delegate?.worldDidFinished(with: .empty)
+            }
         }
         
         Utils.SafeDispatchMain {
@@ -209,7 +204,7 @@ class World: WorldProtocol
     
     public func move(creature: any CreatureProtocol, fromCell: WorldCell, toCell: WorldCell)
     {
-        withCellsLocked(){
+        withCellsLocked {
             toCell.creature = creature
             fromCell.creature = nil
             creature.position = toCell.position
