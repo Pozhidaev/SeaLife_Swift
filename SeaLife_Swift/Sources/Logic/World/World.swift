@@ -116,14 +116,17 @@ class World: WorldProtocol
             fatalError("VisualDelegate is nil for \(self)")
         }
         
+        let creatureUUID = UUID()
+        let animator = visualDelegate.animator(for: creatureType,
+                                               creatureUUID: creatureUUID)
         let deps = CreatureDeps(
             world: self,
-            visualDelegate: visualDelegate,
             visualComponent: visualDelegate.visualComponent(for: creatureType.self),
+            animator: animator,
             turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self)
         )
         
-        guard let creature = CreatureFactory.creature(type: creatureType, deps: deps) as? Creature else {
+        guard let creature = CreatureFactory.creature(uuid: creatureUUID, type: creatureType, deps: deps) as? Creature else {
             fatalError("World can't create creature for type \(creatureType)")
         }
         return creature
@@ -135,9 +138,6 @@ class World: WorldProtocol
 //        let creature1 = creature(for: FishCreature.self)
 //        let cell1 = cells.filter{ $0.position == WorldPosition(x: 0, y: 10)}.first!
 //        add(creature: creature1, at: cell1)
-//        visualDelegate!.place(visualComponent: creature1.visualComponent,
-//                             for: creature1,
-//                             at: cell1.position)
 //        return;
 
         guard let visualDelegate else {
@@ -160,10 +160,6 @@ class World: WorldProtocol
         for creature in creatures {
             let cell = freeCells.removeLast()
             add(creature: creature, at: cell)
-            
-            visualDelegate.place(visualComponent: creature.visualComponent,
-                                 for: creature,
-                                 at: cell.position)
         }
     }
     
@@ -181,14 +177,21 @@ class World: WorldProtocol
             guard let tCreature = creature as? Creature else { fatalError("type mismatch") }
             creatures.insert(tCreature)
         }
+        
+        Utils.SafeDispatchMain {
+            self.visualDelegate?.place(visualComponent: creature.visualComponent,
+                                       at: cell.position)
+        }
     }
     
-    public func remove(creature: any CreatureProtocol, at cell: WorldCell)
+    public func remove(creature: any CreatureProtocol, at cell: WorldCell?)
     {
-        withCellsLocked(){
-            cell.creature = nil
+        if let cell {
+            withCellsLocked(){
+                cell.creature = nil
+            }
         }
-
+        
         withCreaturesLocked(){
             guard let tCreature = creature as? Creature else { fatalError("type mismatch") }
             creatures.remove(tCreature)
@@ -197,6 +200,10 @@ class World: WorldProtocol
         if creatures.count == 0 {
             stop()
             delegate?.worldDidFinished(with: .empty)
+        }
+        
+        Utils.SafeDispatchMain {
+            self.visualDelegate?.removeVisualComponent(for: creature)
         }
     }
     

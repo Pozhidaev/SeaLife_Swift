@@ -16,7 +16,7 @@ let kAnimationUUIDKey = "kAnimationUUIDKey"
 let kAnimationFinalTransform = "kAnimationFinalTransform"
 let kTransformKey = "transform"
 
-class AnimationsController: NSObject
+public class AnimationsController: NSObject
 {
     public var cellSize: CGSize = .zero
     public var animationSpeed: Double = .zero
@@ -50,6 +50,22 @@ class AnimationsController: NSObject
         animationsDictionary[creature.uuid] = nil
         completionsDictionary[creature.uuid] = nil
         layersDictionary[creature.uuid] = nil
+    }
+    
+    public func performAnimations(for turn: Turn, completion: @escaping ()->())
+    {
+        Utils.SafeDispatchMain {
+            let layer = turn.creature.visualComponent.layer
+            self.performAnimations(
+                for: turn,
+                layer: layer
+            ) {
+                if (turn.directions.to != .none && turn.directions.to != .multy) {
+                    turn.creature.direction = turn.directions.to
+                }
+                completion()
+            }
+        }
     }
     
     public func performAnimations(for turn: Turn, layer: CALayer, completion: @escaping ()->())
@@ -160,15 +176,16 @@ class AnimationsController: NSObject
                                                    cellSize: cellSize)
         }
     }
+    
 }
 
 extension AnimationsController: CAAnimationDelegate
 {
-    func animationDidStart(_ anim: CAAnimation)
+    public func animationDidStart(_ anim: CAAnimation)
     {
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool)
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool)
     {
         guard let creatureUUID: UUID = anim.value(forKey: kAnimationUUIDKey) as? UUID else {
             assertionFailure("creatureUUID value is nil in animation \(anim)")

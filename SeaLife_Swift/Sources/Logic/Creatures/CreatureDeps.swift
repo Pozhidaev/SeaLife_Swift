@@ -10,7 +10,7 @@ import UIKit
 public struct CreatureDeps
 {
     unowned var world: any WorldProtocol
-    unowned var visualDelegate: any WorldVisualDelegate
     var visualComponent: UIImageView
+    var animator: AnimationsController
     var turnHelperClass: TurnHelperProtocol.Type
 }

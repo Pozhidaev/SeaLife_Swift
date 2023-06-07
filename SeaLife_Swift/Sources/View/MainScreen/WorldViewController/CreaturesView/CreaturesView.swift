@@ -1,50 +1,44 @@
 import UIKit
 
-public class CreaturesView: UIView
+public class CreaturesView: UIView, WorldVisualDelegate
 {
-    //MARK: Private vers
+    //MARK: - Private vers
 
     private var cellSize: CGSize = .zero {
-        didSet { animationController.cellSize = cellSize }
+        didSet {
+            let enumerator = animatorsDict.objectEnumerator()
+            while case let animator as AnimationsController = enumerator?.nextObject() {
+                animator.cellSize = cellSize
+            }
+        }
     }
 
-    private lazy var animationController = {
-        let animationController = AnimationsController()
-        animationController.cellSize = self.cellSize
-        return animationController
-    }()
-}
+    private let animatorsDict = NSMapTable<NSUUID, AnimationsController>(valueOptions: .weakMemory)
+    
+    //MARK: - WorldVisualDelegate
+    
+    public var animationSpeed: Double = .zero { didSet {
+        if animationSpeed == oldValue {
+            return
+        }
 
-extension CreaturesView: WorldVisualDelegate
-{
-    public func play()
-    {
-        animationController.play()
-    }
-    public func stop()
-    {
-        animationController.stop()
-    }
+        let enumerator = animatorsDict.objectEnumerator()
+        while case let animator as AnimationsController = enumerator?.nextObject() {
+            animator.animationSpeed = animationSpeed
+        }
+    } }
     
     public func reset()
     {
-        animationController.reset()
-        
+        animatorsDict.removeAllObjects()
         subviews.forEach { $0.removeFromSuperview() }
     }
-
-    public func setAnimationsSpeed(_ speed: Double)
-    {
-        animationController.animationSpeed = speed
-    }
     
-    public func place(visualComponent: UIImageView,
-                      for creature: any CreatureProtocol,
-                      at position: WorldPosition)
+    public func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> AnimationsController
     {
-        visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
-                                             cellSize.height * (CGFloat(position.y) + 0.5))
-        addSubview(visualComponent)
+        let animator = AnimationsController()
+        add(animator: animator, for: creatureUUID)
+        return animator
     }
     
     public func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
@@ -63,10 +57,19 @@ extension CreaturesView: WorldVisualDelegate
         return imageView
     }
     
+    public func place(visualComponent: UIImageView,
+                      at position: WorldPosition)
+    {
+        visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
+                                             cellSize.height * (CGFloat(position.y) + 0.5))
+        addSubview(visualComponent)
+    }
+    
     public func removeVisualComponent(for creature: any CreatureProtocol)
     {
         creature.visualComponent.removeFromSuperview()
-        animationController.removeAllAnimations(for: creature)
+        
+        animatorsDict.removeObject(forKey: NSUUID(uuidString: creature.uuid.uuidString))
     }
 
     public func redraw(toCellSize: CGSize)
@@ -87,47 +90,15 @@ extension CreaturesView: WorldVisualDelegate
         
         cellSize = toCellSize
     }
+ 
+    //MARK: - Private methods
     
-    public func performAnimations(for turn: Turn, completion: @escaping ()->())
+    private func add(animator: AnimationsController, for creatureUUID: UUID)
     {
-        var animationPreparation: ()->() = {}
-        var animationCompletion: ()->() = {}
+        animator.cellSize = cellSize
+        animator.animationSpeed = animationSpeed
         
-        switch turn {
-        case .empty(creature: _, cell: _):
-            break
-        case .move(creature: _, startCell: _, targetCell: _):
-            break
-        case .eat(creature: _, startCell: _, targetCell: _, targetCreature: _):
-            break
-        case .reproduce(creature: _, startCell: _, targetCell: _):
-            break
-        case .born(newCreature: let newCreature, cell: _):
-            animationPreparation = {
-                self.place(visualComponent: newCreature.visualComponent,
-                           for: newCreature,
-                           at: newCreature.position)
-            }
-        case .die(creature: let creature, cell: _):
-            animationCompletion = {
-                self.removeVisualComponent(for: creature)
-            }
-        }
-        
-        Utils.SafeDispatchMain {
-            animationPreparation()
-            
-            let layer = turn.creature.visualComponent.layer
-            self.animationController.performAnimations(
-                for: turn,
-                layer: layer
-            ) {
-                if (turn.directions.to != .none && turn.directions.to != .multy) {
-                    turn.creature.direction = turn.directions.to
-                }
-                animationCompletion()
-                completion()
-            }
-        }
+        let key = NSUUID(uuidString: creatureUUID.uuidString)
+        animatorsDict.setObject(animator, forKey: key)
     }
 }

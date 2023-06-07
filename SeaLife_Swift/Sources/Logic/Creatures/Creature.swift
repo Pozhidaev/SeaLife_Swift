@@ -13,10 +13,10 @@ public class Creature: CreatureProtocol
     public var position: WorldPosition = .zero()
     public var direction: Direction = .none
     
-    public unowned var world: WorldProtocol
-    public unowned var visualDelegate: WorldVisualDelegate
-    public var visualComponent: UIImageView
-
+    public unowned let world: WorldProtocol
+    public let visualComponent: UIImageView
+    public let animator: AnimationsController
+    
     public var state: CreatureState = CreatureState()
 
     //MARK: Private vars
@@ -36,9 +36,9 @@ public class Creature: CreatureProtocol
     public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
         self.turnHelperClass = deps.turnHelperClass
-        self.visualDelegate = deps.visualDelegate
         self.visualComponent = deps.visualComponent
         self.world = deps.world
+        self.animator = deps.animator
         self.uuid = uuid
         
         timer = CreatureTimer()
@@ -65,15 +65,17 @@ public class Creature: CreatureProtocol
     }
     public func start() {
         state.setActive()
+        animator.play()
         timer.start()
     }
     public func pause() {
-        timer.pause()
         state.setPause()
+        animator.stop()
+        timer.pause()
     }
     public func stop() {
-        timer.stop()
         state.setDead()
+        timer.stop()
     }
     
     //MARK: Private
@@ -128,7 +130,7 @@ public class Creature: CreatureProtocol
     {
         world.unlock(cells: lockedCells)
         
-        visualDelegate.performAnimations(for: turn) {
+        animator.performAnimations(for: turn) {
             completion()
         }
     }
@@ -145,19 +147,19 @@ public class Creature: CreatureProtocol
         var tempLockedCells = lockedCells
         
         targetCreature.stop()
-        world.remove(creature: targetCreature, at: targetCell)
         
         world.move(creature: self, fromCell: startCell, toCell: targetCell)
         
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
         weak var world = self.world
-        visualDelegate.performAnimations(for: turn) { [weak self, world] in
+        animator.performAnimations(for: turn) { [weak self, world] in
             world?.unlock(cell: targetCell)
             let nextTurn = Turn.die(creature: targetCreature, cell: targetCell)
+
             completion()
-            self?.visualDelegate.performAnimations(for: nextTurn) {
-                
+            self?.animator.performAnimations(for: nextTurn) {
+                world?.remove(creature: targetCreature, at: targetCell)
             }
         }
     }
@@ -178,7 +180,7 @@ public class Creature: CreatureProtocol
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
 
-        visualDelegate.performAnimations(for: turn) {
+        animator.performAnimations(for: turn) {
             
             self.world.unlock(cell: targetCell)
             completion()
@@ -200,24 +202,18 @@ public class Creature: CreatureProtocol
         tempLockedCells.remove(targetCell)
         world.unlock(cells: tempLockedCells)
 
-        let visualComponent = visualDelegate.visualComponent(for: type(of: self))
-        let deps = CreatureDeps(world: world,
-                                visualDelegate: visualDelegate,
-                                visualComponent: visualComponent,
-                                turnHelperClass: turnHelperClass)
-        let newCreature = CreatureFactory.creature(type: type(of: self),
-                                                   deps: deps)
-
-        world.add(creature: newCreature, at: targetCell)
+        let newCreature = world.creature(for: type(of: self))
         
         weak var world = self.world
-        visualDelegate.performAnimations(for: turn) { [weak self, world] in
+        animator.performAnimations(for: turn) { [weak self, world] in
             world?.unlock(cell: startCell)
-            
+
+            world?.add(creature: newCreature, at: targetCell)
+
             let nextTurn = Turn.born(newCreature: newCreature, cell: targetCell)
             completion()
             
-            self?.visualDelegate.performAnimations(for: nextTurn) {
+            self?.animator.performAnimations(for: nextTurn) {
                 world?.unlock(cell: targetCell)
                 if case .paused(fromState: _) = newCreature.state.state {
                     newCreature.state.state = .paused(fromState: .idle)
@@ -244,7 +240,7 @@ public class Creature: CreatureProtocol
         world.unlock(cells: tempLockedCells)
         
         weak var world = self.world
-        visualDelegate.performAnimations(for: turn) { [world] in
+        animator.performAnimations(for: turn) { [world] in
             world?.remove(creature: self, at: cell)
             world?.unlock(cell: cell)
             completion()

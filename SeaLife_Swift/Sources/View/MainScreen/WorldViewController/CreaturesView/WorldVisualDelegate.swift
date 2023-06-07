@@ -9,21 +9,18 @@ import UIKit
 
 public protocol WorldVisualDelegate: AnyObject
 {
-    func play()
-    func stop()
+    var animationSpeed: Double { get set}
+        
     func reset()
-    
-    func setAnimationsSpeed(_ speed: Double)
-    
+
+    func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> AnimationsController
+
     func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
 
     func place(visualComponent: UIImageView,
-               for creature: any CreatureProtocol,
                at position: WorldPosition)
 
     func removeVisualComponent(for creature: any CreatureProtocol)
-
-    func performAnimations(for turn: Turn, completion: @escaping ()->())
     
     func redraw(toCellSize: CGSize)
 }

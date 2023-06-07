@@ -69,13 +69,11 @@ class WorldViewController: UIViewController
     public func play()
     {
         world?.play()
-        creaturesView.play()
     }
     
     public func stop()
     {
         world?.stop()
-        creaturesView.stop()
     }
     
     public func reset()
@@ -85,7 +83,7 @@ class WorldViewController: UIViewController
     
     public func setAnimationsSpeed(_ speed: Double)
     {
-        creaturesView.setAnimationsSpeed(speed)
+        creaturesView.animationSpeed = speed
     }
     
     public func createWorld(with worldInfo:WorldInfo)

@@ -13,10 +13,10 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     var position: WorldPosition { get set }
     var direction: Direction { get set }
     
-    var world: WorldProtocol { get set }
-    var visualDelegate: WorldVisualDelegate { get set }
-    var visualComponent: UIImageView { get set }
-
+    var world: WorldProtocol { get }
+    var visualComponent: UIImageView { get }
+    var animator: AnimationsController { get }
+    
     var state: CreatureState { get set }
     
     init(uuid: UUID, deps: CreatureDeps)
