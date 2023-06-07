@@ -11,6 +11,8 @@
 		A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A51EFD9D2A1C10F90016182D /* Localizable.strings */; };
 		A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EFDA02A1CE7B70016182D /* CreatureState.swift */; };
 		A51F86252A2F7025002B3D8F /* CreatureDeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F86242A2F7025002B3D8F /* CreatureDeps.swift */; };
+		A51F86282A311075002B3D8F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51F86272A311075002B3D8F /* Colors.xcassets */; };
+		A51F862A2A3110AE002B3D8F /* Main.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51F86292A3110AE002B3D8F /* Main.xcassets */; };
 		A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */; };
 		A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186D2A19468B006E1AE9 /* TurnHelper.swift */; };
 		A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */; };
@@ -28,7 +30,7 @@
 		A5ACA6512A18BE3700FEE2FD /* AnimationsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */; };
 		A5ACA6532A18C36100FEE2FD /* CreatureAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */; };
 		A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */; };
-		A5ACA65D2A18CB8F00FEE2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */; };
+		A5ACA65D2A18CB8F00FEE2FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65A2A18CB8F00FEE2FD /* Images.xcassets */; };
 		A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */; };
 		A5ACA6602A18CBD200FEE2FD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA65F2A18CBD200FEE2FD /* Constants.swift */; };
 		A5ACA6622A18D70600FEE2FD /* WorldScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */; };
@@ -56,6 +58,8 @@
 		A51EFD9E2A1C110D0016182D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A51EFDA02A1CE7B70016182D /* CreatureState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureState.swift; sourceTree = "<group>"; };
 		A51F86242A2F7025002B3D8F /* CreatureDeps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureDeps.swift; sourceTree = "<group>"; };
+		A51F86272A311075002B3D8F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A51F86292A3110AE002B3D8F /* Main.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Main.xcassets; sourceTree = "<group>"; };
 		A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		A57B186D2A19468B006E1AE9 /* TurnHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelper.swift; sourceTree = "<group>"; };
 		A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelperProtocol.swift; sourceTree = "<group>"; };
@@ -75,7 +79,7 @@
 		A5ACA6502A18BE3700FEE2FD /* AnimationsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsFactory.swift; sourceTree = "<group>"; };
 		A5ACA6522A18C36100FEE2FD /* CreatureAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureAnimator.swift; sourceTree = "<group>"; };
 		A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5ACA65A2A18CB8F00FEE2FD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A5ACA65F2A18CBD200FEE2FD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldScreenViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,16 @@
 			path = AppRelated;
 			sourceTree = "<group>";
 		};
+		A51F86262A310ED9002B3D8F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A51F86292A3110AE002B3D8F /* Main.xcassets */,
+				A5ACA65A2A18CB8F00FEE2FD /* Images.xcassets */,
+				A51F86272A311075002B3D8F /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A56043B52A2C02EE00764B0F /* Direction */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ACA5F82A18B7B900FEE2FD /* Sources */,
+				A51F86262A310ED9002B3D8F /* Resources */,
 				A5ACA5F62A18B70E00FEE2FD /* SupportingFiles */,
 			);
 			path = SeaLife_Swift;
@@ -154,7 +169,6 @@
 		A5ACA5F62A18B70E00FEE2FD /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				A5ACA65A2A18CB8F00FEE2FD /* Assets.xcassets */,
 				A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */,
 				A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */,
 				A5ACA5F02A18B6AC00FEE2FD /* Info.plist */,
@@ -392,11 +406,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51F862A2A3110AE002B3D8F /* Main.xcassets in Resources */,
 				A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */,
 				A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */,
 				A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */,
+				A51F86282A311075002B3D8F /* Colors.xcassets in Resources */,
 				A5ACA63F2A18B7B900FEE2FD /* SliderView.xib in Resources */,
-				A5ACA65D2A18CB8F00FEE2FD /* Assets.xcassets in Resources */,
+				A5ACA65D2A18CB8F00FEE2FD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
