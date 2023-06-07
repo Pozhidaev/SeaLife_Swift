@@ -81,9 +81,9 @@ class MenuViewController: UIViewController
     {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "MenuBackgroundColor")
+        view.backgroundColor = Colors.MenuView.backgroundColor.color
         view.layer.borderWidth = Constants.UI.MenuScreen.menuViewBorderWidth
-        view.layer.borderColor = UIColor(named: "MenuFrameColor")?.cgColor
+        view.layer.borderColor = Colors.MenuView.frameColor.color.cgColor
         view.layer.cornerRadius = Constants.UI.MenuScreen.menuViewCornerRadius
         
         setupStartButton()
@@ -98,17 +98,17 @@ class MenuViewController: UIViewController
     func setupStartButton()
     {
         startButton.layer.cornerRadius = Constants.UI.defaultCornerRadius;
-        startButton.backgroundColor = UIColor(named: "MenuStartButtonColor")
+        startButton.backgroundColor = Colors.MenuView.startButtonColor.color
         startButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
                                                           left: Constants.UI.defaultElementsSpacing * 4.0,
                                                           bottom: Constants.UI.defaultElementsSpacing * 2.0,
                                                           right: Constants.UI.defaultElementsSpacing * 4.0);
         
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "MenuStartButtonTitle") ?? UIColor.darkText,
+            .foregroundColor: Colors.MenuView.startButtonTitleColor.color,
             .font: UIFont.systemFont(ofSize: 24.0)
         ]
-        let attributedTitle = NSAttributedString(string: NSLocalizedString("Menu.Button.Start", comment:""), attributes: attributes)
+        let attributedTitle = NSAttributedString(string: Strings.Menu.Button.start, attributes: attributes)
         startButton.setAttributedTitle(attributedTitle, for: .normal)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
     }
@@ -116,17 +116,17 @@ class MenuViewController: UIViewController
     func setupCancelButton()
     {
         cancelButton.layer.cornerRadius = Constants.UI.defaultCornerRadius;
-        cancelButton.backgroundColor = UIColor(named: "MenuStartButtonColor")
+        cancelButton.backgroundColor = Colors.MenuView.startButtonColor.color
         cancelButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
                                                            left: Constants.UI.defaultElementsSpacing * 4.0,
                                                            bottom: Constants.UI.defaultElementsSpacing * 2.0,
                                                            right: Constants.UI.defaultElementsSpacing * 4.0);
         
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "MenuStartButtonTitle") ?? UIColor.darkText,
+            .foregroundColor: Colors.MenuView.startButtonTitleColor.color,
             .font: UIFont.systemFont(ofSize: 24.0)
         ]
-        let attributedTitle = NSAttributedString(string: NSLocalizedString("Menu.Button.Cancel", comment:""), attributes: attributes)
+        let attributedTitle = NSAttributedString(string: Strings.Menu.Button.cancel, attributes: attributes)
         cancelButton.setAttributedTitle(attributedTitle, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
     }
@@ -134,10 +134,10 @@ class MenuViewController: UIViewController
     
     func setupSliders()
     {
-        self.fishCountView.titleLabel.text = NSLocalizedString("Menu.FishCount.Title", comment:"")
-        self.orcaCountView.titleLabel.text = NSLocalizedString("Menu.OrcaCount.Title", comment:"")
-        self.horizontalCountView.titleLabel.text = NSLocalizedString("Menu.XSize.Title", comment:"")
-        self.verticalCountView.titleLabel.text = NSLocalizedString("Menu.YSize.Title", comment:"")
+        self.fishCountView.titleLabel.text = Strings.Menu.FishCount.title
+        self.orcaCountView.titleLabel.text = Strings.Menu.OrcaCount.title
+        self.horizontalCountView.titleLabel.text = Strings.Menu.XSize.title
+        self.verticalCountView.titleLabel.text = Strings.Menu.YSize.title
 
         fishCountView.slider.addTarget(self, action: #selector(sliderValueChange), for: .valueChanged)
         orcaCountView.slider.addTarget(self, action: #selector(sliderValueChange), for: .valueChanged)

@@ -12,6 +12,8 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     let segueIdPresentMenuScreenFullScreen = "kSegueIdPresentMenuScreenFullScreen"
     let segueIdPresentMenuScreenFormSheet = "kSegueIdPresentMenuScreenFormSheet"
     
+    let segueIdWorldViewControllerSegue = "WorldViewControllerSegue"
+    
     //MARK: - Outlets
     
     @IBOutlet private weak var playButton: UIButton!
@@ -129,8 +131,8 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     {
         resetButton.isEnabled = !isPlaying
         
-        let playTitle = NSLocalizedString("Button.Play", comment: "")
-        let pauseTitle = NSLocalizedString("Button.Pause", comment: "")
+        let playTitle = Strings.Button.play
+        let pauseTitle = Strings.Button.pause
         let title = isPlaying ? pauseTitle : playTitle
         playButton.setTitle(title, for: .normal)
     }
@@ -139,15 +141,15 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     
     private func setupView()
     {
-        self.view.backgroundColor = UIColor(named:"MainScreenBackgroundColor")
+        self.view.backgroundColor = Colors.MainScreen.backgroundColor.color
        
         setupControlPanel()
     }
     
     private func setupControlPanel()
     {
-        controlPanel.backgroundColor = UIColor(named:"MainScreenControlPanelBackgroundColor")
-        controlPanel.layer.borderColor = UIColor(named:"MainScreenControlPanelFrameColor")?.cgColor
+        controlPanel.backgroundColor = Colors.MainScreen.ControlPanel.backgroundColor.color
+        controlPanel.layer.borderColor = Colors.MainScreen.ControlPanel.frameColor.color.cgColor
         controlPanel.layer.borderWidth = Constants.UI.MainScreen.controlPanelViewBorderWidth
         controlPanel.layer.cornerRadius = Constants.UI.defaultCornerRadius
         
@@ -160,15 +162,19 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     {
         creaturesSpeedSlider.minimumValue = Float(Constants.Speed.creatureFastestSpeed)
         creaturesSpeedSlider.maximumValue = Float(Constants.Speed.creatureSlowestSpeed)
-        creaturesSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
+        creaturesSpeedSlider.tintColor = Colors.MainScreen.ControlPanel.sliderTintColor.color
         creaturesSpeedLabel.text = "\(Constants.Speed.creatureDefaultSpeed)"
-        creaturesSpeedTitleLabel.text = NSLocalizedString("MainScreen.CreaturesSpeed", comment: "");
+        creaturesSpeedLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
+        creaturesSpeedTitleLabel.text = Strings.MainScreen.creaturesSpeed
+        creaturesSpeedTitleLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
 
         animationSpeedSlider.minimumValue = Float(Constants.Speed.animationFastestSpeed)
         animationSpeedSlider.maximumValue = Float(Constants.Speed.animationSlowestSpeed)
-        animationSpeedSlider.tintColor = UIColor(named:"MainScreenSliderTintColor")
+        animationSpeedSlider.tintColor = Colors.MainScreen.ControlPanel.sliderTintColor.color
         animationSpeedLabel.text = "\(Constants.Speed.animationDefaultSpeed)"
-        animationSpeedTitleLabel.text = NSLocalizedString("MainScreen.AnimationSpeed", comment: "");
+        animationSpeedLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
+        animationSpeedTitleLabel.text = Strings.MainScreen.animationSpeed
+        animationSpeedTitleLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
     }
     
     private func setupButtons()
@@ -177,13 +183,16 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         resetButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         menuButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         
-        resetButton.backgroundColor = UIColor(named:"MainScreenResetButtonColor")
-        menuButton.backgroundColor = UIColor(named:"MainScreenMenuButtonColor")
-        playButton.backgroundColor = UIColor(named:"MainScreenPlayButtonColor")
+        resetButton.backgroundColor = Colors.MainScreen.ControlPanel.resetButtonColor.color
+        menuButton.backgroundColor = Colors.MainScreen.ControlPanel.menuButtonColor.color
+        playButton.backgroundColor = Colors.MainScreen.ControlPanel.playButtonColor.color
 
-        playButton.setTitle(NSLocalizedString("Button.Play", comment: ""), for: .normal)
-        resetButton.setTitle(NSLocalizedString("Button.Reset", comment: ""), for: .normal)
-        menuButton.setTitle(NSLocalizedString("Button.Menu", comment: ""), for: .normal)
+        playButton.setTitle(Strings.Button.play, for: .normal)
+        playButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
+        resetButton.setTitle(Strings.Button.reset, for: .normal)
+        resetButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
+        menuButton.setTitle(Strings.Button.menu, for: .normal)
+        menuButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
     }
     
     //MARK: - Segues
@@ -204,7 +213,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
     {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "WorldViewControllerSegue" {
+        if segue.identifier == segueIdWorldViewControllerSegue {
             worldViewController = segue.destination as? WorldViewController
             worldViewController?.delegate = self
         }
@@ -221,14 +230,14 @@ extension WorldScreenViewController: WorldViewControllerDelegate
             
             var message: String
             switch (reason) {
-            case .empty: message = "World become empty"
-            case .full: message = "World become full with no move"
+            case .empty: message = Strings.World.Finish.empty
+            case .full: message = Strings.World.Finish.full
             }
             
             let alertController = UIAlertController(title: nil,
                                                     message: message,
                                                     preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok",
+            let okAction = UIAlertAction(title: Strings.Button.ok,
                                          style: .destructive) {_ in
                 self?.worldViewController?.reset()
             }

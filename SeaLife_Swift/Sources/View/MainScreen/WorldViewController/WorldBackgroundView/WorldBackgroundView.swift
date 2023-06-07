@@ -22,12 +22,12 @@ class WorldBackgroundView : UIView
         let context = UIGraphicsGetCurrentContext()
         context?.clear(rect)
 
-        context?.setFillColor((UIColor(named: "WorldBackgroundColor") ?? UIColor.black).cgColor)
+        context?.setFillColor(Colors.WorldBackgroundView.backgroundColor.color.cgColor)
         context?.fill(rect)
 
         if (UIDevice.current.userInterfaceIdiom == .phone && sizeInCells.height <= Constants.UI.WorldBackground.worldBackgroundViewMaxVerticalSizeForDrawingGridIphone) ||
             (UIDevice.current.userInterfaceIdiom == .pad && sizeInCells.height <= Constants.UI.WorldBackground.worldBackgroundViewMaxVerticalSizeForDrawingGridIpad) {
-            context?.setStrokeColor((UIColor(named: "WorldCellsColor") ?? UIColor.black).cgColor)
+            context?.setStrokeColor(Colors.WorldBackgroundView.cellsFrameColor.color.cgColor)
             context?.setLineWidth(cellLineWidth)
             
             let cellWidth: CGFloat = CGRectGetWidth(bounds) / CGFloat(sizeInCells.width)
@@ -48,7 +48,7 @@ class WorldBackgroundView : UIView
             }
         }
 
-        context?.setStrokeColor((UIColor(named: "WorldFrameColor") ?? UIColor.black).cgColor)
+        context?.setStrokeColor(Colors.WorldBackgroundView.frameColor.color.cgColor)
         context?.setLineWidth(borderLineWidth)
         context?.stroke(rect)
     }

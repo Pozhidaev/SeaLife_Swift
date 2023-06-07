@@ -24,29 +24,33 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 internal enum Colors {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum MainScreen {
-    internal static let mainScreenBackgroundColor = ColorAsset(name: "MainScreenBackgroundColor")
-    internal static let mainScreenControlPanelBackgroundColor = ColorAsset(name: "MainScreenControlPanelBackgroundColor")
-    internal static let mainScreenControlPanelFrameColor = ColorAsset(name: "MainScreenControlPanelFrameColor")
-    internal static let mainScreenMenuButtonColor = ColorAsset(name: "MainScreenMenuButtonColor")
-    internal static let mainScreenPlayButtonColor = ColorAsset(name: "MainScreenPlayButtonColor")
-    internal static let mainScreenResetButtonColor = ColorAsset(name: "MainScreenResetButtonColor")
-    internal static let mainScreenSliderTintColor = ColorAsset(name: "MainScreenSliderTintColor")
+    internal static let backgroundColor = ColorAsset(name: "MainScreen/BackgroundColor")
+    internal enum ControlPanel {
+      internal static let backgroundColor = ColorAsset(name: "MainScreen/ControlPanel/BackgroundColor")
+      internal static let buttonsTitleColor = ColorAsset(name: "MainScreen/ControlPanel/ButtonsTitleColor")
+      internal static let frameColor = ColorAsset(name: "MainScreen/ControlPanel/FrameColor")
+      internal static let menuButtonColor = ColorAsset(name: "MainScreen/ControlPanel/MenuButtonColor")
+      internal static let playButtonColor = ColorAsset(name: "MainScreen/ControlPanel/PlayButtonColor")
+      internal static let resetButtonColor = ColorAsset(name: "MainScreen/ControlPanel/ResetButtonColor")
+      internal static let sliderTintColor = ColorAsset(name: "MainScreen/ControlPanel/SliderTintColor")
+      internal static let textColor = ColorAsset(name: "MainScreen/ControlPanel/TextColor")
+    }
   }
   internal enum MenuView {
-    internal static let menuBackgroundColor = ColorAsset(name: "MenuBackgroundColor")
-    internal static let menuFrameColor = ColorAsset(name: "MenuFrameColor")
-    internal static let menuStartButtonColor = ColorAsset(name: "MenuStartButtonColor")
-    internal static let menuStartButtonTitle = ColorAsset(name: "MenuStartButtonTitle")
+    internal static let backgroundColor = ColorAsset(name: "MenuView/BackgroundColor")
+    internal static let frameColor = ColorAsset(name: "MenuView/FrameColor")
+    internal static let startButtonColor = ColorAsset(name: "MenuView/StartButtonColor")
+    internal static let startButtonTitleColor = ColorAsset(name: "MenuView/StartButtonTitleColor")
   }
   internal enum SliderView {
-    internal static let sliderViewBackgroundColor = ColorAsset(name: "SliderViewBackgroundColor")
-    internal static let sliderViewSliderTintColor = ColorAsset(name: "SliderViewSliderTintColor")
-    internal static let sliderViewTextColor = ColorAsset(name: "SliderViewTextColor")
+    internal static let backgroundColor = ColorAsset(name: "SliderView/BackgroundColor")
+    internal static let textColor = ColorAsset(name: "SliderView/TextColor")
+    internal static let tintColor = ColorAsset(name: "SliderView/TintColor")
   }
   internal enum WorldBackgroundView {
-    internal static let worldBackgroundColor = ColorAsset(name: "WorldBackgroundColor")
-    internal static let worldCellsColor = ColorAsset(name: "WorldCellsColor")
-    internal static let worldFrameColor = ColorAsset(name: "WorldFrameColor")
+    internal static let backgroundColor = ColorAsset(name: "WorldBackgroundView/BackgroundColor")
+    internal static let cellsFrameColor = ColorAsset(name: "WorldBackgroundView/CellsFrameColor")
+    internal static let frameColor = ColorAsset(name: "WorldBackgroundView/FrameColor")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

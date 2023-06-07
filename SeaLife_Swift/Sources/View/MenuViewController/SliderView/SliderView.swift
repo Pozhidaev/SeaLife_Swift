@@ -28,13 +28,13 @@ public class SliderView : UIView, xibLoadable
         slider.addObserver(self, forKeyPath: maximumValueKey, context: nil)
         
         layer.cornerRadius = Constants.UI.defaultCornerRadius
-        backgroundColor = UIColor(named: "SliderViewBackgroundColor")
+        backgroundColor = Colors.SliderView.backgroundColor.color
         
-        titleLabel.textColor = UIColor(named: "SliderViewTextColor")
-        valueLabel.textColor = UIColor(named: "SliderViewTextColor")
-        minimumValueLabel.textColor = UIColor(named: "SliderViewTextColor")
-        maximumValueLabel.textColor = UIColor(named: "SliderViewTextColor")
-        slider.tintColor = UIColor(named: "SliderViewSliderTintColor")
+        titleLabel.textColor = Colors.SliderView.textColor.color
+        valueLabel.textColor = Colors.SliderView.textColor.color
+        minimumValueLabel.textColor = Colors.SliderView.textColor.color
+        maximumValueLabel.textColor = Colors.SliderView.textColor.color
+        slider.tintColor = Colors.SliderView.tintColor.color
     }
     
     public override func observeValue(forKeyPath keyPath: String?,
@@ -48,21 +48,21 @@ public class SliderView : UIView, xibLoadable
             if let value {
                 self.valueLabel.text = "\(value)"
             } else {
-                self.valueLabel.text = NSLocalizedString("SliderView.Value.Unknown", comment: "")
+                self.valueLabel.text = Strings.SliderView.Value.unknown
             }
         case minimumValueKey:
             let value = (object as? UISlider)?.minimumValue
             if let value {
                 self.minimumValueLabel.text = "\(value)"
             } else {
-                self.minimumValueLabel.text = NSLocalizedString("SliderView.Minimum.Unknown", comment: "")
+                self.minimumValueLabel.text = Strings.SliderView.Minimum.unknown
             }
         case maximumValueKey:
             let value = (object as? UISlider)?.maximumValue
             if let value {
                 self.maximumValueLabel.text = "\(value)"
             } else {
-                self.maximumValueLabel.text = NSLocalizedString("SliderView.Maximum.Unknown", comment: "")
+                self.maximumValueLabel.text = Strings.SliderView.Maximum.unknown
             }
         default: break
         }

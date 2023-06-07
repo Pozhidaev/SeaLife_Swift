@@ -13,9 +13,9 @@ extension UIImage
     {
         switch creatureType {
         case is OrcaCreature.Type:
-            return UIImage(named:"Orca")
+            return Images.orca.image
         case is FishCreature.Type:
-            return UIImage(named:"Fish")
+            return Images.fish.image
         default:
             assertionFailure("Image not exist for creature type \(creatureType)")
         }
