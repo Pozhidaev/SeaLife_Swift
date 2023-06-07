@@ -13,6 +13,12 @@
 		A51F86252A2F7025002B3D8F /* CreatureDeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F86242A2F7025002B3D8F /* CreatureDeps.swift */; };
 		A51F86282A311075002B3D8F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51F86272A311075002B3D8F /* Colors.xcassets */; };
 		A51F862A2A3110AE002B3D8F /* Main.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51F86292A3110AE002B3D8F /* Main.xcassets */; };
+		A51F862C2A3112D4002B3D8F /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F862B2A3112D4002B3D8F /* LocalizedStrings.swift */; };
+		A51F862E2A31152A002B3D8F /* ColorsAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F862D2A31152A002B3D8F /* ColorsAssets.swift */; };
+		A51F86302A311530002B3D8F /* ImagesAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F862F2A311530002B3D8F /* ImagesAssets.swift */; };
+		A51F86352A311579002B3D8F /* swiftgen_images.yml in Resources */ = {isa = PBXBuildFile; fileRef = A51F86322A311579002B3D8F /* swiftgen_images.yml */; };
+		A51F86362A311579002B3D8F /* swiftgen_colors.yml in Resources */ = {isa = PBXBuildFile; fileRef = A51F86332A311579002B3D8F /* swiftgen_colors.yml */; };
+		A51F86372A311579002B3D8F /* swiftgen_strings.yml in Resources */ = {isa = PBXBuildFile; fileRef = A51F86342A311579002B3D8F /* swiftgen_strings.yml */; };
 		A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */; };
 		A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186D2A19468B006E1AE9 /* TurnHelper.swift */; };
 		A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */; };
@@ -60,6 +66,12 @@
 		A51F86242A2F7025002B3D8F /* CreatureDeps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureDeps.swift; sourceTree = "<group>"; };
 		A51F86272A311075002B3D8F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A51F86292A3110AE002B3D8F /* Main.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Main.xcassets; sourceTree = "<group>"; };
+		A51F862B2A3112D4002B3D8F /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		A51F862D2A31152A002B3D8F /* ColorsAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsAssets.swift; sourceTree = "<group>"; };
+		A51F862F2A311530002B3D8F /* ImagesAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesAssets.swift; sourceTree = "<group>"; };
+		A51F86322A311579002B3D8F /* swiftgen_images.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen_images.yml; sourceTree = SOURCE_ROOT; };
+		A51F86332A311579002B3D8F /* swiftgen_colors.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen_colors.yml; sourceTree = SOURCE_ROOT; };
+		A51F86342A311579002B3D8F /* swiftgen_strings.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen_strings.yml; sourceTree = SOURCE_ROOT; };
 		A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		A57B186D2A19468B006E1AE9 /* TurnHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelper.swift; sourceTree = "<group>"; };
 		A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelperProtocol.swift; sourceTree = "<group>"; };
@@ -125,11 +137,23 @@
 		A51F86262A310ED9002B3D8F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A51F862F2A311530002B3D8F /* ImagesAssets.swift */,
+				A51F862D2A31152A002B3D8F /* ColorsAssets.swift */,
 				A51F86292A3110AE002B3D8F /* Main.xcassets */,
 				A5ACA65A2A18CB8F00FEE2FD /* Images.xcassets */,
 				A51F86272A311075002B3D8F /* Colors.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A51F86312A31154B002B3D8F /* SwiftgenConfig */ = {
+			isa = PBXGroup;
+			children = (
+				A51F86332A311579002B3D8F /* swiftgen_colors.yml */,
+				A51F86322A311579002B3D8F /* swiftgen_images.yml */,
+				A51F86342A311579002B3D8F /* swiftgen_strings.yml */,
+			);
+			path = SwiftgenConfig;
 			sourceTree = "<group>";
 		};
 		A56043B52A2C02EE00764B0F /* Direction */ = {
@@ -169,9 +193,11 @@
 		A5ACA5F62A18B70E00FEE2FD /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				A51F86312A31154B002B3D8F /* SwiftgenConfig */,
 				A5ACA6592A18CB8F00FEE2FD /* LaunchScreen.storyboard */,
 				A5ACA65B2A18CB8F00FEE2FD /* Main.storyboard */,
 				A5ACA5F02A18B6AC00FEE2FD /* Info.plist */,
+				A51F862B2A3112D4002B3D8F /* LocalizedStrings.swift */,
 				A51EFD9D2A1C10F90016182D /* Localizable.strings */,
 			);
 			path = SupportingFiles;
@@ -408,11 +434,14 @@
 			files = (
 				A51F862A2A3110AE002B3D8F /* Main.xcassets in Resources */,
 				A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */,
+				A51F86372A311579002B3D8F /* swiftgen_strings.yml in Resources */,
 				A5ACA65E2A18CB8F00FEE2FD /* Main.storyboard in Resources */,
 				A5ACA65C2A18CB8F00FEE2FD /* LaunchScreen.storyboard in Resources */,
+				A51F86362A311579002B3D8F /* swiftgen_colors.yml in Resources */,
 				A51F86282A311075002B3D8F /* Colors.xcassets in Resources */,
 				A5ACA63F2A18B7B900FEE2FD /* SliderView.xib in Resources */,
 				A5ACA65D2A18CB8F00FEE2FD /* Images.xcassets in Resources */,
+				A51F86352A311579002B3D8F /* swiftgen_images.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +470,9 @@
 				A57B18802A1962D6006E1AE9 /* Utils.swift in Sources */,
 				A57B18762A1956EA006E1AE9 /* UIImage+Creature.swift in Sources */,
 				A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */,
+				A51F862C2A3112D4002B3D8F /* LocalizedStrings.swift in Sources */,
 				A5ACA66A2A18E7AD00FEE2FD /* WorldViewController.swift in Sources */,
+				A51F862E2A31152A002B3D8F /* ColorsAssets.swift in Sources */,
 				A5ACA6812A19397F00FEE2FD /* WorldCell.swift in Sources */,
 				A51F86252A2F7025002B3D8F /* CreatureDeps.swift in Sources */,
 				A57B18722A195040006E1AE9 /* Turn.swift in Sources */,
@@ -455,6 +486,7 @@
 				A57B18782A1957B0006E1AE9 /* CreatureProtocol.swift in Sources */,
 				A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */,
 				A5ACA6642A18DE2E00FEE2FD /* CreatureFactory.swift in Sources */,
+				A51F86302A311530002B3D8F /* ImagesAssets.swift in Sources */,
 				A5ACA66E2A18EF3C00FEE2FD /* SliderView.swift in Sources */,
 				A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */,
 				A5ACA6852A193B6200FEE2FD /* WorldInfo.swift in Sources */,
