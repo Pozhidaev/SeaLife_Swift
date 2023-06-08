@@ -112,10 +112,6 @@ class World: WorldProtocol
     
     public func creature(for creatureType:any CreatureProtocol.Type) -> Creature
     {
-        guard let visualDelegate else {
-            fatalError("VisualDelegate is nil for \(self)")
-        }
-        
         let deps = CreatureDeps(
             world: self,
             turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self)
@@ -125,10 +121,6 @@ class World: WorldProtocol
             fatalError("World can't create creature for type \(creatureType)")
         }
 
-        let animator = visualDelegate.animator(for: creatureType,
-                                               creatureUUID: creature.uuid)
-        creature.animator = animator
-        
         return creature
     }
     
@@ -156,6 +148,7 @@ class World: WorldProtocol
         for creature in creatures {
             let cell = freeCells.removeLast()
             add(creature: creature, at: cell)
+            addToVisual(creature: creature, at: cell)
         }
     }
     
@@ -173,10 +166,12 @@ class World: WorldProtocol
             guard let tCreature = creature as? Creature else { fatalError("type mismatch") }
             creatures.insert(tCreature)
         }
-        
-        Utils.SafeDispatchMain {
-            self.visualDelegate?.placeVisualComponent(of: creature,
-                                                      at: cell.position)
+    }
+    
+    public func addToVisual(creature: any CreatureProtocol, at cell: WorldCell)
+    {
+        performOnMainAndWait {
+            self.visualDelegate?.add(creature: creature, at: cell.position)
         }
     }
     
@@ -197,9 +192,12 @@ class World: WorldProtocol
                 delegate?.worldDidFinished(with: .empty)
             }
         }
-        
-        Utils.SafeDispatchMain {
-            self.visualDelegate?.removeVisualComponent(for: creature)
+    }
+    
+    public func removeFromVisual(creature: any CreatureProtocol)
+    {
+        performOnMainAndWait {
+            self.visualDelegate?.remove(creature: creature)
         }
     }
     
@@ -233,6 +231,17 @@ class World: WorldProtocol
         creaturesLock.unlock()
     }
 
+    private func performOnMainAndWait(_ performBlock: @escaping () -> ())
+    {
+        let group = DispatchGroup()
+        group.enter()
+        Utils.SafeDispatchMain {
+            performBlock()
+            group.leave()
+        }
+        group.wait()
+    }
+    
     private func createCells(sizeX: Int, sizeY: Int) -> Array<WorldCell>
     {
         return (0..<(sizeX * sizeY)).map{ WorldCell(position: WorldPosition(x: $0 % worldInfo.horizontalSize,

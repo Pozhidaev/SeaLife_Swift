@@ -34,42 +34,21 @@ public class CreaturesView: UIView, WorldVisualDelegate
         subviews.forEach { $0.removeFromSuperview() }
     }
     
-    public func animator(for creatureType: any CreatureProtocol.Type, creatureUUID: UUID) -> CreatureAnimator
+    public func add(creature: any CreatureProtocol, at position: WorldPosition)
     {
-        let visualComponent = visualComponent(for: creatureType)
-        
-        let animator = CreatureAnimator(visualComponent: visualComponent)
-        add(animator: animator, for: creatureUUID)
-        return animator
-    }
-    
-    public func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
-    {
-        let image = UIImage.image(for: creatureType)
-        let imageView = UIImageView(image: image)
+        let visualComponent = visualComponent(for: type(of: creature))
 
-        var frame: CGRect = .zero
-        frame.size = CGSizeMake(self.cellSize.width, self.cellSize.height)
-        var delta: CGFloat = .zero
-        if frame.width > Constants.UI.imageViewMinSizeForReducing {
-            delta = frame.width * Constants.UI.imageViewReducingCoeficient
-        }
-        imageView.frame = CGRectInset(frame, delta, delta)
-        
-        return imageView
-    }
-    
-    public func placeVisualComponent(of creature: any CreatureProtocol,
-                                     at position: WorldPosition)
-    {
-        guard let visualComponent = creature.animator?.visualComponent else { return }
-        
         visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
                                              cellSize.height * (CGFloat(position.y) + 0.5))
         addSubview(visualComponent)
+
+        let animator = CreatureAnimator(visualComponent: visualComponent)
+        add(animator: animator, for: creature.uuid)
+        
+        creature.animator = animator
     }
     
-    public func removeVisualComponent(for creature: any CreatureProtocol)
+    public func remove(creature: any CreatureProtocol)
     {
         creature.animator?.visualComponent.removeFromSuperview()
         
@@ -96,6 +75,22 @@ public class CreaturesView: UIView, WorldVisualDelegate
     }
  
     //MARK: - Private methods
+    
+    private func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
+    {
+        let image = UIImage.image(for: creatureType)
+        let imageView = UIImageView(image: image)
+
+        var frame: CGRect = .zero
+        frame.size = CGSizeMake(self.cellSize.width, self.cellSize.height)
+        var delta: CGFloat = .zero
+        if frame.width > Constants.UI.imageViewMinSizeForReducing {
+            delta = frame.width * Constants.UI.imageViewReducingCoeficient
+        }
+        imageView.frame = CGRectInset(frame, delta, delta)
+        
+        return imageView
+    }
     
     private func add(animator: CreatureAnimator, for creatureUUID: UUID)
     {

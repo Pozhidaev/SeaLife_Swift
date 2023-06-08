@@ -156,8 +156,10 @@ public class Creature: CreatureProtocol
             targetCreature.animator?.performAnimations(for: nextTurn, completionQueue: queue) { [weak targetCreature] in
                 guard let targetCreature else { return }
 
-                targetCreature.world.unlock(cell: targetCell)
+                targetCreature.world.removeFromVisual(creature: targetCreature)
                 targetCreature.world.remove(creature: targetCreature, at: nil)
+                
+                targetCreature.world.unlock(cell: targetCell)
             }
         }
     }
@@ -190,17 +192,19 @@ public class Creature: CreatureProtocol
             assertionFailure("Turn is wrong type \(turn)")
             return
         }
+
+        let newCreature = world.creature(for: type(of: self))
+        world.add(creature: newCreature, at: targetCell)
         
         animator?.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
-            
-            self.world.unlock(cell: startCell)
 
-            let newCreature = self.world.creature(for: type(of: self))
-            self.world.add(creature: newCreature, at: targetCell)
+            self.world.unlock(cell: startCell)
             
             completion()
 
+            self.world.addToVisual(creature: newCreature, at: targetCell)
+            
             let nextTurn = Turn.born(newCreature: newCreature, cell: targetCell)
             newCreature.animator?.performAnimations(for: nextTurn, completionQueue: self.queue) { [weak newCreature] in
                 guard let newCreature else { return }
@@ -229,8 +233,9 @@ public class Creature: CreatureProtocol
         animator?.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
             guard let self else { return }
             
+            self.world.removeFromVisual(creature: self)
             self.world.remove(creature: self, at: cell)
-            
+
             self.world.unlock(cell: cell)
             
             completion()

@@ -27,8 +27,13 @@ public protocol WorldProtocol: AnyObject
     //creatures
     func creature(for creatureType:any CreatureProtocol.Type) -> Creature
     func createInitialCreatures()
+    
     func add(creature: any CreatureProtocol, at cell: WorldCell)
+    func addToVisual(creature: any CreatureProtocol, at cell: WorldCell)
+    
     func remove(creature: any CreatureProtocol, at cell: WorldCell?)
+    func removeFromVisual(creature: any CreatureProtocol)
+    
     func move(creature: any CreatureProtocol, fromCell: WorldCell, toCell: WorldCell)
 
     //methods return cells that are not locked, and lock them
