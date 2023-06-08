@@ -96,19 +96,22 @@ public class Creature: CreatureProtocol
         let turn = decideTurn(for: currentCell, possibleCells: possibleTurnCells)
         afterEveryTurn()
 
+        lockedCells.subtract(turn.busyCells)
+        world.unlock(cells: lockedCells)
+        
         switch turn {
         case .empty(creature: _, cell: _):
-            performEmpty(turn: turn, lockedCells: lockedCells, completion: completion)
+            performEmpty(turn: turn, completion: completion)
         case .move(creature: _, startCell: _, targetCell: _):
-            performMove(turn: turn, lockedCells: lockedCells, completion: completion)
+            performMove(turn: turn, completion: completion)
         case .eat(creature: _, startCell: _, targetCell: _, targetCreature: _):
-            performEat(turn: turn, lockedCells: lockedCells, completion: completion)
+            performEat(turn: turn, completion: completion)
         case .reproduce(creature: _, startCell: _, targetCell: _):
-            performReproduce(turn: turn, lockedCells: lockedCells, completion: completion)
+            performReproduce(turn: turn, completion: completion)
         case .born(newCreature: _, cell: _):
             fatalError("creature can't perform born turn itself")
         case .die(creature: _, cell: _):
-            performDie(turn: turn, lockedCells: lockedCells, completion: completion)
+            performDie(turn: turn, completion: completion)
         }
     }
     
@@ -123,10 +126,16 @@ public class Creature: CreatureProtocol
     //MARK: Private
     
     private func performEmpty(turn: Turn,
-                              lockedCells: Set<WorldCell>,
                               completion: @escaping ()->())
     {
-        world.unlock(cells: lockedCells)
+        guard case let .empty(creature: _, cell: cell) = turn else {
+            assertionFailure("Turn is wrong type \(turn)")
+            return
+        }
+        
+        if let cell {
+            world.unlock(cell: cell)
+        }
         
         animator.performAnimations(for: turn, completionQueue: queue) {
             completion()
@@ -134,22 +143,18 @@ public class Creature: CreatureProtocol
     }
     
     private func performEat(turn: Turn,
-                            lockedCells: Set<WorldCell>,
                             completion: @escaping ()->())
     {
         guard case let .eat(creature: _, startCell: startCell, targetCell: targetCell, targetCreature: targetCreature) = turn else {
             assertionFailure("Turn is wrong type \(turn)")
             return
         }
-
-        var tempLockedCells = lockedCells
         
         targetCreature.stop()
         
         world.move(creature: self, fromCell: startCell, toCell: targetCell)
         
-        tempLockedCells.remove(targetCell)
-        world.unlock(cells: tempLockedCells)
+        world.unlock(cell: startCell)
 
         animator.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
@@ -157,6 +162,7 @@ public class Creature: CreatureProtocol
             let nextTurn = Turn.die(creature: targetCreature, cell: targetCell)
 
             completion()
+            
             targetCreature.animator.performAnimations(for: nextTurn, completionQueue: queue) { [weak targetCreature] in
                 guard let targetCreature else { return }
 
@@ -167,7 +173,6 @@ public class Creature: CreatureProtocol
     }
     
     private func performMove(turn: Turn,
-                             lockedCells: Set<WorldCell>,
                              completion: @escaping ()->())
     {
         guard case let .move(creature: _, startCell: startCell, targetCell: targetCell) = turn else {
@@ -175,35 +180,26 @@ public class Creature: CreatureProtocol
             return
         }
         
-        var tempLockedCells = lockedCells
-        
         world.move(creature: self, fromCell: startCell, toCell: targetCell)
         
-        tempLockedCells.remove(targetCell)
-        world.unlock(cells: tempLockedCells)
+        world.unlock(cell: startCell)
 
         animator.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
             
             self.world.unlock(cell: targetCell)
+            
             completion()
         }
     }
     
     private func performReproduce(turn: Turn,
-                                  lockedCells: Set<WorldCell>,
                                   completion: @escaping ()->())
     {
         guard case let .reproduce(creature: _, startCell: startCell, targetCell: targetCell) = turn else {
             assertionFailure("Turn is wrong type \(turn)")
             return
         }
-        
-        var tempLockedCells = lockedCells
-        
-        tempLockedCells.remove(startCell)
-        tempLockedCells.remove(targetCell)
-        world.unlock(cells: tempLockedCells)
         
         animator.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
             guard let self else { return }
@@ -220,6 +216,7 @@ public class Creature: CreatureProtocol
                 guard let newCreature else { return }
                 
                 newCreature.world.unlock(cell: targetCell)
+                
                 if case .paused(fromState: _) = newCreature.state.state {
                     newCreature.state.state = .paused(fromState: .idle)
                 } else {
@@ -230,25 +227,22 @@ public class Creature: CreatureProtocol
     }
     
     private func performDie(turn: Turn,
-                            lockedCells: Set<WorldCell>,
                             completion: @escaping ()->())
     {
         guard case let .die(creature: _, cell: cell) = turn else {
             assertionFailure("Turn is wrong type \(turn)")
             return
         }
-        var tempLockedCells = lockedCells
         
         stop()
-        
-        tempLockedCells.remove(cell)
-        world.unlock(cells: tempLockedCells)
         
         animator.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
             guard let self else { return }
             
             self.world.remove(creature: self, at: cell)
+            
             self.world.unlock(cell: cell)
+            
             completion()
         }
     }

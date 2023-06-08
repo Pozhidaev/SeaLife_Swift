@@ -68,4 +68,26 @@ public enum Turn {
             return cell.position
         }
     }
+    
+    public var busyCells: Set<WorldCell>
+    {
+        switch self {
+            
+        case .empty(creature: _, cell: let cell):
+            guard let cell else {
+                return Set([])
+            }
+            return Set([cell])
+        case .move(creature: _, startCell: let startCell, targetCell: let targetCell):
+            return Set([startCell, targetCell])
+        case .eat(creature: _, startCell: let startCell, targetCell: let targetCell, targetCreature: _):
+            return Set([startCell, targetCell])
+        case .reproduce(creature: _, startCell: let startCell, targetCell: let targetCell):
+            return Set([startCell, targetCell])
+        case .born(newCreature: _, cell: let cell):
+            return Set([cell])
+        case .die(creature: _, cell: let cell):
+            return Set([cell])
+        }
+    }
 };
