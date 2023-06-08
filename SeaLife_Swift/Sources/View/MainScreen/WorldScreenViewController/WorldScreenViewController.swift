@@ -191,6 +191,7 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         playButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
         resetButton.setTitle(Strings.Button.reset, for: .normal)
         resetButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
+        resetButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsDisabledTitleColor.color, for: .disabled)
         menuButton.setTitle(Strings.Button.menu, for: .normal)
         menuButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
     }
