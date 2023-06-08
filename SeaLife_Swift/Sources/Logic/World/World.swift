@@ -149,6 +149,7 @@ class World: WorldProtocol
             let cell = freeCells.removeLast()
             add(creature: creature, at: cell)
             addToVisual(creature: creature, at: cell)
+            creature.state.setActive()
         }
     }
 
