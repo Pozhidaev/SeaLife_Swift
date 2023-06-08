@@ -33,24 +33,6 @@ public enum Turn {
         }
     }
     
-//    public var direction: Direction
-//    {
-//        switch self {
-//        case .empty(creature: _, cell: _):
-//            return Direction.none
-//        case .move(creature: _, startCell: let cell, targetCell: let targetCell):
-//            return targetCell.position.direction(from: cell.position)
-//        case .eat(creature: _, startCell: let cell, targetCell: let targetCell, targetCreature: _):
-//            return targetCell.position.direction(from: cell.position)
-//        case .reproduce(creature: _, startCell: let cell, targetCell: let targetCell):
-//            return targetCell.position.direction(from: cell.position)
-//        case .born(newCreature: _, cell: _):
-//            return Direction.none
-//        case .die(creature: _, cell: _):
-//            return Direction.none
-//        }
-//    }
-    
     public var creature: any CreatureProtocol
     {
         switch self {
@@ -68,44 +50,6 @@ public enum Turn {
             return creature
         }
     }
-    
-//    public var startCell: WorldCell
-//    {
-//        switch self {
-//        case .empty(creature: _, cell: let cell):
-//            guard let cell else { fatalError("Start cell must exist") }
-//            return cell
-//        case .move(creature: _, cell: let cell, targetCell: _):
-//            return cell
-//        case .eat(creature: _, cell: let cell, targetCell: _, targetCreature: _):
-//            return cell
-//        case .reproduce(creature: _, cell: let cell, targetCell: _):
-//            return cell
-//        case .born(newCreature: _, cell: let cell):
-//            return cell
-//        case .die(creature: _, cell: let cell):
-//            return cell
-//        }
-//    }
-    
-//    public var targetCell: WorldCell
-//    {
-//        switch self {
-//        case .empty(creature: _, cell: let cell):
-//            guard let cell else { fatalError("Start cell must exist") }
-//            return cell
-//        case .move(creature: _, startCell: _, targetCell: let targetCell):
-//            return targetCell
-//        case .eat(creature: _, startCell: _, targetCell: let targetCell, targetCreature: _):
-//            return targetCell
-//        case .reproduce(creature: _, startCell: _, targetCell: let targetCell):
-//            return targetCell
-//        case .born(newCreature: _, cell: let cell):
-//            return cell
-//        case .die(creature: _, cell: let cell):
-//            return cell
-//        }
-//    }
     
     public var finalPosition: WorldPosition
     {
