@@ -19,4 +19,15 @@ class Utils
             }
         }
     }
+
+    static func performOnMainAndWait(_ performBlock: @escaping () -> Void)
+    {
+        let group = DispatchGroup()
+        group.enter()
+        self.safeDispatchMain {
+            performBlock()
+            group.leave()
+        }
+        group.wait()
+    }
 }

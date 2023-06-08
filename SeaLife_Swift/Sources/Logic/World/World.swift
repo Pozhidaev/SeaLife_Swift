@@ -170,7 +170,7 @@ class World: WorldProtocol
 
     public func addToVisual(creature: any CreatureProtocol, at cell: WorldCell)
     {
-        performOnMainAndWait {
+        Utils.performOnMainAndWait {
             self.visualDelegate?.add(creature: creature, at: cell.position)
         }
     }
@@ -196,7 +196,7 @@ class World: WorldProtocol
 
     public func removeFromVisual(creature: any CreatureProtocol)
     {
-        performOnMainAndWait {
+        Utils.performOnMainAndWait {
             self.visualDelegate?.remove(creature: creature)
         }
     }
@@ -231,21 +231,12 @@ class World: WorldProtocol
         creaturesLock.unlock()
     }
 
-    private func performOnMainAndWait(_ performBlock: @escaping () -> Void)
-    {
-        let group = DispatchGroup()
-        group.enter()
-        Utils.safeDispatchMain {
-            performBlock()
-            group.leave()
-        }
-        group.wait()
-    }
-
     private func createCells(sizeX: Int, sizeY: Int) -> [WorldCell]
     {
-        return (0..<(sizeX * sizeY)).map{ WorldCell(position: WorldPosition(x: $0 % worldInfo.horizontalSize,
-                                                                            y: $0 / worldInfo.horizontalSize)) }
+        return (0..<(sizeX * sizeY)).map{
+            let cellPosition = WorldPosition(x: $0 % worldInfo.horizontalSize,
+                                             y: $0 / worldInfo.horizontalSize)
+            return WorldCell(position: cellPosition)
+        }
     }
-
 }
