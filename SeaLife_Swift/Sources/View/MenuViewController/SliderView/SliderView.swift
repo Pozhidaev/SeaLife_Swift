@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class SliderView : UIView, xibLoadable
+public class SliderView: UIView, XibLoadable
 {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
@@ -22,24 +22,24 @@ public class SliderView : UIView, xibLoadable
     public override func awakeFromNib()
     {
         super.awakeFromNib()
-        
+
         slider.addObserver(self, forKeyPath: valueKey, context: nil)
         slider.addObserver(self, forKeyPath: minimumValueKey, context: nil)
         slider.addObserver(self, forKeyPath: maximumValueKey, context: nil)
-        
+
         layer.cornerRadius = Constants.UI.defaultCornerRadius
         backgroundColor = Colors.SliderView.backgroundColor.color
-        
+
         titleLabel.textColor = Colors.SliderView.textColor.color
         valueLabel.textColor = Colors.SliderView.textColor.color
         minimumValueLabel.textColor = Colors.SliderView.textColor.color
         maximumValueLabel.textColor = Colors.SliderView.textColor.color
         slider.tintColor = Colors.SliderView.tintColor.color
     }
-    
+
     public override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?,
+                               change: [NSKeyValueChangeKey: Any]?,
                                context: UnsafeMutableRawPointer?)
     {
         switch keyPath {

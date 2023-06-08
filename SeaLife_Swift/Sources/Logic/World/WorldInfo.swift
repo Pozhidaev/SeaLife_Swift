@@ -12,7 +12,7 @@ public struct WorldInfo {
     let orcaCount: Int
     let verticalSize: Int
     let horizontalSize: Int
-    
+
     static func defaultInfo() -> WorldInfo
     {
         return WorldInfo(fishCount: Constants.World.defaultfishCount,
@@ -20,7 +20,7 @@ public struct WorldInfo {
                          verticalSize: Constants.World.verticalSizeDefault,
                          horizontalSize: Constants.World.horizontalSizeDefault)
     }
-    
+
     func isValid(position: WorldPosition) -> Bool
     {
         return (position.x >= 0)
@@ -28,7 +28,7 @@ public struct WorldInfo {
         && (position.y >= 0)
         && (position.y < self.verticalSize)
     }
-    
+
     func size() -> (width: Int, height: Int)
     {
         return (horizontalSize, verticalSize)

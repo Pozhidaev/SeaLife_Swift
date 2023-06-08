@@ -25,32 +25,32 @@ class MenuViewController: UIViewController
     private var fishCount: Int = Constants.World.defaultfishCount
 
     public private(set) var worldInfo: WorldInfo = WorldInfo.defaultInfo()
-    
-    //MARK: Lifecycle
+
+    // MARK: Lifecycle
 
     override func loadView()
     {
         let view = UIView()
-        view.backgroundColor = UIColor.cyan;
-        
+        view.backgroundColor = UIColor.cyan
+
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = Constants.UI.defaultElementsSpacing
         view.addSubview(stackView)
-        
+
         stackView.addArrangedSubview(fishCountView)
         stackView.addArrangedSubview(orcaCountView)
         stackView.addArrangedSubview(horizontalCountView)
         stackView.addArrangedSubview(verticalCountView)
-        
+
         startButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(startButton)
-        
+
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cancelButton)
-        
+
         var verticalMultiplier = 3.0
         if modalPresentationStyle == .fullScreen {
             verticalMultiplier = 10.0
@@ -65,27 +65,25 @@ class MenuViewController: UIViewController
 
             startButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor),
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+
             cancelButton.topAnchor.constraint(greaterThanOrEqualTo: startButton.bottomAnchor, constant: Constants.UI.defaultElementsSpacing),
             cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            
-            
-            view.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: cancelButton.bottomAnchor , multiplier: verticalMultiplier),
+
+            view.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: cancelButton.bottomAnchor, multiplier: verticalMultiplier)
         ])
-        
+
         self.view = view
     }
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         view.backgroundColor = Colors.MenuView.backgroundColor.color
         view.layer.borderWidth = Constants.UI.MenuScreen.menuViewBorderWidth
         view.layer.borderColor = Colors.MenuView.frameColor.color.cgColor
         view.layer.cornerRadius = Constants.UI.MenuScreen.menuViewCornerRadius
-        
+
         setupStartButton()
         setupCancelButton()
 
@@ -94,16 +92,16 @@ class MenuViewController: UIViewController
         recalculateCreatures()
         updateSliders()
     }
-    
+
     func setupStartButton()
     {
-        startButton.layer.cornerRadius = Constants.UI.defaultCornerRadius;
+        startButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         startButton.backgroundColor = Colors.MenuView.startButtonColor.color
         startButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
                                                           left: Constants.UI.defaultElementsSpacing * 4.0,
                                                           bottom: Constants.UI.defaultElementsSpacing * 2.0,
-                                                          right: Constants.UI.defaultElementsSpacing * 4.0);
-        
+                                                          right: Constants.UI.defaultElementsSpacing * 4.0)
+
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.MenuView.startButtonTitleColor.color,
             .font: UIFont.systemFont(ofSize: 24.0)
@@ -112,16 +110,16 @@ class MenuViewController: UIViewController
         startButton.setAttributedTitle(attributedTitle, for: .normal)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
     }
-    
+
     func setupCancelButton()
     {
-        cancelButton.layer.cornerRadius = Constants.UI.defaultCornerRadius;
+        cancelButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         cancelButton.backgroundColor = Colors.MenuView.startButtonColor.color
         cancelButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
                                                            left: Constants.UI.defaultElementsSpacing * 4.0,
                                                            bottom: Constants.UI.defaultElementsSpacing * 2.0,
-                                                           right: Constants.UI.defaultElementsSpacing * 4.0);
-        
+                                                           right: Constants.UI.defaultElementsSpacing * 4.0)
+
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.MenuView.startButtonTitleColor.color,
             .font: UIFont.systemFont(ofSize: 24.0)
@@ -130,8 +128,7 @@ class MenuViewController: UIViewController
         cancelButton.setAttributedTitle(attributedTitle, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
     }
-    
-    
+
     func setupSliders()
     {
         self.fishCountView.titleLabel.text = Strings.Menu.FishCount.title
@@ -146,38 +143,38 @@ class MenuViewController: UIViewController
 
         fishCountView.slider.minimumValue = .zero
         orcaCountView.slider.minimumValue = .zero
-        
+
         horizontalCountView.slider.minimumValue = Float(Constants.World.horizontalSizeMin)
         horizontalCountView.slider.maximumValue = Float(Constants.World.horizontalSizeMax)
         verticalCountView.slider.minimumValue = Float(Constants.World.verticalSizeMin)
         verticalCountView.slider.maximumValue = Float(Constants.World.verticalSizeMax)
     }
-    
-    //MARK: Actions
-    
+
+    // MARK: Actions
+
     @IBAction func sliderValueChange(_ sender: UISlider)
     {
         let value = sender.value
-        
-        if (sender == fishCountView.slider) {
+
+        if sender == fishCountView.slider {
             setValidFishValue(from: value)
-        } else if (sender == orcaCountView.slider) {
+        } else if sender == orcaCountView.slider {
             setValidOrcaValue(from: value)
-        } else if (sender == horizontalCountView.slider) {
+        } else if sender == horizontalCountView.slider {
             setValidHorizontalSize(from: value)
-        } else if (sender == verticalCountView.slider) {
+        } else if sender == verticalCountView.slider {
             setValidVerticalSize(from: value)
         }
-        
+
         recalculateCreatures()
         updateSliders()
     }
-    
+
     @IBAction func cancelButtonPressed(_ sender: UIButton)
     {
         dismiss(animated: true)
     }
-    
+
     @IBAction func startButtonPressed(_ sender: UIButton)
     {
         worldInfo = WorldInfo(fishCount: fishCount,
@@ -186,75 +183,75 @@ class MenuViewController: UIViewController
                               horizontalSize: horizontalSize)
         performSegue(withIdentifier: kUnwindToMainScreenSegueIdentifier, sender: nil)
     }
-    
-    //MARK: Private
-    
+
+    // MARK: Private
+
     func recalculateCreatures()
     {
         let worldArea = horizontalSize * verticalSize
         fishCountView.slider.maximumValue = Float(worldArea)
         orcaCountView.slider.maximumValue = Float(worldArea)
-        
+
         let totalCreaturesCount = fishCount + orcaCount
 
         if totalCreaturesCount > worldArea {
             let ratio = (Double(fishCount) / Double(orcaCount) )
-            
+
             let roundedRation = floor(ratio * 100.0) / 100.0
             orcaCount = Int( Double(worldArea) / Double(1.0 + roundedRation) )
             fishCount = worldArea - orcaCount
         }
     }
-    
-    func setValidFishValue(from value:Float)
+
+    func setValidFishValue(from value: Float)
     {
         let worldArea = horizontalSize * verticalSize
-        
+
         let fishCount = min(Int(value), worldArea)
         var orcaCount = orcaCount
-        
+
         let totalCount = fishCount + orcaCount
         if totalCount > worldArea {
             orcaCount = worldArea - fishCount
         }
-        
+
         self.orcaCount = orcaCount
         self.fishCount = fishCount
     }
-    
-    func setValidOrcaValue(from value:Float)
+
+    func setValidOrcaValue(from value: Float)
     {
         let worldArea = horizontalSize * verticalSize
 
         var fishCount = fishCount
         let orcaCount = min(Int(value), worldArea)
-        
+
         let totalCount = fishCount + orcaCount
         if totalCount > worldArea {
             fishCount = worldArea - orcaCount
         }
-        
+
         self.orcaCount = orcaCount
         self.fishCount = fishCount
     }
-    
+
     func setValidHorizontalSize(from value: Float)
     {
         setValidateSizesFrom(horizontalSize: Double(value),
                              verticalSize: Double(value) * Double(Constants.World.worldSizeApectRatio))
     }
-    
+
     func setValidVerticalSize(from value: Float)
     {
         setValidateSizesFrom(horizontalSize: Double(value) / Double(Constants.World.worldSizeApectRatio),
                              verticalSize: Double(value))
     }
-  
+
     func setValidateSizesFrom(horizontalSize: Double, verticalSize: Double)
     {
         var tVertical = Float(verticalSize)
         var tHorizontal = Float(horizontalSize)
-        
+
         tVertical = Float( min(Constants.World.verticalSizeMax,
                                Int( tHorizontal * Constants.World.worldSizeApectRatio)))
         tHorizontal = Float( min(Constants.World.horizontalSizeMax,
@@ -263,11 +260,11 @@ class MenuViewController: UIViewController
                                Int( tHorizontal * Constants.World.worldSizeApectRatio)))
         tHorizontal = Float( max(Constants.World.horizontalSizeMin,
                                  Int( tVertical / Constants.World.worldSizeApectRatio)))
-        
+
         self.horizontalSize = Int(lroundf(tHorizontal))
         self.verticalSize = Int(lroundf(tVertical))
     }
-    
+
     func updateSliders()
     {
         fishCountView.slider.value = Float(fishCount)

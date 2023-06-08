@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol xibLoadable
+protocol XibLoadable
 {
     static func fromNib(named: String?) -> Self
 }
 
-extension xibLoadable where Self: UIView
+extension XibLoadable where Self: UIView
 {
     static func fromNib(named: String? = nil) -> Self
     {
@@ -20,7 +20,7 @@ extension xibLoadable where Self: UIView
         let nibName = named ?? "\(Self.self)"
         let nib = UINib(nibName: nibName, bundle: bundleName)
         let viewArray = nib.instantiate(withOwner: self)
-        
+
         guard let contentView = viewArray.first as? Self else {
             fatalError("view of type \(Self.self) not found in \(nib)")
         }

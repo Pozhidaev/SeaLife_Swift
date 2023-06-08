@@ -13,30 +13,30 @@ public protocol WorldProtocol: AnyObject
     var isPlaying: Bool { get }
 
     var speed: Double { get set }
-    
+
     var delegate: (any WorldDelegate)? { get set }
     var visualDelegate: (any WorldVisualDelegate)? { get set }
-    
+
     init(worldInfo: WorldInfo)
-    
-    //control
+
+    // control
     func play()
     func stop()
     func reset()
-    
-    //creatures
-    func creature(for creatureType:any CreatureProtocol.Type) -> Creature
+
+    // creatures
+    func creature(for creatureType: any CreatureProtocol.Type) -> Creature
     func createInitialCreatures()
-    
+
     func add(creature: any CreatureProtocol, at cell: WorldCell)
     func addToVisual(creature: any CreatureProtocol, at cell: WorldCell)
-    
+
     func remove(creature: any CreatureProtocol, at cell: WorldCell?)
     func removeFromVisual(creature: any CreatureProtocol)
-    
+
     func move(creature: any CreatureProtocol, fromCell: WorldCell, toCell: WorldCell)
 
-    //methods return cells that are not locked, and lock them
+    // methods return cells that are not locked, and lock them
     func cell(for position: WorldPosition) -> WorldCell?
     func cells(for positions: Set<WorldPosition>) -> Set<WorldCell>
 

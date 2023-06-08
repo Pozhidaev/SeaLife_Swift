@@ -12,17 +12,17 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     var uuid: UUID { get }
     var position: WorldPosition { get set }
     var direction: Direction { get set }
-    
+
     var world: WorldProtocol { get }
     var animator: CreatureAnimator? { get set }
-    
+
     var state: CreatureState { get set }
-    
+
     init(uuid: UUID, deps: CreatureDeps)
 
     func setTimerTargetQueue(_ queue: DispatchQueue)
     func setSpeed(_ speed: Double)
-    
+
     func start()
     func pause()
     func stop()
@@ -33,7 +33,7 @@ extension CreatureProtocol
     public var debugDescription: String {
         return debugDescription(indent: 0, caption: "\n======= Creature =======\n")
     }
-    
+
     public func debugDescription(indent: Int = 0, caption: String = "") -> String {
         let indentString = String(repeating: " ", count: indent)
 

@@ -9,11 +9,11 @@ import Foundation
 
 protocol CreatureTimerProtocol: AnyObject
 {
-    var handler: ()->() { get set }
-    
+    var handler: () -> Void { get set }
+
     func setTargetQueue(_ targetQueue: DispatchQueue)
     func setSpeed(_ speed: Double)
-    
+
     func start()
     func stop()
     func pause()

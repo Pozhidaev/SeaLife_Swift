@@ -11,9 +11,9 @@ public class WorldCell
 {
     public let position: WorldPosition
     public weak var creature: (any CreatureProtocol)?
-    
+
     init(position: WorldPosition) {
-        self.position = position;
+        self.position = position
     }
 }
 
@@ -38,7 +38,7 @@ extension WorldCell: CustomDebugStringConvertible
     public var debugDescription: String {
         return debugDescription(indent: 0, caption: "\n======= Cell =======\n")
     }
-    
+
     public func debugDescription(indent: Int = 0, caption: String = "") -> String {
         let indentString = String(repeating: " ", count: indent)
 

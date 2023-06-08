@@ -14,7 +14,7 @@ public enum Turn {
     case reproduce(creature: any CreatureProtocol, startCell: WorldCell, targetCell: WorldCell)
     case born(newCreature: any CreatureProtocol, cell: WorldCell)
     case die(creature: any CreatureProtocol, cell: WorldCell)
-    
+
     public var directions: (from: Direction, to: Direction)
     {
         switch self {
@@ -32,7 +32,7 @@ public enum Turn {
             return (creature.direction, .none)
         }
     }
-    
+
     public var creature: any CreatureProtocol
     {
         switch self {
@@ -50,7 +50,7 @@ public enum Turn {
             return creature
         }
     }
-    
+
     public var finalPosition: WorldPosition
     {
         switch self {
@@ -68,12 +68,12 @@ public enum Turn {
             return cell.position
         }
     }
-    
+
     public var busyCells: Set<WorldCell>
     {
         switch self {
-            
-        case .empty(creature: _, cell: _):
+
+        case .empty:
             return Set([])
         case .move(creature: _, startCell: let startCell, targetCell: let targetCell):
             return Set([startCell, targetCell])
@@ -87,4 +87,4 @@ public enum Turn {
             return Set([cell])
         }
     }
-};
+}

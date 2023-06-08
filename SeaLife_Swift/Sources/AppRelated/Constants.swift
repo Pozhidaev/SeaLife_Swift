@@ -7,6 +7,8 @@
 
 import Foundation
 
+// swiftlint:disable type_name
+// swiftlint:disable nesting
 enum Constants
 {
     enum UI
@@ -18,42 +20,42 @@ enum Constants
         {
             static let controlPanelViewBorderWidth   = 1.0
         }
-        
+
         enum MenuScreen
         {
             static let menuViewBorderWidth: CGFloat  = 1.0
             static let menuViewCornerRadius: CGFloat = 16.0
         }
-        
+
         enum WorldBackground
         {
-            static let worldBackgroundViewBorderLineWidth   = 2.0
-            static let worldBackgroundViewCellLineWidth     = 1.0
-            static let worldBackgroundViewMaxVerticalSizeForDrawingGridIphone  = 15
-            static let worldBackgroundViewMaxVerticalSizeForDrawingGridIpad    = 50
+            static let borderLineWidth   = 2.0
+            static let cellLineWidth     = 1.0
+            static let maxVerticalSizeForDrawingGridIphone  = 15
+            static let maxVerticalSizeForDrawingGridIpad    = 50
         }
-        
+
         static let imageViewMinSizeForReducing         = 10.0
         static let imageViewReducingCoeficient         = 0.1
-        
+
     }
 
     enum World
     {
         static let worldSizeApectRatio: Float      = 1.5
-        
+
         static let horizontalSizeMin: Int          = 1
         static let horizontalSizeMax: Int          = 50
         static let horizontalSizeDefault: Int      = 10
-        
+
         static let verticalSizeMin: Int            = 1
         static let verticalSizeMax: Int            = 50
         static let verticalSizeDefault: Int        = 15
-        
+
         static let defaultfishCount                = 50
         static let defaultOrcaCount                = 10
     }
-    
+
     enum Speed
     {
         static let creatureSlowestSpeed: Double    = 2.0
@@ -73,4 +75,5 @@ enum Constants
         static let orcaAllowedHungerPoins = 3
     }
 }
-
+// swiftlint:enable type_name
+// swiftlint:enable nesting

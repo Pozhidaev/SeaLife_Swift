@@ -10,22 +10,22 @@ import Foundation
 class FishCreature: Creature
 {
     var reproductivePoints: Int = .zero
-    
-    //MARK: Memory
+
+    // MARK: Memory
 
     public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
         super.init(deps: deps)
         direction = .right
     }
-    
-    //MARK: Methods
+
+    // MARK: Methods
 
     override func beforeEveryTurn()
     {
         reproductivePoints += 1
     }
-    
+
     override func afterEveryTurn()
     {
         if reproductivePoints >= Constants.Creature.fishReproductionPeriod {
@@ -35,7 +35,7 @@ class FishCreature: Creature
 
     override func possibleTurnPositions(from position: WorldPosition) -> Set<WorldPosition>
     {
-        //return Set([position.right()])
+        // return Set([position.right()])
         let movePositions = turnHelperClass.movePositionsFrom(position: position)
         let reproducePositions = turnHelperClass.reproducePositionsFrom(position: position)
         return movePositions.union(reproducePositions)
@@ -48,8 +48,8 @@ class FishCreature: Creature
         }
 
         var turn: Turn?
-        
-        //try reproduce
+
+        // try reproduce
         if turn == nil {
             if reproductivePoints >= Constants.Creature.fishReproductionPeriod {
                 if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
@@ -59,7 +59,7 @@ class FishCreature: Creature
                 }
             }
         }
-        //try move
+        // try move
         if turn == nil  {
             if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement() {
                 turn = Turn.move(creature: self,
@@ -67,7 +67,7 @@ class FishCreature: Creature
                                  targetCell: targetCell)
             }
         }
-        //empty
+        // empty
         guard let turn else {
             return Turn.empty(creature: self, cell: cell)
         }

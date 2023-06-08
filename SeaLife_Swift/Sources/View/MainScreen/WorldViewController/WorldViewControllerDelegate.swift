@@ -9,7 +9,7 @@ import Foundation
 
 protocol WorldViewControllerDelegate: AnyObject
 {
-    func worldViewController(_ worldViewController:WorldViewController,
-                             didCompleteWith:WorldCompletionReason)
+    func worldViewController(_ worldViewController: WorldViewController,
+                             didCompleteWith: WorldCompletionReason)
 
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class Utils
 {
-    static func SafeDispatchMain(_ block: @escaping ()->())
+    static func safeDispatchMain(_ block: @escaping () -> Void)
     {
         if Thread.isMainThread {
             block()

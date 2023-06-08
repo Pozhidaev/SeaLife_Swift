@@ -10,9 +10,9 @@ import UIKit
 public protocol WorldVisualDelegate: AnyObject
 {
     var animationSpeed: Double { get set}
-        
+
     func reset()
-    
+
     func redraw(toCellSize: CGSize)
 
     func add(creature: any CreatureProtocol,

@@ -7,17 +7,17 @@
 
 import UIKit
 
-class WorldBackgroundView : UIView
+class WorldBackgroundView: UIView
 {
     public var sizeInCells: (width: Int, height: Int) = (width: .zero, height: .zero)
-    
+
     override func draw(_ rect: CGRect) {
         guard sizeInCells.width != .zero && sizeInCells.height != .zero else {
             return
         }
-        
-        let borderLineWidth: CGFloat = Constants.UI.WorldBackground.worldBackgroundViewBorderLineWidth
-        let cellLineWidth: CGFloat = Constants.UI.WorldBackground.worldBackgroundViewCellLineWidth
+
+        let borderLineWidth: CGFloat = Constants.UI.WorldBackground.borderLineWidth
+        let cellLineWidth: CGFloat = Constants.UI.WorldBackground.cellLineWidth
 
         let context = UIGraphicsGetCurrentContext()
         context?.clear(rect)
@@ -25,25 +25,28 @@ class WorldBackgroundView : UIView
         context?.setFillColor(Colors.WorldBackgroundView.backgroundColor.color.cgColor)
         context?.fill(rect)
 
-        if (UIDevice.current.userInterfaceIdiom == .phone && sizeInCells.height <= Constants.UI.WorldBackground.worldBackgroundViewMaxVerticalSizeForDrawingGridIphone) ||
-            (UIDevice.current.userInterfaceIdiom == .pad && sizeInCells.height <= Constants.UI.WorldBackground.worldBackgroundViewMaxVerticalSizeForDrawingGridIpad) {
+        if (UIDevice.current.userInterfaceIdiom == .phone &&
+            sizeInCells.height <= Constants.UI.WorldBackground.maxVerticalSizeForDrawingGridIphone) ||
+            (UIDevice.current.userInterfaceIdiom == .pad &&
+             sizeInCells.height <= Constants.UI.WorldBackground.maxVerticalSizeForDrawingGridIpad)
+        {
             context?.setStrokeColor(Colors.WorldBackgroundView.cellsFrameColor.color.cgColor)
             context?.setLineWidth(cellLineWidth)
-            
-            let cellWidth: CGFloat = CGRectGetWidth(bounds) / CGFloat(sizeInCells.width)
-            let cellHeight: CGFloat = CGRectGetHeight(bounds) / CGFloat(sizeInCells.height)
-            
-            for y_stepper in 0...sizeInCells.height {
-                let y = min(CGFloat(y_stepper) * cellHeight, CGRectGetHeight(self.bounds) - cellLineWidth)
-                context?.move(to: CGPoint(x:  0.0, y: y))
-                context?.addLine(to: CGPoint(x: CGRectGetWidth(self.bounds), y: y))
+
+            let cellWidth: CGFloat = bounds.width / CGFloat(sizeInCells.width)
+            let cellHeight: CGFloat = bounds.height / CGFloat(sizeInCells.height)
+
+            for yStepper in 0...sizeInCells.height {
+                let yPosition = min(CGFloat(yStepper) * cellHeight, self.bounds.height - cellLineWidth)
+                context?.move(to: CGPoint(x: 0.0, y: yPosition))
+                context?.addLine(to: CGPoint(x: self.bounds.width, y: yPosition))
                 context?.strokePath()
             }
-            
-            for x_stepper in 0...sizeInCells.width {
-                let x = min(CGFloat(x_stepper) * cellWidth, CGRectGetWidth(self.bounds) - cellLineWidth)
-                context?.move(to: CGPoint(x: x, y: 0.0))
-                context?.addLine(to: CGPoint(x: x, y: CGRectGetHeight(self.bounds)))
+
+            for xStepper in 0...sizeInCells.width {
+                let xPosition = min(CGFloat(xStepper) * cellWidth, self.bounds.width - cellLineWidth)
+                context?.move(to: CGPoint(x: xPosition, y: 0.0))
+                context?.addLine(to: CGPoint(x: xPosition, y: self.bounds.height))
                 context?.strokePath()
             }
         }

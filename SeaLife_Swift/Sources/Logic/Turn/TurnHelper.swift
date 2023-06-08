@@ -13,12 +13,12 @@ class TurnHelper: TurnHelperProtocol
     {
         [position.right(), position.left(), position.up(), position.down()]
     }
-    
+
     static func reproducePositionsFrom(position: WorldPosition) -> Set<WorldPosition>
     {
         movePositionsFrom(position: position)
     }
-    
+
     static func eatPositionsFrom(position: WorldPosition) -> Set<WorldPosition>
     {
         movePositionsFrom(position: position)
@@ -37,7 +37,7 @@ extension TurnHelper
         cell.creature == nil
     }
 
-    static func canEatFilterFor(creature: any CreatureProtocol) -> (WorldCell)->Bool
+    static func canEatFilterFor(creature: any CreatureProtocol) -> (WorldCell) -> Bool
     {
         return { (cell: WorldCell) in
             if creature as? OrcaCreature != nil && cell.creature as? FishCreature != nil {

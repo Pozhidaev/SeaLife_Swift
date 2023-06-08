@@ -14,47 +14,47 @@ public class CreatureAnimator: NSObject
 {
     public var cellSize: CGSize = .zero
     public var animationSpeed: Double = .zero
-    
-    //MARK: - Private vars
 
-    private var animations = Array<CAAnimation>()
-    private var completion: (() -> ())? = {}
+    // MARK: - Private vars
+
+    private var animations = [CAAnimation]()
+    private var completion: (() -> Void)? = {}
 
     public let visualComponent: UIImageView
 
-    //MARK: - Memory
-    
+    // MARK: - Memory
+
     init(visualComponent: UIImageView)
     {
         self.visualComponent = visualComponent
     }
 
-    //MARK: - Public methods
+    // MARK: - Public methods
 
     public func play()
     {
-        Utils.SafeDispatchMain {
+        Utils.safeDispatchMain {
             self.visualComponent.layer.activate()
         }
     }
     public func pause()
     {
-        Utils.SafeDispatchMain {
+        Utils.safeDispatchMain {
             self.visualComponent.layer.pause()
         }
     }
-    
+
     public func performAnimations(for turn: Turn,
                                   completionQueue: DispatchQueue,
-                                  completion: @escaping ()->())
+                                  completion: @escaping () -> Void)
     {
-        Utils.SafeDispatchMain { [weak self] in
+        Utils.safeDispatchMain { [weak self] in
             guard let self else {
                 completion()
                 return
             }
             self._performAnimations(for: turn) {
-                if (turn.directions.to != .none && turn.directions.to != .multy) {
+                if turn.directions.to != .none && turn.directions.to != .multy {
                     turn.creature.direction = turn.directions.to
                 }
                 completionQueue.async {
@@ -63,20 +63,20 @@ public class CreatureAnimator: NSObject
             }
         }
     }
-    
-    //MARK: - Private methods
-    
-    private func _performAnimations(for turn: Turn, completion: @escaping ()->())
+
+    // MARK: - Private methods
+
+    private func _performAnimations(for turn: Turn, completion: @escaping () -> Void)
     {
         let layer = visualComponent.layer
-        
+
         if layer.animation(forKey: kAnimationKey) != nil {
             layer.removeAllAnimations()
         }
         if layer.speed == 0 {
             layer.activate()
         }
-        
+
         let animations = animations(for: turn, layer: layer)
         for animation: CAAnimation in animations {
             animation.delegate = self
@@ -91,17 +91,17 @@ public class CreatureAnimator: NSObject
 
         let finalTransform = lastAnimation.value(forKey: kAnimationFinalTransform) as? CATransform3D
         assert(finalTransform != nil)
-        
+
         let animationCompletion = { [weak layer, weak self] in
             layer?.removeAllAnimations()
-            
+
             layer?.transform = finalTransform ?? CATransform3DIdentity
-            
+
             let cellSize = self?.cellSize ?? .zero
-            let centerX = CGFloat(turn.finalPosition.x) * cellSize.width + cellSize.width / 2.0;
-            let centerY = CGFloat(turn.finalPosition.y) * cellSize.height + cellSize.height / 2.0;
+            let centerX = CGFloat(turn.finalPosition.x) * cellSize.width + cellSize.width / 2.0
+            let centerY = CGFloat(turn.finalPosition.y) * cellSize.height + cellSize.height / 2.0
             layer?.position = CGPoint(x: centerX, y: centerY)
-            
+
             completion()
         }
 
@@ -111,7 +111,7 @@ public class CreatureAnimator: NSObject
 
         startNextAnimation()
     }
-    
+
     private func startNextAnimation()
     {
         guard let nextAnimation = animations.first else {
@@ -121,16 +121,16 @@ public class CreatureAnimator: NSObject
         }
 
         animations.removeFirst()
-        
-        Utils.SafeDispatchMain {
+
+        Utils.safeDispatchMain {
             if self.visualComponent.layer.animation(forKey: kAnimationKey) != nil {
                 self.visualComponent.layer.removeAnimation(forKey: kAnimationKey)
             }
             self.visualComponent.layer.add(nextAnimation, forKey: kAnimationKey)
         }
     }
-    
-    private func animations(for turn: Turn, layer: CALayer) -> Array<CAAnimation>
+
+    private func animations(for turn: Turn, layer: CALayer) -> [CAAnimation]
     {
         switch turn {
         case .empty:
@@ -163,7 +163,7 @@ public class CreatureAnimator: NSObject
                                                    cellSize: cellSize)
         }
     }
-    
+
     func animationsInterrupted()
     {
         animations.removeAll()
@@ -178,7 +178,7 @@ extension CreatureAnimator: CAAnimationDelegate
     public func animationDidStart(_ anim: CAAnimation)
     {
     }
-    
+
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool)
     {
         if flag {

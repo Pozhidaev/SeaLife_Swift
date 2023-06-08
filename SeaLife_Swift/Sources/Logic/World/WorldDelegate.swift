@@ -9,5 +9,5 @@ import Foundation
 
 public protocol WorldDelegate: AnyObject
 {
-    func worldDidFinished(with reason:WorldCompletionReason)
+    func worldDidFinished(with reason: WorldCompletionReason)
 }

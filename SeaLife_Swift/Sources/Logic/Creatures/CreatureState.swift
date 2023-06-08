@@ -33,13 +33,13 @@ public final class CreatureState
         case .haveNext(let item):
             state = .performing
             item.perform()
-        case .paused(_):
+        case .paused:
             state = .paused(fromState: .idle)
         case .dead:
             break
         }
     }
-    
+
     // on handle turn |idle|->|performing|->|haveNext|
     public func setNextOnHandle(item: DispatchWorkItem)
     {
@@ -51,20 +51,20 @@ public final class CreatureState
             item.perform()
         case .performing:
             state = .haveNext(item: item)
-        case .haveNext(_):
+        case .haveNext:
             break
-        case .paused(_):
+        case .paused:
             break
         case .dead:
             break
         }
     }
-    
+
     public func setDead()
     {
         state = .dead
     }
-    
+
     public func setActive()
     {
         if case .initial = state {
@@ -78,7 +78,7 @@ public final class CreatureState
 
     public func setPause()
     {
-        if case .paused(fromState: _) = state {
+        if case .paused = state {
             return
         }
         state = .paused(fromState: state)

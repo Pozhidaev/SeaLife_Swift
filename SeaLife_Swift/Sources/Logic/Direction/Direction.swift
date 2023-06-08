@@ -5,6 +5,7 @@
 //  Created by Sergey Pozhidaev on 21.05.2023.
 //
 
+// swiftlint:disable identifier_name
 import Foundation
 
 public enum Direction: Int {
@@ -15,3 +16,4 @@ public enum Direction: Int {
     case down
     case multy
 }
+// swiftlint:enable identifier_name

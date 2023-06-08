@@ -7,51 +7,51 @@
 
 import UIKit
 
-class WorldScreenViewController : UIViewController, UIAlertViewDelegate
+class WorldScreenViewController: UIViewController, UIAlertViewDelegate
 {
     let segueIdPresentMenuScreenFullScreen = "kSegueIdPresentMenuScreenFullScreen"
     let segueIdPresentMenuScreenFormSheet = "kSegueIdPresentMenuScreenFormSheet"
-    
+
     let segueIdWorldViewControllerSegue = "WorldViewControllerSegue"
-    
-    //MARK: - Outlets
-    
+
+    // MARK: - Outlets
+
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var resetButton: UIButton!
     @IBOutlet private weak var menuButton: UIButton!
-    
+
     @IBOutlet private weak var controlPanel: UIView!
-    
+
     @IBOutlet private weak var creaturesSpeedSlider: UISlider!
     @IBOutlet private weak var animationSpeedSlider: UISlider!
-    
+
     @IBOutlet private weak var creaturesSpeedTitleLabel: UILabel!
     @IBOutlet private weak var creaturesSpeedLabel: UILabel!
 
     @IBOutlet private weak var animationSpeedTitleLabel: UILabel!
     @IBOutlet private weak var animationSpeedLabel: UILabel!
 
-    //MARK: - Private vars
-    
+    // MARK: - Private vars
+
     private var worldViewController: WorldViewController?
-    
+
     private var isPlaying: Bool = false
     private var configured: Bool = false
     private var worldInfo: WorldInfo?
-    
-    //MARK: - Life Cycle
-    
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         setupView()
     }
 
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        
+
         let animationSpeed: Double = Constants.Speed.animationDefaultSpeed
         worldViewController?.setAnimationsSpeed(animationSpeed)
         animationSpeedSlider.value = Float(Constants.Speed.animationFastestSpeed + (Constants.Speed.animationSlowestSpeed - animationSpeed))
@@ -60,13 +60,13 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         worldViewController?.creaturesSpeed = creaturesSpeed
         creaturesSpeedSlider.value = Float(Constants.Speed.creatureFastestSpeed + (Constants.Speed.creatureSlowestSpeed - creaturesSpeed))
 
-        if (!configured) {
+        if !configured {
             showMenu(fullScreen: true)
         }
     }
-    
-    //MARK: - Actions
-    
+
+    // MARK: - Actions
+
     @IBAction func play(_ sender: UIButton)
     {
         if isPlaying {
@@ -75,19 +75,19 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
             play()
         }
     }
-    
+
     @IBAction func resetWorld(_ sender: UIButton)
     {
         stop()
         worldViewController?.reset()
     }
-    
+
     @IBAction func showMenu(_ sender: UIButton)
     {
         stop()
-        showMenu(fullScreen:false)
+        showMenu(fullScreen: false)
     }
-    
+
     @IBAction func creatureSpeedSliderChanged(_ sender: UISlider)
     {
         let speed = Constants.Speed.creatureSlowestSpeed - (Double(sender.value) - Constants.Speed.creatureFastestSpeed)
@@ -101,58 +101,58 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         animationSpeedLabel.text = "\(speed)"
         worldViewController?.setAnimationsSpeed(speed)
     }
-    
-    //MARK: - Private methods
-    
+
+    // MARK: - Private methods
+
     private func showMenu(fullScreen: Bool)
     {
         if fullScreen {
-            performSegue(withIdentifier:segueIdPresentMenuScreenFullScreen, sender:nil)
+            performSegue(withIdentifier: segueIdPresentMenuScreenFullScreen, sender: nil)
         } else {
-            performSegue(withIdentifier:segueIdPresentMenuScreenFormSheet, sender:nil)
+            performSegue(withIdentifier: segueIdPresentMenuScreenFormSheet, sender: nil)
         }
     }
-    
+
     private func play()
     {
         worldViewController?.play()
         isPlaying = true
         updateControls()
     }
-    
+
     private func stop()
     {
         worldViewController?.stop()
         isPlaying = false
         updateControls()
     }
-    
+
     private func updateControls()
     {
         resetButton.isEnabled = !isPlaying
-        
+
         let playTitle = Strings.Button.play
         let pauseTitle = Strings.Button.pause
         let title = isPlaying ? pauseTitle : playTitle
         playButton.setTitle(title, for: .normal)
     }
-    
-    //MARK: - Private methods - Config View
-    
+
+    // MARK: - Private methods - Config View
+
     private func setupView()
     {
         self.view.backgroundColor = Colors.MainScreen.backgroundColor.color
-       
+
         setupControlPanel()
     }
-    
+
     private func setupControlPanel()
     {
         controlPanel.backgroundColor = Colors.MainScreen.ControlPanel.backgroundColor.color
         controlPanel.layer.borderColor = Colors.MainScreen.ControlPanel.frameColor.color.cgColor
         controlPanel.layer.borderWidth = Constants.UI.MainScreen.controlPanelViewBorderWidth
         controlPanel.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        
+
         setupButtons()
 
         setupSliders()
@@ -176,13 +176,13 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         animationSpeedTitleLabel.text = Strings.MainScreen.animationSpeed
         animationSpeedTitleLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
     }
-    
+
     private func setupButtons()
     {
         playButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         resetButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
         menuButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        
+
         resetButton.backgroundColor = Colors.MainScreen.ControlPanel.resetButtonColor.color
         menuButton.backgroundColor = Colors.MainScreen.ControlPanel.menuButtonColor.color
         playButton.backgroundColor = Colors.MainScreen.ControlPanel.playButtonColor.color
@@ -195,9 +195,9 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         menuButton.setTitle(Strings.Button.menu, for: .normal)
         menuButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
     }
-    
-    //MARK: - Segues
-    
+
+    // MARK: - Segues
+
     @IBAction func unwindToMainScreenViewController(unwindSegue: UIStoryboardSegue)
     {
         // if there will be many place for unwinding from, it better to move logic
@@ -209,11 +209,11 @@ class WorldScreenViewController : UIViewController, UIAlertViewDelegate
         worldViewController?.createWorld(with: worldInfo)
         configured = true
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         super.prepare(for: segue, sender: sender)
-        
+
         if segue.identifier == segueIdWorldViewControllerSegue {
             worldViewController = segue.destination as? WorldViewController
             worldViewController?.delegate = self
@@ -228,13 +228,13 @@ extension WorldScreenViewController: WorldViewControllerDelegate
     {
         DispatchQueue.main.async { [weak self] in
             self?.stop()
-            
+
             var message: String
-            switch (reason) {
+            switch reason {
             case .empty: message = Strings.World.Finish.empty
             case .full: message = Strings.World.Finish.full
             }
-            
+
             let alertController = UIAlertController(title: nil,
                                                     message: message,
                                                     preferredStyle: .alert)
@@ -246,5 +246,5 @@ extension WorldScreenViewController: WorldViewControllerDelegate
             self?.present(alertController, animated: true)
         }
     }
-    
+
 }

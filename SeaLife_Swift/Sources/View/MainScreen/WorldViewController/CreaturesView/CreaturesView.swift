@@ -2,7 +2,7 @@ import UIKit
 
 public class CreaturesView: UIView, WorldVisualDelegate
 {
-    //MARK: - Private vers
+    // MARK: - Private vers
 
     private var cellSize: CGSize = .zero {
         didSet {
@@ -14,9 +14,9 @@ public class CreaturesView: UIView, WorldVisualDelegate
     }
 
     private let animatorsDict = NSMapTable<NSUUID, CreatureAnimator>(valueOptions: .weakMemory)
-    
-    //MARK: - WorldVisualDelegate
-    
+
+    // MARK: - WorldVisualDelegate
+
     public var animationSpeed: Double = .zero { didSet {
         if animationSpeed == oldValue {
             return
@@ -27,41 +27,41 @@ public class CreaturesView: UIView, WorldVisualDelegate
             animator.animationSpeed = animationSpeed
         }
     } }
-    
+
     public func reset()
     {
         animatorsDict.removeAllObjects()
         subviews.forEach { $0.removeFromSuperview() }
     }
-    
+
     public func add(creature: any CreatureProtocol, at position: WorldPosition)
     {
         let visualComponent = visualComponent(for: type(of: creature))
 
-        visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
-                                             cellSize.height * (CGFloat(position.y) + 0.5))
+        visualComponent.center = CGPoint(x: cellSize.width * (CGFloat(position.x) + 0.5),
+                                         y: cellSize.height * (CGFloat(position.y) + 0.5))
         addSubview(visualComponent)
 
         let animator = CreatureAnimator(visualComponent: visualComponent)
         add(animator: animator, for: creature.uuid)
-        
+
         creature.animator = animator
     }
-    
+
     public func remove(creature: any CreatureProtocol)
     {
         creature.animator?.visualComponent.removeFromSuperview()
-        
+
         animatorsDict.removeObject(forKey: NSUUID(uuidString: creature.uuid.uuidString))
     }
 
     public func redraw(toCellSize: CGSize)
     {
-        let fromCellSize = cellSize != CGSizeZero ? cellSize : toCellSize
+        let fromCellSize = cellSize != CGSize.zero ? cellSize : toCellSize
 
         let xCoeficient = toCellSize.width / fromCellSize.width
         let yCoeficient = toCellSize.height / fromCellSize.height
-        
+
         for view in self.subviews {
             var bounds = view.bounds
             bounds.size = CGSize(width: bounds.size.width * xCoeficient, height: bounds.size.height * yCoeficient)
@@ -70,33 +70,33 @@ public class CreaturesView: UIView, WorldVisualDelegate
             center = CGPoint(x: center.x * xCoeficient, y: center.y * yCoeficient)
             view.center = center
         }
-        
+
         cellSize = toCellSize
     }
- 
-    //MARK: - Private methods
-    
+
+    // MARK: - Private methods
+
     private func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
     {
         let image = UIImage.image(for: creatureType)
         let imageView = UIImageView(image: image)
 
         var frame: CGRect = .zero
-        frame.size = CGSizeMake(self.cellSize.width, self.cellSize.height)
+        frame.size = CGSize(width: self.cellSize.width, height: self.cellSize.height)
         var delta: CGFloat = .zero
         if frame.width > Constants.UI.imageViewMinSizeForReducing {
             delta = frame.width * Constants.UI.imageViewReducingCoeficient
         }
-        imageView.frame = CGRectInset(frame, delta, delta)
-        
+        imageView.frame = frame.insetBy(dx: delta, dy: delta)
+
         return imageView
     }
-    
+
     private func add(animator: CreatureAnimator, for creatureUUID: UUID)
     {
         animator.cellSize = cellSize
         animator.animationSpeed = animationSpeed
-        
+
         let key = NSUUID(uuidString: creatureUUID.uuidString)
         animatorsDict.setObject(animator, forKey: key)
     }

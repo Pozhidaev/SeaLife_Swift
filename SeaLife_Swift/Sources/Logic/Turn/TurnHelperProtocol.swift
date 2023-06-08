@@ -9,13 +9,13 @@ import Foundation
 
 public protocol TurnHelperProtocol
 {
-    //positions rules
+    // positions rules
     static func movePositionsFrom(position: WorldPosition) -> Set<WorldPosition>
     static func reproducePositionsFrom(position: WorldPosition) -> Set<WorldPosition>
     static func eatPositionsFrom(position: WorldPosition) -> Set<WorldPosition>
-    
-    //turn rules
+
+    // turn rules
     static func canMoveFilter(cell: WorldCell) -> Bool
     static func canReproduceFilter(cell: WorldCell) -> Bool
-    static func canEatFilterFor(creature: any CreatureProtocol) -> (WorldCell)->Bool
+    static func canEatFilterFor(creature: any CreatureProtocol) -> (WorldCell) -> Bool
 }
