@@ -17,7 +17,9 @@ public class CreatureTimer: CreatureTimerProtocol
     private var timerPausedCounter: Int
 
     public var handler: () -> Void = {} { didSet {
-        let workItem = DispatchWorkItem.init { self.handler() }
+        let workItem = DispatchWorkItem.init { [weak self] in
+            self?.handler()
+        }
         timer.setEventHandler(handler: workItem)
     } }
 
@@ -35,6 +37,7 @@ public class CreatureTimer: CreatureTimerProtocol
     {
         if timerPausedCounter <= 0 {
             for _ in timerPausedCounter...0 {
+                timerQueue.activate()
                 timer.resume()
             }
         }
@@ -57,10 +60,9 @@ public class CreatureTimer: CreatureTimerProtocol
 
     public func start()
     {
-        timerQueue.activate()
-
         if timerPausedCounter <= 0 {
             timerPausedCounter += 1
+            timerQueue.activate()
             timer.resume()
         }
     }
