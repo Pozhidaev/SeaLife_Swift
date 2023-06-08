@@ -17,7 +17,6 @@ class MenuViewController: UIViewController
     private lazy var verticalCountView = { SliderView.fromNib() }()
 
     private var startButton = UIButton()
-    private var cancelButton = UIButton()
 
     private var horizontalSize: Int = Constants.World.horizontalSizeDefault
     private var verticalSize: Int = Constants.World.verticalSizeDefault
@@ -48,9 +47,6 @@ class MenuViewController: UIViewController
         startButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(startButton)
 
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(cancelButton)
-
         var verticalMultiplier = 3.0
         if modalPresentationStyle == .fullScreen {
             verticalMultiplier = 10.0
@@ -65,11 +61,7 @@ class MenuViewController: UIViewController
 
             startButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor),
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            cancelButton.topAnchor.constraint(greaterThanOrEqualTo: startButton.bottomAnchor, constant: Constants.UI.defaultElementsSpacing),
-            cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            view.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: cancelButton.bottomAnchor, multiplier: verticalMultiplier)
+            view.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: startButton.bottomAnchor, multiplier: verticalMultiplier)
         ])
 
         self.view = view
@@ -85,7 +77,6 @@ class MenuViewController: UIViewController
         view.layer.cornerRadius = Constants.UI.MenuScreen.menuViewCornerRadius
 
         setupStartButton()
-        setupCancelButton()
 
         setupSliders()
 
@@ -109,24 +100,6 @@ class MenuViewController: UIViewController
         let attributedTitle = NSAttributedString(string: Strings.Menu.Button.start, attributes: attributes)
         startButton.setAttributedTitle(attributedTitle, for: .normal)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
-    }
-
-    func setupCancelButton()
-    {
-        cancelButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        cancelButton.backgroundColor = Colors.MenuView.startButtonColor.color
-        cancelButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
-                                                           left: Constants.UI.defaultElementsSpacing * 4.0,
-                                                           bottom: Constants.UI.defaultElementsSpacing * 2.0,
-                                                           right: Constants.UI.defaultElementsSpacing * 4.0)
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Colors.MenuView.startButtonTitleColor.color,
-            .font: UIFont.systemFont(ofSize: 24.0)
-        ]
-        let attributedTitle = NSAttributedString(string: Strings.Menu.Button.cancel, attributes: attributes)
-        cancelButton.setAttributedTitle(attributedTitle, for: .normal)
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
     }
 
     func setupSliders()

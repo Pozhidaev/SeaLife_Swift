@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3gC-32-V7g">
     <device id="ipad7_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +14,7 @@
             <objects>
                 <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="fZC-SB-t8I" customClass="MenuViewController" customModule="SeaLife_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YIt-td-sln">
-                        <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Fzc-q6-Tak"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -336,7 +337,7 @@
                         <outlet property="playButton" destination="thl-d5-6v4" id="y8s-bn-iqf"/>
                         <outlet property="resetButton" destination="ShB-Kf-qHi" id="0EF-T7-VXn"/>
                         <segue destination="fZC-SB-t8I" kind="presentation" identifier="kSegueIdPresentMenuScreenFullScreen" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="wuS-Qh-iey"/>
-                        <segue destination="fZC-SB-t8I" kind="presentation" identifier="kSegueIdPresentMenuScreenFormSheet" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="l6z-rU-Gtv"/>
+                        <segue destination="fZC-SB-t8I" kind="presentation" identifier="kSegueIdPresentMenuScreenFormSheet" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="l6z-rU-Gtv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSA-mE-d00" userLabel="First Responder" sceneMemberID="firstResponder"/>
