@@ -50,48 +50,41 @@ class OrcaCreature: Creature
             return Turn.empty(creature: self, cell: nil)
         }
 
-        var turn: Turn?
-
         // check live
         if hungerPoints < 0 {
-            turn = Turn.die(creature: self, cell: cell)
+            return Turn.die(creature: self, cell: cell)
         }
+
         // try reproduce
-        if turn == nil {
-            if reproductivePoints >= Constants.Creature.orcaReproductionPeriod {
-                if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
-                    turn = Turn.reproduce(creature: self,
-                                          startCell: cell,
-                                          targetCell: targetCell)
-                }
+        if reproductivePoints >= Constants.Creature.orcaReproductionPeriod
+        {
+            if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
+                return Turn.reproduce(creature: self,
+                                      startCell: cell,
+                                      targetCell: targetCell)
             }
         }
         // try eat
-        if turn == nil  {
-            if let targetCell = possibleCells.filter(turnHelperClass.canEatFilterFor(creature: self)).randomElement(),
-               let targetCreature = targetCell.creature {
-                turn = Turn.eat(creature: self,
-                                startCell: cell,
-                                targetCell: targetCell,
-                                targetCreature: targetCreature)
-            }
-            if turn != nil {
-                hungerPoints = Constants.Creature.orcaAllowedHungerPoins
-            }
-        }
-        // try move
-        if turn == nil  {
-            if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement() {
-                turn = Turn.move(creature: self,
-                                 startCell: cell,
-                                 targetCell: targetCell)
-            }
-        }
-        // empty
-        guard let turn else {
-            return Turn.empty(creature: self, cell: cell)
+        if let targetCell = possibleCells.filter(turnHelperClass.canEatFilterFor(creature: self)).randomElement(),
+           let targetCreature = targetCell.creature
+        {
+            hungerPoints = Constants.Creature.orcaAllowedHungerPoins
+
+            return Turn.eat(creature: self,
+                            startCell: cell,
+                            targetCell: targetCell,
+                            targetCreature: targetCreature)
         }
 
-        return turn
+        // try move
+        if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement()
+        {
+            return Turn.move(creature: self,
+                             startCell: cell,
+                             targetCell: targetCell)
+        }
+
+        // empty
+        return Turn.empty(creature: self, cell: cell)
     }
 }

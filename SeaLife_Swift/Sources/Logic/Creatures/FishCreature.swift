@@ -47,31 +47,24 @@ class FishCreature: Creature
             return Turn.empty(creature: self, cell: nil)
         }
 
-        var turn: Turn?
-
         // try reproduce
-        if turn == nil {
-            if reproductivePoints >= Constants.Creature.fishReproductionPeriod {
-                if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
-                    turn = Turn.reproduce(creature: self,
-                                          startCell: cell,
-                                          targetCell: targetCell)
-                }
+        if reproductivePoints >= Constants.Creature.fishReproductionPeriod
+        {
+            if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
+                return Turn.reproduce(creature: self,
+                                      startCell: cell,
+                                      targetCell: targetCell)
             }
-        }
-        // try move
-        if turn == nil  {
-            if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement() {
-                turn = Turn.move(creature: self,
-                                 startCell: cell,
-                                 targetCell: targetCell)
-            }
-        }
-        // empty
-        guard let turn else {
-            return Turn.empty(creature: self, cell: cell)
         }
 
-        return turn
+        // try move
+        if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement() {
+            return Turn.move(creature: self,
+                             startCell: cell,
+                             targetCell: targetCell)
+        }
+
+        // empty
+        return Turn.empty(creature: self, cell: cell)
     }
 }
