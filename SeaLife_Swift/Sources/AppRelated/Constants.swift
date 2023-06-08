@@ -67,8 +67,8 @@ enum Constants
 
     enum Creature
     {
-        static let orcaReproductionPeriod = 4
-        static let fishReproductionPeriod = 10
+        static let orcaReproductionPeriod = 5
+        static let fishReproductionPeriod = 7
 
         static let orcaAllowedHungerPoins = 3
     }
