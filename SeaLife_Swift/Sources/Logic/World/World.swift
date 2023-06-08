@@ -116,18 +116,19 @@ class World: WorldProtocol
             fatalError("VisualDelegate is nil for \(self)")
         }
         
-        let creatureUUID = UUID()
-        let animator = visualDelegate.animator(for: creatureType,
-                                               creatureUUID: creatureUUID)
         let deps = CreatureDeps(
             world: self,
-            animator: animator,
             turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self)
         )
         
-        guard let creature = CreatureFactory.creature(uuid: creatureUUID, type: creatureType, deps: deps) as? Creature else {
+        guard let creature = CreatureFactory.creature(type: creatureType, deps: deps) as? Creature else {
             fatalError("World can't create creature for type \(creatureType)")
         }
+
+        let animator = visualDelegate.animator(for: creatureType,
+                                               creatureUUID: creature.uuid)
+        creature.animator = animator
+        
         return creature
     }
     

@@ -62,7 +62,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
     public func placeVisualComponent(of creature: any CreatureProtocol,
                                      at position: WorldPosition)
     {
-        let visualComponent = creature.animator.visualComponent
+        guard let visualComponent = creature.animator?.visualComponent else { return }
         
         visualComponent.center = CGPointMake(cellSize.width * (CGFloat(position.x) + 0.5),
                                              cellSize.height * (CGFloat(position.y) + 0.5))
@@ -71,7 +71,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
     
     public func removeVisualComponent(for creature: any CreatureProtocol)
     {
-        creature.animator.visualComponent.removeFromSuperview()
+        creature.animator?.visualComponent.removeFromSuperview()
         
         animatorsDict.removeObject(forKey: NSUUID(uuidString: creature.uuid.uuidString))
     }

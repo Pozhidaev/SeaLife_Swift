@@ -14,7 +14,7 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
     var direction: Direction { get set }
     
     var world: WorldProtocol { get }
-    var animator: CreatureAnimator { get }
+    var animator: CreatureAnimator? { get set }
     
     var state: CreatureState { get set }
     

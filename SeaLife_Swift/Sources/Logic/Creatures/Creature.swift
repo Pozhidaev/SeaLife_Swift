@@ -14,7 +14,7 @@ public class Creature: CreatureProtocol
     public var direction: Direction = .none
     
     public unowned let world: WorldProtocol
-    public let animator: CreatureAnimator
+    public var animator: CreatureAnimator?
     
     public var state: CreatureState = CreatureState()
 
@@ -36,7 +36,6 @@ public class Creature: CreatureProtocol
     {
         self.turnHelperClass = deps.turnHelperClass
         self.world = deps.world
-        self.animator = deps.animator
         self.uuid = uuid
         
         timer = CreatureTimer()
@@ -63,12 +62,12 @@ public class Creature: CreatureProtocol
     }
     public func start() {
         state.setActive()
-        animator.play()
+        animator?.play()
         timer.start()
     }
     public func pause() {
         state.setPause()
-        animator.pause()
+        animator?.pause()
         timer.pause()
     }
     public func stop() {
@@ -128,7 +127,7 @@ public class Creature: CreatureProtocol
     private func performEmpty(turn: Turn,
                               completion: @escaping ()->())
     {
-        animator.performAnimations(for: turn, completionQueue: queue) {
+        animator?.performAnimations(for: turn, completionQueue: queue) {
             completion()
         }
     }
@@ -147,14 +146,14 @@ public class Creature: CreatureProtocol
         
         world.unlock(cell: startCell)
 
-        animator.performAnimations(for: turn, completionQueue: queue) { [weak self] in
+        animator?.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
             
             let nextTurn = Turn.die(creature: targetCreature, cell: targetCell)
 
             completion()
             
-            targetCreature.animator.performAnimations(for: nextTurn, completionQueue: queue) { [weak targetCreature] in
+            targetCreature.animator?.performAnimations(for: nextTurn, completionQueue: queue) { [weak targetCreature] in
                 guard let targetCreature else { return }
 
                 targetCreature.world.unlock(cell: targetCell)
@@ -175,7 +174,7 @@ public class Creature: CreatureProtocol
         
         world.unlock(cell: startCell)
 
-        animator.performAnimations(for: turn, completionQueue: queue) { [weak self] in
+        animator?.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
             
             self.world.unlock(cell: targetCell)
@@ -192,7 +191,7 @@ public class Creature: CreatureProtocol
             return
         }
         
-        animator.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
+        animator?.performAnimations(for: turn, completionQueue: queue) { [weak self] in
             guard let self else { return }
             
             self.world.unlock(cell: startCell)
@@ -203,7 +202,7 @@ public class Creature: CreatureProtocol
             completion()
 
             let nextTurn = Turn.born(newCreature: newCreature, cell: targetCell)
-            newCreature.animator.performAnimations(for: nextTurn, completionQueue: DispatchQueue.main) { [weak newCreature] in
+            newCreature.animator?.performAnimations(for: nextTurn, completionQueue: self.queue) { [weak newCreature] in
                 guard let newCreature else { return }
                 
                 newCreature.world.unlock(cell: targetCell)
@@ -227,7 +226,7 @@ public class Creature: CreatureProtocol
         
         stop()
         
-        animator.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
+        animator?.performAnimations(for: turn, completionQueue: DispatchQueue.main) { [weak self] in
             guard let self else { return }
             
             self.world.remove(creature: self, at: cell)

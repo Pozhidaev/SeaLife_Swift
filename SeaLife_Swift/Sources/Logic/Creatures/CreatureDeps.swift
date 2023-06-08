@@ -10,6 +10,5 @@ import Foundation
 public struct CreatureDeps
 {
     unowned var world: any WorldProtocol
-    var animator: CreatureAnimator
     var turnHelperClass: TurnHelperProtocol.Type
 }
