@@ -249,20 +249,16 @@ class MenuViewController: UIViewController
 
     func setValidateSizesFrom(horizontalSize: Double, verticalSize: Double)
     {
-        var tVertical = Float(verticalSize)
-        var tHorizontal = Float(horizontalSize)
+        var tVertical = Int(verticalSize)
+        var tHorizontal = Int(horizontalSize)
 
-        tVertical = Float( min(Constants.World.verticalSizeMax,
-                               Int( tHorizontal * Constants.World.worldSizeApectRatio)))
-        tHorizontal = Float( min(Constants.World.horizontalSizeMax,
-                                 Int( tVertical / Constants.World.worldSizeApectRatio)))
-        tVertical = Float( max(Constants.World.verticalSizeMin,
-                               Int( tHorizontal * Constants.World.worldSizeApectRatio)))
-        tHorizontal = Float( max(Constants.World.horizontalSizeMin,
-                                 Int( tVertical / Constants.World.worldSizeApectRatio)))
+        tVertical = min(Constants.World.verticalSizeMax, Int((Float(tHorizontal) * Constants.World.worldSizeApectRatio).rounded()))
+        tHorizontal = min(Constants.World.horizontalSizeMax, Int((Float(tVertical) / Constants.World.worldSizeApectRatio).rounded()))
+        tVertical = max(Constants.World.verticalSizeMin, Int((Float(tHorizontal) * Constants.World.worldSizeApectRatio).rounded()))
+        tHorizontal = max(Constants.World.horizontalSizeMin, Int((Float(tVertical) / Constants.World.worldSizeApectRatio).rounded()))
 
-        self.horizontalSize = Int(lroundf(tHorizontal))
-        self.verticalSize = Int(lroundf(tVertical))
+        self.horizontalSize = tHorizontal
+        self.verticalSize = tVertical
     }
 
     func updateSliders()
