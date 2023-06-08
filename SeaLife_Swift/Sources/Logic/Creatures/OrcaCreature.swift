@@ -47,16 +47,14 @@ class OrcaCreature: Creature
     override func decideTurn(for cell: WorldCell?, possibleCells: Set<WorldCell>) -> Turn
     {
         guard let cell else {
-            return Turn.empty(creature: self,
-                              cell: cell)
+            return Turn.empty(creature: self, cell: nil)
         }
         
         var turn: Turn?
         
         //check live
         if hungerPoints < 0 {
-            turn = Turn.die(creature: self,
-                            cell: cell)
+            turn = Turn.die(creature: self, cell: cell)
         }
         //try reproduce
         if turn == nil {
@@ -91,8 +89,7 @@ class OrcaCreature: Creature
         }
         //empty
         guard let turn else {
-            return Turn.empty(creature: self,
-                              cell: cell)
+            return Turn.empty(creature: self, cell: cell)
         }
 
         return turn

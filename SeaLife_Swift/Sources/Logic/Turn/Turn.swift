@@ -73,11 +73,8 @@ public enum Turn {
     {
         switch self {
             
-        case .empty(creature: _, cell: let cell):
-            guard let cell else {
-                return Set([])
-            }
-            return Set([cell])
+        case .empty(creature: _, cell: _):
+            return Set([])
         case .move(creature: _, startCell: let startCell, targetCell: let targetCell):
             return Set([startCell, targetCell])
         case .eat(creature: _, startCell: let startCell, targetCell: let targetCell, targetCreature: _):

@@ -44,7 +44,7 @@ class FishCreature: Creature
     override func decideTurn(for cell: WorldCell?, possibleCells: Set<WorldCell>) -> Turn
     {
         guard let cell else {
-            return Turn.empty(creature: self, cell: cell)
+            return Turn.empty(creature: self, cell: nil)
         }
 
         var turn: Turn?

@@ -128,15 +128,6 @@ public class Creature: CreatureProtocol
     private func performEmpty(turn: Turn,
                               completion: @escaping ()->())
     {
-        guard case let .empty(creature: _, cell: cell) = turn else {
-            assertionFailure("Turn is wrong type \(turn)")
-            return
-        }
-        
-        if let cell {
-            world.unlock(cell: cell)
-        }
-        
         animator.performAnimations(for: turn, completionQueue: queue) {
             completion()
         }
