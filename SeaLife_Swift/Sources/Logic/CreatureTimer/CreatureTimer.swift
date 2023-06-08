@@ -12,7 +12,7 @@ public class CreatureTimer: CreatureTimerProtocol
     let milisecondsPerSec: Float = 1000
     
     private let timer: DispatchSourceTimer
-    private let timerQueue: DispatchQueue = DispatchQueue(label: "timer")
+    private let timerQueue: DispatchQueue = DispatchQueue(label: "Timer Queue", attributes: .initiallyInactive)
     
     private var timerPausedCounter: Int
     
@@ -57,6 +57,8 @@ public class CreatureTimer: CreatureTimerProtocol
     
     public func start()
     {
+        timerQueue.activate()
+
         if timerPausedCounter <= 0 {
             timerPausedCounter += 1
             timer.resume()

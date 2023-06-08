@@ -9,6 +9,8 @@ import Foundation
 
 class CreatureFactory
 {
+    static let timerParentQueue = DispatchQueue(label: "Timer Paranet Queue", attributes: .concurrent)
+    
     static func turnHelperType(for creatureType: any CreatureProtocol.Type) -> TurnHelperProtocol.Type
     {
         switch creatureType {
@@ -22,6 +24,9 @@ class CreatureFactory
     static func creature<T: CreatureProtocol>(uuid: UUID = UUID(), type: T.Type, deps: CreatureDeps) -> T
     {
         let creature = type.init(uuid: uuid, deps: deps)
+        
+        creature.setTimerTargetQueue(timerParentQueue)
+        
         return creature
     }
 
