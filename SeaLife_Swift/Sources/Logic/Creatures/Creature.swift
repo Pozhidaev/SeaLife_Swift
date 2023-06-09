@@ -211,6 +211,9 @@ public class Creature: CreatureProtocol
 
                 newCreature.world.unlock(cell: targetCell)
 
+                // when paused and presenting something fullscreen animations
+                // completed and newcreature appear here in paused-initial state
+                // so set it paused-idle so it can start performing later
                 if case .paused = newCreature.state.state {
                     newCreature.state.state = .paused(fromState: .idle)
                 } else {
