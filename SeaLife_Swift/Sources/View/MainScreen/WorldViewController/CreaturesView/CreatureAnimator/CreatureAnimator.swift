@@ -20,11 +20,11 @@ public class CreatureAnimator: NSObject
     private var animations = [CAAnimation]()
     private var completion: (() -> Void)? = {}
 
-    public let visualComponent: UIImageView
+    public let visualComponent: CreatureVisualComponent
 
     // MARK: - Memory
 
-    init(visualComponent: UIImageView)
+    init(visualComponent: CreatureVisualComponent)
     {
         self.visualComponent = visualComponent
     }

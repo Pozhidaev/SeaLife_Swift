@@ -21,4 +21,17 @@ extension UIImage
         }
         return nil
     }
+
+    static func name(for creatureType: any CreatureProtocol.Type) -> String?
+    {
+        switch creatureType {
+        case is OrcaCreature.Type:
+            return Images.orca.name
+        case is FishCreature.Type:
+            return Images.fish.name
+        default:
+            assertionFailure("Image not exist for creature type \(creatureType)")
+        }
+        return nil
+    }
 }

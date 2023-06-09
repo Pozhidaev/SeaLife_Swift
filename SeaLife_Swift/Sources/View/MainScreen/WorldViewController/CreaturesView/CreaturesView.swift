@@ -9,6 +9,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
             let enumerator = animatorsDict.objectEnumerator()
             while case let animator as CreatureAnimator = enumerator?.nextObject() {
                 animator.cellSize = cellSize
+                animator.visualComponent.redraw(to: cellSize)
             }
         }
     }
@@ -36,11 +37,11 @@ public class CreaturesView: UIView, WorldVisualDelegate
 
     public func add(creature: any CreatureProtocol, at position: WorldPosition)
     {
-        let visualComponent = visualComponent(for: type(of: creature))
-
+        let visualComponent = CreatureVisualComponent(imageName: UIImage.name(for: type(of: creature)) ?? "",
+                                                      size: cellSize)
         visualComponent.center = CGPoint(x: cellSize.width * (CGFloat(position.x) + 0.5),
                                          y: cellSize.height * (CGFloat(position.y) + 0.5))
-        addSubview(visualComponent)
+        addSubview(visualComponent.view)
 
         let animator = CreatureAnimator(visualComponent: visualComponent)
         add(animator: animator, for: creature.uuid)
@@ -50,7 +51,7 @@ public class CreaturesView: UIView, WorldVisualDelegate
 
     public func remove(creature: any CreatureProtocol)
     {
-        creature.animator?.visualComponent.removeFromSuperview()
+        creature.animator?.visualComponent.view.removeFromSuperview()
 
         animatorsDict.removeObject(forKey: NSUUID(uuidString: creature.uuid.uuidString))
     }
@@ -62,35 +63,23 @@ public class CreaturesView: UIView, WorldVisualDelegate
         let xCoeficient = toCellSize.width / fromCellSize.width
         let yCoeficient = toCellSize.height / fromCellSize.height
 
-        for view in self.subviews {
-            var bounds = view.bounds
-            bounds.size = CGSize(width: bounds.size.width * xCoeficient, height: bounds.size.height * yCoeficient)
-            view.bounds = bounds
-            var center = view.center
+        let enumerator = animatorsDict.objectEnumerator()
+        while case let animator as CreatureAnimator = enumerator?.nextObject() {
+            animator.animationSpeed = animationSpeed
+
+            var bounds = animator.visualComponent.bounds
+            bounds.size = CGSize(width: bounds.size.width * xCoeficient,
+                                 height: bounds.size.height * yCoeficient)
+            animator.visualComponent.bounds = bounds
+            var center = animator.visualComponent.center
             center = CGPoint(x: center.x * xCoeficient, y: center.y * yCoeficient)
-            view.center = center
+            animator.visualComponent.center = center
         }
 
         cellSize = toCellSize
     }
 
     // MARK: - Private methods
-
-    private func visualComponent(for creatureType: any CreatureProtocol.Type) -> UIImageView
-    {
-        let image = UIImage.image(for: creatureType)
-        let imageView = UIImageView(image: image)
-
-        var frame: CGRect = .zero
-        frame.size = CGSize(width: self.cellSize.width, height: self.cellSize.height)
-        var delta: CGFloat = .zero
-        if frame.width > Constants.UI.imageViewMinSizeForReducing {
-            delta = frame.width * Constants.UI.imageViewReducingCoeficient
-        }
-        imageView.frame = frame.insetBy(dx: delta, dy: delta)
-
-        return imageView
-    }
 
     private func add(animator: CreatureAnimator, for creatureUUID: UUID)
     {

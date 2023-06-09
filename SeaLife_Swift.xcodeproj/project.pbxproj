@@ -56,6 +56,7 @@
 		A5ACA6832A193B3000FEE2FD /* WorldPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */; };
 		A5ACA6852A193B6200FEE2FD /* WorldInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */; };
 		A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6862A193BFE00FEE2FD /* Direction.swift */; };
+		A5FF1DC72A32C20700D74A4C /* CreatureVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DC62A32C20700D74A4C /* CreatureVisualComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		A5ACA6822A193B3000FEE2FD /* WorldPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldPosition.swift; sourceTree = "<group>"; };
 		A5ACA6842A193B6200FEE2FD /* WorldInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldInfo.swift; sourceTree = "<group>"; };
 		A5ACA6862A193BFE00FEE2FD /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		A5FF1DC62A32C20700D74A4C /* CreatureVisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureVisualComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			children = (
 				A5ACA67E2A19395A00FEE2FD /* WorldVisualDelegate.swift */,
 				A5ACA64C2A18B90900FEE2FD /* CreaturesView.swift */,
+				A5FF1DC62A32C20700D74A4C /* CreatureVisualComponent.swift */,
 				A5ACA6002A18B7B900FEE2FD /* CreatureAnimator */,
 			);
 			path = CreaturesView;
@@ -481,6 +484,7 @@
 				A5ACA6792A192B6E00FEE2FD /* World.swift in Sources */,
 				A5ACA5E32A18B6AB00FEE2FD /* AppDelegate.swift in Sources */,
 				A5ACA6732A18F4A300FEE2FD /* MenuViewController.swift in Sources */,
+				A5FF1DC72A32C20700D74A4C /* CreatureVisualComponent.swift in Sources */,
 				A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */,
 				A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */,
 				A5ACA6532A18C36100FEE2FD /* CreatureAnimator.swift in Sources */,

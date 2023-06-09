@@ -64,6 +64,7 @@ class OrcaCreature: Creature
                                       targetCell: targetCell)
             }
         }
+
         // try eat
         if let targetCell = possibleCells.filter(turnHelperClass.canEatFilterFor(creature: self)).randomElement(),
            let targetCreature = targetCell.creature
