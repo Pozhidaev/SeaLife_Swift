@@ -66,6 +66,10 @@ internal enum Strings {
       internal static let unknown = Strings.tr("Localizable", "SliderView.Value.Unknown", fallback: "?")
     }
   }
+  internal enum Time {
+    /// sec
+    internal static let second = Strings.tr("Localizable", "Time.Second", fallback: "sec")
+  }
   internal enum World {
     internal enum Finish {
       /// Localizable.strings

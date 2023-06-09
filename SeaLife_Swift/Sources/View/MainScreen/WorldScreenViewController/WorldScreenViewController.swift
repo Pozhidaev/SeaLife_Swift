@@ -39,6 +39,14 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
     private var configured: Bool = false
     private var worldInfo: WorldInfo?
 
+    private let speedFormatter = {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.positiveSuffix = Strings.Time.second
+        return formatter
+    }()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad()
@@ -91,14 +99,14 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
     @IBAction func creatureSpeedSliderChanged(_ sender: UISlider)
     {
         let speed = Constants.Speed.creatureSlowestSpeed - (Double(sender.value) - Constants.Speed.creatureFastestSpeed)
-        creaturesSpeedLabel.text = "\(speed)"
+        creaturesSpeedLabel.text = speedFormatter.string(from: speed as NSNumber)
         worldViewController?.creaturesSpeed = speed
     }
 
     @IBAction func animationSpeedSliderChanged(_ sender: UISlider)
     {
         let speed = Constants.Speed.animationSlowestSpeed - (Double(sender.value) - Constants.Speed.animationFastestSpeed)
-        animationSpeedLabel.text = "\(speed)"
+        animationSpeedLabel.text = speedFormatter.string(from: speed as NSNumber)
         worldViewController?.setAnimationsSpeed(speed)
     }
 
@@ -163,7 +171,7 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
         creaturesSpeedSlider.minimumValue = Float(Constants.Speed.creatureFastestSpeed)
         creaturesSpeedSlider.maximumValue = Float(Constants.Speed.creatureSlowestSpeed)
         creaturesSpeedSlider.tintColor = Colors.MainScreen.ControlPanel.sliderTintColor.color
-        creaturesSpeedLabel.text = "\(Constants.Speed.creatureDefaultSpeed)"
+        creaturesSpeedLabel.text = speedFormatter.string(from: Constants.Speed.creatureDefaultSpeed as NSNumber)
         creaturesSpeedLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
         creaturesSpeedTitleLabel.text = Strings.MainScreen.creaturesSpeed
         creaturesSpeedTitleLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
@@ -171,7 +179,7 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
         animationSpeedSlider.minimumValue = Float(Constants.Speed.animationFastestSpeed)
         animationSpeedSlider.maximumValue = Float(Constants.Speed.animationSlowestSpeed)
         animationSpeedSlider.tintColor = Colors.MainScreen.ControlPanel.sliderTintColor.color
-        animationSpeedLabel.text = "\(Constants.Speed.animationDefaultSpeed)"
+        animationSpeedLabel.text = speedFormatter.string(from: Constants.Speed.animationDefaultSpeed as NSNumber)
         animationSpeedLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color
         animationSpeedTitleLabel.text = Strings.MainScreen.animationSpeed
         animationSpeedTitleLabel.textColor = Colors.MainScreen.ControlPanel.textColor.color

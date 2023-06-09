@@ -27,3 +27,5 @@
 "SliderView.Value.Unknown" = "?";
 "SliderView.Minimum.Unknown" = "?";
 "SliderView.Maximum.Unknown" = "?";
+
+"Time.Second" = "sec";
