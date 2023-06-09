@@ -46,25 +46,25 @@ enum Constants
 
         static let horizontalSizeMin: Int          = 1
         static let horizontalSizeMax: Int          = 50
-        static let horizontalSizeDefault: Int      = 10
+        static let horizontalSizeDefault: Int      = 12
 
         static let verticalSizeMin: Int            = 1
         static let verticalSizeMax: Int            = 50
-        static let verticalSizeDefault: Int        = 15
+        static let verticalSizeDefault: Int        = 18
 
-        static let defaultfishCount                = 50
-        static let defaultOrcaCount                = 10
+        static let defaultfishCount                = 120
+        static let defaultOrcaCount                = 50
     }
 
     enum Speed
     {
         static let creatureSlowestSpeed: Double    = 2.0
         static let creatureFastestSpeed: Double    = 0.1
-        static let creatureDefaultSpeed: Double    = 0.5
+        static let creatureDefaultSpeed: Double    = 0.1
 
         static let animationSlowestSpeed: Double   = 4.0
         static let animationFastestSpeed: Double   = 0.1
-        static let animationDefaultSpeed: Double   = 0.5
+        static let animationDefaultSpeed: Double   = 0.4
     }
 
     enum Creature
@@ -72,7 +72,7 @@ enum Constants
         static let orcaReproductionPeriod = 5
         static let fishReproductionPeriod = 7
 
-        static let orcaAllowedHungerPoins = 3
+        static let orcaAllowedHungerPoins = 4
     }
 }
 // swiftlint:enable type_name
