@@ -36,7 +36,7 @@ enum Constants
         }
 
         static let imageViewMinSizeForReducing         = 10.0
-        static let imageViewReducingCoeficient         = 0.1
+        static let imageViewReducingCoeficient         = 0.2
 
     }
 

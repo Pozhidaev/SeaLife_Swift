@@ -12,7 +12,7 @@ public class CreatureVisualComponent
     let imageName: String
     let content: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .center
         return imageView
     }()
 
@@ -37,8 +37,8 @@ public class CreatureVisualComponent
         self.imageName = imageName
 
         let convertedSize = convertedSize(from: size)
-        content.image = UIImage(named: imageName)
-        bounds.size = convertedSize
+        content.image = UIImage(named: imageName)?.resized(to: convertedSize)
+        content.sizeToFit()
     }
 
     // MARK: - Public Methods
@@ -46,9 +46,10 @@ public class CreatureVisualComponent
     func redraw(to newSize: CGSize)
     {
         let convertedSize = convertedSize(from: newSize)
+        content.image = UIImage(named: imageName)?.resized(to: convertedSize)
 
         let oldCenter = center
-        bounds.size = convertedSize
+        content.sizeToFit()
         center = oldCenter
     }
 
