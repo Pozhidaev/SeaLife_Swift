@@ -32,7 +32,7 @@ enum Constants
             static let borderLineWidth   = 2.0
             static let cellLineWidth     = 1.0
             static let maxVerticalSizeForDrawingGridIphone  = 15
-            static let maxVerticalSizeForDrawingGridIpad    = 50
+            static let maxVerticalSizeForDrawingGridIpad    = 30
         }
 
         static let imageViewMinSizeForReducing         = 10.0
