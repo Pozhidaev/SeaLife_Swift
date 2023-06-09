@@ -14,6 +14,7 @@ public class Creature: CreatureProtocol
     public var direction: Direction = .none
 
     public unowned let world: WorldProtocol
+
     public var animator: CreatureAnimator?
 
     public var state: CreatureState = CreatureState()
@@ -24,17 +25,19 @@ public class Creature: CreatureProtocol
     private let queue = DispatchQueue(label: "CreatureQueue")
 
     internal let turnHelperClass: TurnHelperProtocol.Type
+    internal let turnFactoryType: TurnFactoryProtocol.Type
 
     // MARK: Memory
 
     init()
     {
-        fatalError("must call initWithTurnHelperClass")
+        fatalError("must call init(uuid:, deps:)")
     }
 
     public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
         self.turnHelperClass = deps.turnHelperClass
+        self.turnFactoryType = deps.turnFactoryType
         self.world = deps.world
         self.uuid = uuid
 
@@ -86,7 +89,7 @@ public class Creature: CreatureProtocol
         if let currentCell {
             lockedCells.insert(currentCell)
 
-            let turnPositions = possibleTurnPositions(from: position)
+            let turnPositions = turnFactoryType.possibleTurnPositions(from: position)
             possibleTurnCells = world.cells(for: turnPositions)
             lockedCells.formUnion(possibleTurnCells)
         }
@@ -117,8 +120,6 @@ public class Creature: CreatureProtocol
     internal func beforeEveryTurn() { fatalError("must be overriden") }
 
     internal func afterEveryTurn() { fatalError("must be overriden") }
-
-    internal func possibleTurnPositions(from position: WorldPosition) -> Set<WorldPosition> { fatalError("must be overriden") }
 
     internal func decideTurn(for cell: WorldCell?, possibleCells: Set<WorldCell>) -> Turn { fatalError("must be overriden") }
 

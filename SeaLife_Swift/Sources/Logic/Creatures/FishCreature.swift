@@ -33,14 +33,6 @@ class FishCreature: Creature
         }
     }
 
-    override func possibleTurnPositions(from position: WorldPosition) -> Set<WorldPosition>
-    {
-        // return Set([position.right()])
-        let movePositions = turnHelperClass.movePositionsFrom(position: position)
-        let reproducePositions = turnHelperClass.reproducePositionsFrom(position: position)
-        return movePositions.union(reproducePositions)
-    }
-
     override func decideTurn(for cell: WorldCell?, possibleCells: Set<WorldCell>) -> Turn
     {
         guard let cell else {

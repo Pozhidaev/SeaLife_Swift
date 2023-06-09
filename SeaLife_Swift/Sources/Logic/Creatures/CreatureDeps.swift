@@ -11,4 +11,5 @@ public struct CreatureDeps
 {
     unowned var world: any WorldProtocol
     var turnHelperClass: TurnHelperProtocol.Type
+    var turnFactoryType: TurnFactoryProtocol.Type
 }

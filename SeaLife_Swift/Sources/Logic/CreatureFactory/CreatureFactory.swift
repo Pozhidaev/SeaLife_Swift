@@ -21,6 +21,16 @@ class CreatureFactory
         }
     }
 
+    static func turnFactoryType(for creatureType: any CreatureProtocol.Type) -> TurnFactoryProtocol.Type
+    {
+        switch creatureType {
+        case is OrcaCreature.Type: return OrcaTurnFactory.self
+        case is FishCreature.Type: return FishTurnFactory.self
+        default:
+            fatalError("Unpredictable creature type \(creatureType.self)")
+        }
+    }
+
     static func creature<T: CreatureProtocol>(uuid: UUID = UUID(), type: T.Type, deps: CreatureDeps) -> T
     {
         let creature = type.init(uuid: uuid, deps: deps)

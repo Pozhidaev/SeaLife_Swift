@@ -58,6 +58,9 @@
 		A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACA6862A193BFE00FEE2FD /* Direction.swift */; };
 		A5FF1DC52A32C06800D74A4C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DC42A32C06800D74A4C /* UIImage+Extensions.swift */; };
 		A5FF1DC72A32C20700D74A4C /* CreatureVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DC62A32C20700D74A4C /* CreatureVisualComponent.swift */; };
+		A5FF1DC92A334D6100D74A4C /* FishTurnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DC82A334D6100D74A4C /* FishTurnFactory.swift */; };
+		A5FF1DCB2A334D8800D74A4C /* TurnFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DCA2A334D8800D74A4C /* TurnFactoryProtocol.swift */; };
+		A5FF1DCD2A3359E000D74A4C /* OrcaTurnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DCC2A3359E000D74A4C /* OrcaTurnFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +118,9 @@
 		A5ACA6862A193BFE00FEE2FD /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		A5FF1DC42A32C06800D74A4C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A5FF1DC62A32C20700D74A4C /* CreatureVisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureVisualComponent.swift; sourceTree = "<group>"; };
+		A5FF1DC82A334D6100D74A4C /* FishTurnFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTurnFactory.swift; sourceTree = "<group>"; };
+		A5FF1DCA2A334D8800D74A4C /* TurnFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnFactoryProtocol.swift; sourceTree = "<group>"; };
+		A5FF1DCC2A3359E000D74A4C /* OrcaTurnFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrcaTurnFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +331,9 @@
 				A57B18712A195040006E1AE9 /* Turn.swift */,
 				A57B186D2A19468B006E1AE9 /* TurnHelper.swift */,
 				A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */,
+				A5FF1DCA2A334D8800D74A4C /* TurnFactoryProtocol.swift */,
+				A5FF1DC82A334D6100D74A4C /* FishTurnFactory.swift */,
+				A5FF1DCC2A3359E000D74A4C /* OrcaTurnFactory.swift */,
 			);
 			path = Turn;
 			sourceTree = "<group>";
@@ -482,6 +491,7 @@
 			files = (
 				A5ACA6602A18CBD200FEE2FD /* Constants.swift in Sources */,
 				A5ACA6772A192B2900FEE2FD /* CreatureTimerProtocol.swift in Sources */,
+				A5FF1DCB2A334D8800D74A4C /* TurnFactoryProtocol.swift in Sources */,
 				A57B187A2A1959F7006E1AE9 /* Creature.swift in Sources */,
 				A5ACA6622A18D70600FEE2FD /* WorldScreenViewController.swift in Sources */,
 				A5ACA6792A192B6E00FEE2FD /* World.swift in Sources */,
@@ -509,6 +519,7 @@
 				A5ACA6702A18F13600FEE2FD /* UIView+Extensions.swift in Sources */,
 				A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */,
 				A5ACA66C2A18EED300FEE2FD /* WorldViewControllerDelegate.swift in Sources */,
+				A5FF1DCD2A3359E000D74A4C /* OrcaTurnFactory.swift in Sources */,
 				A57B187E2A195C26006E1AE9 /* FishCreature.swift in Sources */,
 				A57B187C2A195C1C006E1AE9 /* OrcaCreature.swift in Sources */,
 				A5ACA6672A18DF0E00FEE2FD /* WorldBackgroundView.swift in Sources */,
@@ -521,6 +532,7 @@
 				A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */,
 				A5ACA6852A193B6200FEE2FD /* WorldInfo.swift in Sources */,
 				A5ACA6512A18BE3700FEE2FD /* AnimationsFactory.swift in Sources */,
+				A5FF1DC92A334D6100D74A4C /* FishTurnFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
