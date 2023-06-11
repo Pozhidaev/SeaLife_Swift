@@ -2,7 +2,7 @@
 SeaLife_Swift
 =============
 
-SeaLife_Swift is *[SeaLife](https://github.com/Pozhidaev/SeaLife) rewritten to Swift
+SeaLife_Swift is [SeaLife](https://github.com/Pozhidaev/SeaLife) rewritten to Swift
 
 
 SeaLife_Swift is a project for experiments with iOS platform, drawing and multithreading.
