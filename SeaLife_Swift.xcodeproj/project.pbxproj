@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50895232A353D6F00A22EFD /* ControlPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50895222A353D6F00A22EFD /* ControlPanelButton.swift */; };
 		A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */; };
 		A51EFD9B2A1C10F90016182D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A51EFD9D2A1C10F90016182D /* Localizable.strings */; };
 		A51EFDA12A1CE7B70016182D /* CreatureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EFDA02A1CE7B70016182D /* CreatureState.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50895222A353D6F00A22EFD /* ControlPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelButton.swift; sourceTree = "<group>"; };
 		A5102E2F2A20084400DE3C4C /* CreatureTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureTimer.swift; sourceTree = "<group>"; };
 		A51EFD9C2A1C10F90016182D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A51EFD9E2A1C110D0016182D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ACA6612A18D70600FEE2FD /* WorldScreenViewController.swift */,
+				A50895222A353D6F00A22EFD /* ControlPanelButton.swift */,
 			);
 			path = WorldScreenViewController;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				A5ACA64D2A18B90900FEE2FD /* CreaturesView.swift in Sources */,
 				A5ACA66C2A18EED300FEE2FD /* WorldViewControllerDelegate.swift in Sources */,
 				A5FF1DCD2A3359E000D74A4C /* OrcaTurnFactory.swift in Sources */,
+				A50895232A353D6F00A22EFD /* ControlPanelButton.swift in Sources */,
 				A57B187E2A195C26006E1AE9 /* FishCreature.swift in Sources */,
 				A57B187C2A195C1C006E1AE9 /* OrcaCreature.swift in Sources */,
 				A5ACA6672A18DF0E00FEE2FD /* WorldBackgroundView.swift in Sources */,

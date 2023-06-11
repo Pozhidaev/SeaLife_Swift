@@ -49,7 +49,7 @@
                             <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WRR-lm-DGM" userLabel="ControlPanelView">
                                 <rect key="frame" x="20" y="1005" width="704" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thl-d5-6v4">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thl-d5-6v4" customClass="ControlPanelButton" customModule="SeaLife_Swift" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="84" height="84"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <constraints>
@@ -63,7 +63,7 @@
                                             <action selector="play:" destination="3gC-32-V7g" eventType="touchUpInside" id="3VZ-OB-M0r"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShB-Kf-qHi">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShB-Kf-qHi" customClass="ControlPanelButton" customModule="SeaLife_Swift" customModuleProvider="target">
                                         <rect key="frame" x="100" y="8" width="84" height="84"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -129,7 +129,7 @@
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqt-JA-YX8">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqt-JA-YX8" customClass="ControlPanelButton" customModule="SeaLife_Swift" customModuleProvider="target">
                                         <rect key="frame" x="612" y="8" width="84" height="84"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>

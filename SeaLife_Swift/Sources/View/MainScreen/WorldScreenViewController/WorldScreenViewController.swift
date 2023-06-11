@@ -16,9 +16,9 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
 
     // MARK: - Outlets
 
-    @IBOutlet private weak var playButton: UIButton!
-    @IBOutlet private weak var resetButton: UIButton!
-    @IBOutlet private weak var menuButton: UIButton!
+    @IBOutlet private weak var playButton: ControlPanelButton!
+    @IBOutlet private weak var resetButton: ControlPanelButton!
+    @IBOutlet private weak var menuButton: ControlPanelButton!
 
     @IBOutlet private weak var controlPanel: UIView!
 
@@ -187,21 +187,9 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
 
     private func setupButtons()
     {
-        playButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        resetButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-        menuButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
-
-        resetButton.backgroundColor = Colors.MainScreen.ControlPanel.resetButtonColor.color
-        menuButton.backgroundColor = Colors.MainScreen.ControlPanel.menuButtonColor.color
-        playButton.backgroundColor = Colors.MainScreen.ControlPanel.playButtonColor.color
-
         playButton.setTitle(Strings.Button.play, for: .normal)
-        playButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
         resetButton.setTitle(Strings.Button.reset, for: .normal)
-        resetButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
-        resetButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsDisabledTitleColor.color, for: .disabled)
         menuButton.setTitle(Strings.Button.menu, for: .normal)
-        menuButton.setTitleColor(Colors.MainScreen.ControlPanel.buttonsTitleColor.color, for: .normal)
     }
 
     // MARK: - Segues
