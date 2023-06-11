@@ -15,7 +15,7 @@ class WorldViewController: UIViewController
 
     public weak var delegate: (any WorldViewControllerDelegate)?
 
-    // MARK: Private vars
+    // MARK: - Private vars
 
     private let backgroundView: WorldBackgroundView = {
         let view = WorldBackgroundView()
@@ -33,7 +33,7 @@ class WorldViewController: UIViewController
 
     private var world: WorldProtocol?
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad()
     {
@@ -64,7 +64,7 @@ class WorldViewController: UIViewController
         }
     }
 
-    // MARK: Public Methods
+    // MARK: - Public Methods
 
     public func play()
     {
@@ -104,9 +104,9 @@ class WorldViewController: UIViewController
         world?.createInitialCreatures()
     }
 
-    // MARK: Private Methods
+    // MARK: - Private Methods
 
-    func redrawCreatureView()
+    private func redrawCreatureView()
     {
         guard let world else {
             return

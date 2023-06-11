@@ -25,7 +25,7 @@ class MenuViewController: UIViewController
 
     public private(set) var worldInfo: WorldInfo = WorldInfo.defaultInfo()
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override func loadView()
     {
@@ -71,6 +71,15 @@ class MenuViewController: UIViewController
     {
         super.viewDidLoad()
 
+        setupView()
+
+        recalculateCreatures()
+
+        updateSliders()
+    }
+
+    func setupView()
+    {
         view.backgroundColor = Colors.MenuView.backgroundColor.color
         view.layer.borderWidth = Constants.UI.MenuScreen.menuViewBorderWidth
         view.layer.borderColor = Colors.MenuView.frameColor.color.cgColor
@@ -79,9 +88,6 @@ class MenuViewController: UIViewController
         setupStartButton()
 
         setupSliders()
-
-        recalculateCreatures()
-        updateSliders()
     }
 
     func setupStartButton()
@@ -104,10 +110,10 @@ class MenuViewController: UIViewController
 
     func setupSliders()
     {
-        self.fishCountView.titleLabel.text = Strings.Menu.FishCount.title
-        self.orcaCountView.titleLabel.text = Strings.Menu.OrcaCount.title
-        self.horizontalCountView.titleLabel.text = Strings.Menu.XSize.title
-        self.verticalCountView.titleLabel.text = Strings.Menu.YSize.title
+        fishCountView.titleLabel.text = Strings.Menu.FishCount.title
+        orcaCountView.titleLabel.text = Strings.Menu.OrcaCount.title
+        horizontalCountView.titleLabel.text = Strings.Menu.XSize.title
+        verticalCountView.titleLabel.text = Strings.Menu.YSize.title
 
         fishCountView.slider.addTarget(self, action: #selector(sliderValueChange), for: .valueChanged)
         orcaCountView.slider.addTarget(self, action: #selector(sliderValueChange), for: .valueChanged)
@@ -123,7 +129,7 @@ class MenuViewController: UIViewController
         verticalCountView.slider.maximumValue = Float(Constants.World.verticalSizeMax)
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func sliderValueChange(_ sender: UISlider)
     {
@@ -157,9 +163,9 @@ class MenuViewController: UIViewController
         performSegue(withIdentifier: kUnwindToMainScreenSegueIdentifier, sender: nil)
     }
 
-    // MARK: Private
+    // MARK: - Private
 
-    func recalculateCreatures()
+    private func recalculateCreatures()
     {
         let worldArea = horizontalSize * verticalSize
         fishCountView.slider.maximumValue = Float(worldArea)
@@ -176,7 +182,7 @@ class MenuViewController: UIViewController
         }
     }
 
-    func setValidFishValue(from value: Float)
+    private func setValidFishValue(from value: Float)
     {
         let worldArea = horizontalSize * verticalSize
 
@@ -192,7 +198,7 @@ class MenuViewController: UIViewController
         self.fishCount = fishCount
     }
 
-    func setValidOrcaValue(from value: Float)
+    private func setValidOrcaValue(from value: Float)
     {
         let worldArea = horizontalSize * verticalSize
 
@@ -208,19 +214,19 @@ class MenuViewController: UIViewController
         self.fishCount = fishCount
     }
 
-    func setValidHorizontalSize(from value: Float)
+    private func setValidHorizontalSize(from value: Float)
     {
         setValidateSizesFrom(horizontalSize: Double(value),
                              verticalSize: Double(value) * Double(Constants.World.worldSizeApectRatio))
     }
 
-    func setValidVerticalSize(from value: Float)
+    private func setValidVerticalSize(from value: Float)
     {
         setValidateSizesFrom(horizontalSize: Double(value) / Double(Constants.World.worldSizeApectRatio),
                              verticalSize: Double(value))
     }
 
-    func setValidateSizesFrom(horizontalSize: Double, verticalSize: Double)
+    private func setValidateSizesFrom(horizontalSize: Double, verticalSize: Double)
     {
         var tVertical = Int(verticalSize)
         var tHorizontal = Int(horizontalSize)
@@ -234,7 +240,7 @@ class MenuViewController: UIViewController
         self.verticalSize = tVertical
     }
 
-    func updateSliders()
+    private func updateSliders()
     {
         fishCountView.slider.value = Float(fishCount)
         orcaCountView.slider.value = Float(orcaCount)
