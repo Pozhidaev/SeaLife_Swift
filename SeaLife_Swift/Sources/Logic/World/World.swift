@@ -95,13 +95,13 @@ class World: WorldProtocol
     {
         var tempCells = Set<WorldCell>()
 
-        withLockedCellsLocked {
-            let indexes = IndexSet(positions
-                .filter{worldInfo.isValid(position: $0)}
-                .map{$0.y * worldInfo.horizontalSize + $0.x})
-            indexes.forEach { tempCells.insert(cells[$0]) }
-            tempCells.subtract(lockedCells)
+        let indexes = IndexSet(positions
+            .filter{worldInfo.isValid(position: $0)}
+            .map{$0.y * worldInfo.horizontalSize + $0.x})
+        indexes.forEach { tempCells.insert(cells[$0]) }
 
+        withLockedCellsLocked {
+            tempCells.subtract(lockedCells)
             lockedCells.formUnion(tempCells)
         }
 
