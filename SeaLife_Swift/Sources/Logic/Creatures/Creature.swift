@@ -24,7 +24,6 @@ public class Creature: CreatureProtocol
     private let timer: CreatureTimerProtocol
     private let queue = DispatchQueue(label: "CreatureQueue")
 
-    internal let turnHelperClass: TurnHelperProtocol.Type
     internal let turnFactoryType: TurnFactoryProtocol.Type
 
     // MARK: Memory
@@ -36,7 +35,6 @@ public class Creature: CreatureProtocol
 
     public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
-        self.turnHelperClass = deps.turnHelperClass
         self.turnFactoryType = deps.turnFactoryType
         self.world = deps.world
         self.uuid = uuid

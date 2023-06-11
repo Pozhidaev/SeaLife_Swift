@@ -42,7 +42,7 @@ class FishCreature: Creature
         // try reproduce
         if reproductivePoints >= Constants.Creature.fishReproductionPeriod
         {
-            if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
+            if let targetCell = possibleCells.filter({ cell in cell.creature == nil }).randomElement() {
                 return Turn.reproduce(creature: self,
                                       startCell: cell,
                                       targetCell: targetCell)
@@ -50,7 +50,7 @@ class FishCreature: Creature
         }
 
         // try move
-        if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement() {
+        if let targetCell = possibleCells.filter({ cell in cell.creature == nil }).randomElement() {
             return Turn.move(creature: self,
                              startCell: cell,
                              targetCell: targetCell)

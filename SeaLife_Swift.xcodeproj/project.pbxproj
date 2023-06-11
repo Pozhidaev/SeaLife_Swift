@@ -22,8 +22,6 @@
 		A51F86362A311579002B3D8F /* swiftgen_colors.yml in Resources */ = {isa = PBXBuildFile; fileRef = A51F86332A311579002B3D8F /* swiftgen_colors.yml */; };
 		A51F86372A311579002B3D8F /* swiftgen_strings.yml in Resources */ = {isa = PBXBuildFile; fileRef = A51F86342A311579002B3D8F /* swiftgen_strings.yml */; };
 		A56043BD2A2D0E0C00764B0F /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */; };
-		A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186D2A19468B006E1AE9 /* TurnHelper.swift */; };
-		A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */; };
 		A57B18722A195040006E1AE9 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18712A195040006E1AE9 /* Turn.swift */; };
 		A57B18762A1956EA006E1AE9 /* UIImage+Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18752A1956EA006E1AE9 /* UIImage+Creature.swift */; };
 		A57B18782A1957B0006E1AE9 /* CreatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B18772A1957B0006E1AE9 /* CreatureProtocol.swift */; };
@@ -83,8 +81,6 @@
 		A51F86332A311579002B3D8F /* swiftgen_colors.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen_colors.yml; sourceTree = SOURCE_ROOT; };
 		A51F86342A311579002B3D8F /* swiftgen_strings.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen_strings.yml; sourceTree = SOURCE_ROOT; };
 		A56043BC2A2D0E0C00764B0F /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
-		A57B186D2A19468B006E1AE9 /* TurnHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelper.swift; sourceTree = "<group>"; };
-		A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHelperProtocol.swift; sourceTree = "<group>"; };
 		A57B18712A195040006E1AE9 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		A57B18752A1956EA006E1AE9 /* UIImage+Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Creature.swift"; sourceTree = "<group>"; };
 		A57B18772A1957B0006E1AE9 /* CreatureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureProtocol.swift; sourceTree = "<group>"; };
@@ -335,8 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				A57B18712A195040006E1AE9 /* Turn.swift */,
-				A57B186D2A19468B006E1AE9 /* TurnHelper.swift */,
-				A57B186F2A1946A6006E1AE9 /* TurnHelperProtocol.swift */,
 				A5FF1DCA2A334D8800D74A4C /* TurnFactoryProtocol.swift */,
 				A5FF1DC82A334D6100D74A4C /* FishTurnFactory.swift */,
 				A5FF1DCC2A3359E000D74A4C /* OrcaTurnFactory.swift */,
@@ -508,13 +502,11 @@
 				A5FF1DC72A32C20700D74A4C /* CreatureVisualComponent.swift in Sources */,
 				A5FF1DC52A32C06800D74A4C /* UIImage+Extensions.swift in Sources */,
 				A5ACA6872A193BFE00FEE2FD /* Direction.swift in Sources */,
-				A57B18702A1946A6006E1AE9 /* TurnHelperProtocol.swift in Sources */,
 				A5ACA6532A18C36100FEE2FD /* CreatureAnimator.swift in Sources */,
 				A5ACA67F2A19395A00FEE2FD /* WorldVisualDelegate.swift in Sources */,
 				A5ACA5E52A18B6AB00FEE2FD /* SceneDelegate.swift in Sources */,
 				A5ACA6832A193B3000FEE2FD /* WorldPosition.swift in Sources */,
 				A5ACA67B2A1937FE00FEE2FD /* WorldDelegate.swift in Sources */,
-				A57B186E2A19468B006E1AE9 /* TurnHelper.swift in Sources */,
 				A57B18802A1962D6006E1AE9 /* Utils.swift in Sources */,
 				A57B18762A1956EA006E1AE9 /* UIImage+Creature.swift in Sources */,
 				A5102E302A20084400DE3C4C /* CreatureTimer.swift in Sources */,

@@ -11,16 +11,6 @@ class CreatureFactory
 {
     static let timerParentQueue = DispatchQueue(label: "Timer Paranet Queue", attributes: .concurrent)
 
-    static func turnHelperType(for creatureType: any CreatureProtocol.Type) -> TurnHelperProtocol.Type
-    {
-        switch creatureType {
-        case is OrcaCreature.Type: return TurnHelper.self
-        case is FishCreature.Type: return TurnHelper.self
-        default:
-            fatalError("Unpredictable creature type \(creatureType.self)")
-        }
-    }
-
     static func turnFactoryType(for creatureType: any CreatureProtocol.Type) -> TurnFactoryProtocol.Type
     {
         switch creatureType {

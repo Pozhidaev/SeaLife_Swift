@@ -114,7 +114,6 @@ class World: WorldProtocol
     {
         let deps = CreatureDeps(
             world: self,
-            turnHelperClass: CreatureFactory.turnHelperType(for: creatureType.self),
             turnFactoryType: CreatureFactory.turnFactoryType(for: creatureType.self)
         )
 

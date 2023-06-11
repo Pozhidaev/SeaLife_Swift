@@ -49,7 +49,7 @@ class OrcaCreature: Creature
         // try reproduce
         if reproductivePoints >= Constants.Creature.orcaReproductionPeriod
         {
-            if let targetCell = possibleCells.filter(turnHelperClass.canReproduceFilter).randomElement() {
+            if let targetCell = possibleCells.filter({ cell in cell.creature == nil }).randomElement() {
                 return Turn.reproduce(creature: self,
                                       startCell: cell,
                                       targetCell: targetCell)
@@ -57,7 +57,9 @@ class OrcaCreature: Creature
         }
 
         // try eat
-        if let targetCell = possibleCells.filter(turnHelperClass.canEatFilterFor(creature: self)).randomElement(),
+        if let targetCell = possibleCells.filter({
+            ($0.creature != nil) && ($0.creature as? FishCreature) != nil
+           }).randomElement(),
            let targetCreature = targetCell.creature
         {
             hungerPoints = Constants.Creature.orcaAllowedHungerPoins
@@ -69,7 +71,7 @@ class OrcaCreature: Creature
         }
 
         // try move
-        if let targetCell = possibleCells.filter(turnHelperClass.canMoveFilter).randomElement()
+        if let targetCell = possibleCells.filter({ cell in cell.creature == nil }).randomElement()
         {
             return Turn.move(creature: self,
                              startCell: cell,
