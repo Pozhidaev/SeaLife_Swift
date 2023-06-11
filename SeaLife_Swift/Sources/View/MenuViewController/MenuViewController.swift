@@ -11,6 +11,10 @@ let kUnwindToMainScreenSegueIdentifier = "kUnwindToMainScreenSegueIdentifier"
 
 class MenuViewController: UIViewController
 {
+    public private(set) var worldInfo: WorldInfo = WorldInfo.defaultInfo()
+
+    // MARK: - Private variables
+
     private lazy var fishCountView = { SliderView.fromNib() }()
     private lazy var orcaCountView = { SliderView.fromNib() }()
     private lazy var horizontalCountView = { SliderView.fromNib() }()
@@ -23,7 +27,8 @@ class MenuViewController: UIViewController
     private var orcaCount: Int = Constants.World.defaultOrcaCount
     private var fishCount: Int = Constants.World.defaultfishCount
 
-    public private(set) var worldInfo: WorldInfo = WorldInfo.defaultInfo()
+    private var compactHeightConstraints: [NSLayoutConstraint] = []
+    private var regularConstraints: [NSLayoutConstraint] = []
 
     // MARK: - Lifecycle
 
@@ -35,7 +40,7 @@ class MenuViewController: UIViewController
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
         stackView.spacing = Constants.UI.defaultElementsSpacing
         view.addSubview(stackView)
 
@@ -47,22 +52,34 @@ class MenuViewController: UIViewController
         startButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(startButton)
 
-        var verticalMultiplier = 3.0
+        var regularVerticalMultiplier = 3.0
         if modalPresentationStyle == .fullScreen {
-            verticalMultiplier = 10.0
-            let marginsSpace = Constants.UI.defaultElementsSpacing
-            view.layoutMargins = UIEdgeInsets(top: 0.0, left: marginsSpace * 10, bottom: 0.0, right: marginsSpace * 10)
+            regularVerticalMultiplier = 10.0
         }
+        regularConstraints = [
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: regularVerticalMultiplier),
+            stackView.widthAnchor.constraint(equalTo: view.readableContentGuide.widthAnchor),
+            stackView.centerXAnchor.constraint(equalTo: view.readableContentGuide.centerXAnchor),
 
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: verticalMultiplier),
+            self.startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: self.startButton.bottomAnchor, multiplier: regularVerticalMultiplier)
+        ]
 
-            startButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor),
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            view.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: startButton.bottomAnchor, multiplier: verticalMultiplier)
-        ])
+        compactHeightConstraints = [
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.startButton.leadingAnchor, constant: -Constants.UI.defaultElementsSpacing),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            self.startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            self.startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+
+        if traitCollection.verticalSizeClass == .compact {
+            NSLayoutConstraint.activate(compactHeightConstraints)
+        } else {
+            NSLayoutConstraint.activate(regularConstraints)
+        }
 
         self.view = view
     }
@@ -246,5 +263,21 @@ class MenuViewController: UIViewController
         orcaCountView.slider.value = Float(orcaCount)
         horizontalCountView.slider.value = Float(horizontalSize)
         verticalCountView.slider.value = Float(verticalSize)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        if newCollection.verticalSizeClass != traitCollection.verticalSizeClass {
+            if newCollection.verticalSizeClass == .compact {
+                NSLayoutConstraint.deactivate(regularConstraints)
+                NSLayoutConstraint.activate(compactHeightConstraints)
+            } else {
+                NSLayoutConstraint.deactivate(compactHeightConstraints)
+                NSLayoutConstraint.activate(regularConstraints)
+            }
+       }
+        
     }
 }
