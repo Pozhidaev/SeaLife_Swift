@@ -15,6 +15,7 @@ enum Constants
     {
         static let defaultCornerRadius: CGFloat      = 8.0
         static let defaultElementsSpacing: CGFloat   = 8.0
+        static let defaultBorderWidth: CGFloat       = 1.0
 
         enum MainScreen
         {

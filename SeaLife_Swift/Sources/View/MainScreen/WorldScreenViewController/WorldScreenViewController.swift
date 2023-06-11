@@ -215,6 +215,15 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
             worldViewController?.delegate = self
         }
     }
+
+    // MARK: - UIContentContainer
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.willTransition(to: newCollection, with: coordinator)
+
+        controlPanel.layer.borderColor = Colors.MainScreen.ControlPanel.frameColor.color.cgColor
+    }
 }
 
 extension WorldScreenViewController: WorldViewControllerDelegate
@@ -242,5 +251,4 @@ extension WorldScreenViewController: WorldViewControllerDelegate
             self?.present(alertController, animated: true)
         }
     }
-
 }

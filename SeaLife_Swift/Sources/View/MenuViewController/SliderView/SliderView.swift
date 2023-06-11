@@ -47,10 +47,20 @@ public class SliderView: UIView, XibLoadable
         layer.cornerRadius = Constants.UI.defaultCornerRadius
         backgroundColor = Colors.SliderView.backgroundColor.color
 
+        layer.borderWidth = Constants.UI.defaultBorderWidth
+        layer.borderColor = Colors.SliderView.border.color.cgColor
+
         titleLabel.textColor = Colors.SliderView.textColor.color
         valueLabel.textColor = Colors.SliderView.textColor.color
         minimumValueLabel.textColor = Colors.SliderView.textColor.color
         maximumValueLabel.textColor = Colors.SliderView.textColor.color
         slider.tintColor = Colors.SliderView.tintColor.color
+    }
+
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?)
+    {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        layer.borderColor = Colors.SliderView.border.color.cgColor
     }
 }

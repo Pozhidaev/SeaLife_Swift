@@ -41,10 +41,12 @@ internal enum Colors {
     internal static let backgroundColor = ColorAsset(name: "MenuView/BackgroundColor")
     internal static let frameColor = ColorAsset(name: "MenuView/FrameColor")
     internal static let startButtonColor = ColorAsset(name: "MenuView/StartButtonColor")
+    internal static let startButtonFrame = ColorAsset(name: "MenuView/StartButtonFrame")
     internal static let startButtonTitleColor = ColorAsset(name: "MenuView/StartButtonTitleColor")
   }
   internal enum SliderView {
     internal static let backgroundColor = ColorAsset(name: "SliderView/BackgroundColor")
+    internal static let border = ColorAsset(name: "SliderView/Border")
     internal static let textColor = ColorAsset(name: "SliderView/TextColor")
     internal static let tintColor = ColorAsset(name: "SliderView/TintColor")
   }

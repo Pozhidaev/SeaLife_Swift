@@ -110,6 +110,8 @@ class MenuViewController: UIViewController
     func setupStartButton()
     {
         startButton.layer.cornerRadius = Constants.UI.defaultCornerRadius
+        startButton.layer.borderWidth = Constants.UI.defaultBorderWidth
+        startButton.layer.borderColor = Colors.MenuView.startButtonFrame.color.cgColor
         startButton.backgroundColor = Colors.MenuView.startButtonColor.color
         startButton.contentEdgeInsets = UIEdgeInsets(top: Constants.UI.defaultElementsSpacing * 2.0,
                                                           left: Constants.UI.defaultElementsSpacing * 4.0,
@@ -264,11 +266,13 @@ class MenuViewController: UIViewController
         horizontalCountView.slider.value = Float(horizontalSize)
         verticalCountView.slider.value = Float(verticalSize)
     }
-    
+
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
     {
         super.willTransition(to: newCollection, with: coordinator)
-        
+
+        startButton.layer.borderColor = Colors.MenuView.startButtonFrame.color.cgColor
+
         if newCollection.verticalSizeClass != traitCollection.verticalSizeClass {
             if newCollection.verticalSizeClass == .compact {
                 NSLayoutConstraint.deactivate(regularConstraints)
@@ -278,6 +282,5 @@ class MenuViewController: UIViewController
                 NSLayoutConstraint.activate(regularConstraints)
             }
        }
-        
     }
 }
