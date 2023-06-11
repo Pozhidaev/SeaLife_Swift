@@ -130,6 +130,11 @@ class World: WorldProtocol
 //        let creature1 = creature(for: FishCreature.self)
 //        let cell1 = cells.filter{ $0.position == WorldPosition(x: 0, y: 10)}.first!
 //        add(creature: creature1, at: cell1)
+//        addToVisual(creature: creature1, at: cell1)
+//        let creature2 = creature(for: OrcaCreature.self)
+//        let cell2 = cells.filter{ $0.position == WorldPosition(x: 5, y: 10)}.first!
+//        add(creature: creature2, at: cell2)
+//        addToVisual(creature: creature2, at: cell2)
 //        return;
 
         let fishCreatures = Set( (0..<worldInfo.fishCount).map{_ in
