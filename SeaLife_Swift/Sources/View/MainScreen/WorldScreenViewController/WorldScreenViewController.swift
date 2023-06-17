@@ -223,6 +223,9 @@ class WorldScreenViewController: UIViewController, UIAlertViewDelegate
         super.willTransition(to: newCollection, with: coordinator)
 
         controlPanel.layer.borderColor = Colors.MainScreen.ControlPanel.frameColor.color.cgColor
+        playButton.redraw()
+        resetButton.redraw()
+        menuButton.redraw()
     }
 }
 

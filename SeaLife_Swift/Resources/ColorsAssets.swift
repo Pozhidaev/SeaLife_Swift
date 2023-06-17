@@ -28,6 +28,7 @@ internal enum Colors {
     internal enum ControlPanel {
       internal static let backgroundColor = ColorAsset(name: "MainScreen/ControlPanel/BackgroundColor")
       internal static let buttonsDisabledTitleColor = ColorAsset(name: "MainScreen/ControlPanel/ButtonsDisabledTitleColor")
+      internal static let buttonsFrame = ColorAsset(name: "MainScreen/ControlPanel/ButtonsFrame")
       internal static let buttonsTitleColor = ColorAsset(name: "MainScreen/ControlPanel/ButtonsTitleColor")
       internal static let frameColor = ColorAsset(name: "MainScreen/ControlPanel/FrameColor")
       internal static let menuButtonColor = ColorAsset(name: "MainScreen/ControlPanel/MenuButtonColor")

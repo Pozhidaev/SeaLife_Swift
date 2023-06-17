@@ -20,9 +20,16 @@ class ControlPanelButton: UIButton
         setup()
     }
 
+    func redraw()
+    {
+        layer.borderColor = Colors.MainScreen.ControlPanel.buttonsFrame.color.cgColor
+    }
+
     private func setup()
     {
         layer.cornerRadius = Constants.UI.defaultCornerRadius
+        layer.borderWidth = Constants.UI.defaultBorderWidth
+        layer.borderColor = Colors.MainScreen.ControlPanel.buttonsFrame.color.cgColor
 
         backgroundColor = Colors.MainScreen.ControlPanel.resetButtonColor.color
 
