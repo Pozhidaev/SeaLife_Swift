@@ -22,7 +22,7 @@ public class Creature: CreatureProtocol
     // MARK: Private vars
 
     private let timer: CreatureTimerProtocol
-    private let queue = DispatchQueue(label: "CreatureQueue")
+    private let queue: DispatchQueue
 
     internal let turnFactoryType: TurnFactoryProtocol.Type
 
@@ -35,13 +35,17 @@ public class Creature: CreatureProtocol
 
     public required init(uuid: UUID = UUID(), deps: CreatureDeps)
     {
+        self.uuid = uuid
         self.turnFactoryType = deps.turnFactoryType
         self.world = deps.world
-        self.uuid = uuid
 
-        timer = CreatureTimer()
+        self.queue = DispatchQueue(label: "CreatureQueue", attributes: .initiallyInactive)
+        self.queue.setTarget(queue: deps.creaturesTargetQueue)
+        self.queue.activate()
 
-        timer.handler = { [weak self] in
+        self.timer = CreatureTimer(targetQueue: deps.timersTargetQueue)
+
+        self.timer.handler = { [weak self] in
             self?.queue.async {
                 let turnBlockItem = DispatchWorkItem(block: { [weak self] in
                     self?.performTurn(completion: {
@@ -55,9 +59,6 @@ public class Creature: CreatureProtocol
 
     // MARK: Public methods
 
-    public func setTimerTargetQueue(_ queue: DispatchQueue) {
-        timer.setTargetQueue(queue)
-    }
     public func setSpeed(_ speed: Double) {
         timer.setSpeed(speed)
     }

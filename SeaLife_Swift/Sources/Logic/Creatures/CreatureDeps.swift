@@ -9,6 +9,9 @@ import Foundation
 
 public struct CreatureDeps
 {
-    unowned var world: any WorldProtocol
+    var world: (any WorldProtocol)
     var turnFactoryType: TurnFactoryProtocol.Type
+
+    var timersTargetQueue: DispatchQueue
+    var creaturesTargetQueue: DispatchQueue
 }

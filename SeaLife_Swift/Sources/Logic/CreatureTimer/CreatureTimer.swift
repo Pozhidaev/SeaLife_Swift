@@ -12,7 +12,7 @@ public class CreatureTimer: CreatureTimerProtocol
     let milisecondsPerSec: Double = 1000
 
     private let timer: DispatchSourceTimer
-    private let timerQueue: DispatchQueue = DispatchQueue(label: "Timer Queue", attributes: .initiallyInactive)
+    private let queue: DispatchQueue
 
     private var timerPausedCounter: Int
 
@@ -23,10 +23,14 @@ public class CreatureTimer: CreatureTimerProtocol
         timer.setEventHandler(handler: workItem)
     } }
 
-    required init()
+    required init(targetQueue: DispatchQueue)
     {
-        timer = DispatchSource.makeTimerSource(queue: timerQueue)
-        timerPausedCounter = 0
+        self.queue = DispatchQueue(label: "timer_private_queue", attributes: .initiallyInactive)
+        self.queue.setTarget(queue: targetQueue)
+        self.queue.activate()
+
+        self.timer = DispatchSource.makeTimerSource(queue: queue)
+        self.timerPausedCounter = 0
 
         let startTime = DispatchTime.now()
         let intervalTime = DispatchTimeInterval.seconds(.zero)
@@ -37,18 +41,12 @@ public class CreatureTimer: CreatureTimerProtocol
     {
         if timerPausedCounter <= 0 {
             for _ in timerPausedCounter...0 {
-                timerQueue.activate()
                 timer.resume()
             }
         }
     }
 
     // MARK: Public
-
-    public func setTargetQueue(_ targetQueue: DispatchQueue)
-    {
-        timerQueue.setTarget(queue: targetQueue)
-    }
 
     public func setSpeed(_ speed: Double)
     {
@@ -62,7 +60,6 @@ public class CreatureTimer: CreatureTimerProtocol
     {
         if timerPausedCounter <= 0 {
             timerPausedCounter += 1
-            timerQueue.activate()
             timer.resume()
         }
     }

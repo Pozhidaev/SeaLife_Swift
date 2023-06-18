@@ -9,7 +9,8 @@ import Foundation
 
 class CreatureFactory
 {
-    static let timerParentQueue = DispatchQueue(label: "Timer Paranet Queue", attributes: .concurrent)
+    static let timerParentQueue = DispatchQueue.global(qos: .default)
+    static let creaturesParentQueue = DispatchQueue.global(qos: .userInitiated)
 
     static func turnFactoryType(for creatureType: any CreatureProtocol.Type) -> TurnFactoryProtocol.Type
     {
@@ -21,11 +22,18 @@ class CreatureFactory
         }
     }
 
-    static func creature<T: CreatureProtocol>(uuid: UUID = UUID(), type: T.Type, deps: CreatureDeps) -> T
+    static func creature<T: CreatureProtocol>(uuid: UUID = UUID(),
+                                              type: T.Type,
+                                              world: World) -> T
     {
-        let creature = type.init(uuid: uuid, deps: deps)
+        let deps = CreatureDeps(
+            world: world,
+            turnFactoryType: turnFactoryType(for: type),
+            timersTargetQueue: timerParentQueue,
+            creaturesTargetQueue: creaturesParentQueue
+        )
 
-        creature.setTimerTargetQueue(timerParentQueue)
+        let creature = type.init(uuid: uuid, deps: deps)
 
         return creature
     }

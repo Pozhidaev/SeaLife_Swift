@@ -20,7 +20,6 @@ public protocol CreatureProtocol: AnyObject, Equatable, Hashable, CustomDebugStr
 
     init(uuid: UUID, deps: CreatureDeps)
 
-    func setTimerTargetQueue(_ queue: DispatchQueue)
     func setSpeed(_ speed: Double)
 
     func start()

@@ -112,12 +112,7 @@ class World: WorldProtocol
 
     public func creature(for creatureType: any CreatureProtocol.Type) -> Creature
     {
-        let deps = CreatureDeps(
-            world: self,
-            turnFactoryType: CreatureFactory.turnFactoryType(for: creatureType.self)
-        )
-
-        guard let creature = CreatureFactory.creature(type: creatureType, deps: deps) as? Creature else {
+        guard let creature = CreatureFactory.creature(type: creatureType, world: self) as? Creature else {
             fatalError("World can't create creature for type \(creatureType)")
         }
 
