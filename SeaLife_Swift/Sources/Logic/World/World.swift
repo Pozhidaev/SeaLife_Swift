@@ -110,12 +110,9 @@ class World: WorldProtocol
 
     // MARK: Creature methods
 
-    public func creature(for creatureType: any CreatureProtocol.Type) -> Creature
+    public func creature(for creatureType: any CreatureProtocol.Type) -> any CreatureProtocol
     {
-        guard let creature = CreatureFactory.creature(type: creatureType, world: self) as? Creature else {
-            fatalError("World can't create creature for type \(creatureType)")
-        }
-
+        let creature = CreatureFactory.creature(type: creatureType, world: self)
         return creature
     }
 
@@ -132,17 +129,17 @@ class World: WorldProtocol
 //        addToVisual(creature: creature2, at: cell2)
 //        return;
 
-        let fishCreatures = Set( (0..<worldInfo.fishCount).map{_ in
+        let fishCreatures = (0..<worldInfo.fishCount).map{_ in
             return creature(for: FishCreature.self)
-        })
+        }
 
-        let orcaCreatures = Set( (0..<worldInfo.orcaCount).map{_ in
+        let orcaCreatures = (0..<worldInfo.orcaCount).map{_ in
             return creature(for: OrcaCreature.self)
-        })
+        }
 
-        var creatures = Set<Creature>()
-        creatures.formUnion(fishCreatures)
-        creatures.formUnion(orcaCreatures)
+        var creatures: [any CreatureProtocol] = []
+        creatures += fishCreatures
+        creatures += orcaCreatures
 
         var freeCells = cells.shuffled()
         for creature in creatures {

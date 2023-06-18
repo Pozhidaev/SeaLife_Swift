@@ -25,7 +25,7 @@ public protocol WorldProtocol: AnyObject
     func reset()
 
     // creatures
-    func creature(for creatureType: any CreatureProtocol.Type) -> Creature
+    func creature(for creatureType: any CreatureProtocol.Type) -> any CreatureProtocol
     func createInitialCreatures()
 
     func add(creature: any CreatureProtocol, at cell: WorldCell)
