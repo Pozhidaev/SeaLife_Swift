@@ -55,7 +55,7 @@ public class CreatureVisualComponent
 
     func redraw()
     {
-        redraw(to: bounds.size)
+        content.image = UIImage(named: imageName)?.resized(to: bounds.size)
     }
 
     // MARK: - Private Methods

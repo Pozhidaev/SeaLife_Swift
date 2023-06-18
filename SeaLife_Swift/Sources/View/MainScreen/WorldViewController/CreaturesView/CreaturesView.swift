@@ -65,8 +65,6 @@ public class CreaturesView: UIView, WorldVisualDelegate
 
         let enumerator = animatorsDict.objectEnumerator()
         while case let animator as CreatureAnimator = enumerator?.nextObject() {
-            animator.animationSpeed = animationSpeed
-
             var bounds = animator.visualComponent.bounds
             bounds.size = CGSize(width: bounds.size.width * xCoeficient,
                                  height: bounds.size.height * yCoeficient)
@@ -77,6 +75,14 @@ public class CreaturesView: UIView, WorldVisualDelegate
         }
 
         cellSize = toCellSize
+    }
+
+    public func redrawImages()
+    {
+        let enumerator = animatorsDict.objectEnumerator()
+        while case let animator as CreatureAnimator = enumerator?.nextObject() {
+            animator.visualComponent.redraw()
+        }
     }
 
     // MARK: - Private methods

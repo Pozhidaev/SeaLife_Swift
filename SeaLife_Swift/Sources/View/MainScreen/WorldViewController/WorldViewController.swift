@@ -143,4 +143,13 @@ extension WorldViewController // UIContentContainer
             if wasPlaying { self.play() }
         }
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?)
+    {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
+            creaturesView.redrawImages()
+        }
+    }
 }

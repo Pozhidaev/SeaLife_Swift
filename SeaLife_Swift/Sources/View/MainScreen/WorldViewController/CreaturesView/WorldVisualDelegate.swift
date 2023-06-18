@@ -14,6 +14,7 @@ public protocol WorldVisualDelegate: AnyObject
     func reset()
 
     func redraw(toCellSize: CGSize)
+    func redrawImages()
 
     func add(creature: any CreatureProtocol,
              at position: WorldPosition)
